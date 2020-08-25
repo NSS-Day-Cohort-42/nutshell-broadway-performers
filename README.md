@@ -32,7 +32,12 @@ To start you off, here's an example of what the resources in your API should loo
 ### Users
 
 ```json
-{ "id": 1, "username": "Steve", "email": "me@me.com", "password": "xxxxxxxxxxxxxxxxxxxxx" }
+{
+  "id": 1,
+  "username": "Steve",
+  "email": "me@me.com",
+  "password": "xxxxxxxxxxxxxxxxxxxxx"
+}
 ```
 
 ### Messages
@@ -45,11 +50,11 @@ To start you off, here's an example of what the resources in your API should loo
 
 ```json
 {
-    "id": 1,
-    "userId": 2,
-    "url": "https://www.quantamagazine.org/newfound-wormhole-allows-information-to-escape-black-holes-20171023/",
-    "title": "Wormholes Allow Information to Escape Black Holes",
-    "synopsis": "Check out this recent discovery about workholes"
+  "id": 1,
+  "userId": 2,
+  "url": "https://www.quantamagazine.org/newfound-wormhole-allows-information-to-escape-black-holes-20171023/",
+  "title": "Wormholes Allow Information to Escape Black Holes",
+  "synopsis": "Check out this recent discovery about workholes"
 }
 ```
 
