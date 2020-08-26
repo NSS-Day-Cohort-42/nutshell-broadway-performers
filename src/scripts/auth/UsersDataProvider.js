@@ -1,4 +1,5 @@
 const eventHub = document.querySelector(".container");
+
 const dispatchStateChangeEvent = () => {
   const usersStateChangedEvent = new CustomEvent("usersStateChanged");
   eventHub.dispatchEvent(usersStateChangedEvent);
@@ -11,7 +12,7 @@ export const useUsers = () => {
 };
 
 export const getUsers = () => {
-  return fetch("http://localhost:8000/users")
+  return fetch("http://localhost:8088/users")
     .then((response) => response.json())
     .then((usersData) => {
       users = usersData;
@@ -21,7 +22,7 @@ export const getUsers = () => {
 export const saveUser = (newUserObj) => {
   const jsonUser = JSON.stringify(newUserObj);
 
-  return fetch("http://localhost:3003/users", {
+  return fetch("http://localhost:8088/users", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
