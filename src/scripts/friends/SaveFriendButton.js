@@ -24,7 +24,6 @@ eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "saveFriendButton") {
     currentUser = useCurrentUser();
     users = useUsers();
-    debugger;
     const friendName = document.querySelector("#newFriendEntry").value;
     const matchingFriend = users.find((userObj) => {
       return userObj.username === friendName;
