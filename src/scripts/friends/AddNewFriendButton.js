@@ -1,5 +1,5 @@
 const eventHub = document.querySelector(".container");
-const contentTarget = document.querySelector(".friends");
+const contentTarget = document.querySelector(".addFriend");
 
 const render = () => {
   contentTarget.innerHTML = `<button class="" id="addFriendButton" value="">Add a Friend</button>`;
