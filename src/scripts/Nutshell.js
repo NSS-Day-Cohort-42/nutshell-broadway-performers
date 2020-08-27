@@ -7,6 +7,7 @@ import { NoteForm } from "./tasks/JournalForm.js";
 import { NoteList } from "./tasks/JournalList.js";
 
 
+import { getLocation } from "./weather/WeatherDataProvider.js";
 
 const contentTarget = document.querySelector(".container");
 const eventHub = document.querySelector(".container");
@@ -14,6 +15,10 @@ const eventHub = document.querySelector(".container");
 export const Nutshell = () => {
   NoteForm()
   NoteList()
+    // Render all your UI components here
+
+    getLocation()
+
   //friends shit
   AddNewFriendButton();
   FriendsList();
