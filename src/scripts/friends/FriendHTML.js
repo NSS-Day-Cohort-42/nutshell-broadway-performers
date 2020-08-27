@@ -1,6 +1,7 @@
-export const FriendHTML = (friend) => {
+export const FriendHTML = (friendUserObj) => {
   return `<div class="friend">
-            ${friend.username}
+            ${friendUserObj.username}
             </div>
+            <button id="deleteFriend--${friendUserObj.id}">Delete Friend</button>
     `;
 };
