@@ -1,6 +1,7 @@
 import { useCurrentUser } from "../auth/LoginForm.js";
 import { useUsers, getUsers } from "../auth/UsersDataProvider.js";
 import { getFriends, useFriends } from "./FriendsProvider.js";
+import { FriendHTML } from "./FriendHTML.js";
 
 const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".friendsList");
@@ -9,11 +10,22 @@ let users = [];
 let friends = [];
 
 const render = () => {
-  contentTarget.innerHTML = `yeeeehh`;
   const matchingFriends = friends.filter((friendObj) => {
     return friendObj.userId === currentUser;
   });
-  debugger;
+  const followersAsUsers = matchingFriends.map((matchingFriendObj) => {
+    return users.find((userObj) => {
+      return matchingFriendObj.following === userObj.id;
+    });
+  });
+
+  const friendsListHTML = followersAsUsers
+    .map((followerAsUserObj) => {
+      return FriendHTML(followerAsUserObj);
+    })
+    .join("");
+
+  contentTarget.innerHTML = `${friendsListHTML}`;
 };
 
 export const FriendsList = () => {
@@ -26,5 +38,3 @@ export const FriendsList = () => {
       render();
     });
 };
-
-//needs to listen for friends state change event to refresh useUsers and UseFriends and and rerender
