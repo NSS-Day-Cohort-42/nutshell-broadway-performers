@@ -1,8 +1,13 @@
 //this component was created by Michael Tyler
 //this component creates a form for events 
 import { saveEvents, getEvents, useEvents } from "./EventsDataProvider.js"
+import { useUsers, getUsers } from "../auth/UsersDataProvider.js"
 
 let events = []
+let users = []
+let currentUserId = useUsers()
+console.log(currentUserId)
+
 
 const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".eventsForm")
@@ -22,7 +27,8 @@ eventHub.addEventListener("click", clickevent => {
             const newEvent = {
                 date: eventDate.valueAsNumber,
                 title: eventTitle.value,
-                location: eventLocation.value
+                location: eventLocation.value,
+                userId: currentUserId
             }
             saveEvents(newEvent)
         } else {
@@ -50,6 +56,7 @@ const render = () => {
 
 export const eventsForm = () => {
     getEvents()
+        .then(getUsers)
         .then(() => {
             events = useEvents()
             render()
