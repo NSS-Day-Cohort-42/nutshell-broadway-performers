@@ -30,6 +30,5 @@ eventHub.addEventListener("click", (clickEvent) => {
       userId: currentUser,
       following: matchingFriend.id,
     };
-    debugger;
   }
 });
