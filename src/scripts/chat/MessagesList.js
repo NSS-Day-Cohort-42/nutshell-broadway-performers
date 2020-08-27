@@ -1,7 +1,7 @@
 import { useCurrentUser } from "../auth/LoginForm.js";
 import { useUsers, getUsers } from "../auth/UsersDataProvider.js";
 import { getMessages, useMessages, deleteMessage } from "./MessagesProvider.js";
-// import { MessageHTML } from "./MessageHTML.js";
+import { MessageHTML } from "./MessageHTML.js";
 
 const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".messagesList");
@@ -10,19 +10,9 @@ let users = [];
 let messages = [];
 
 const render = () => {
-  const matchingMessages = messages.filter((messageObj) => {
-    return messageObj.userId === currentUser;
-  });
-  debugger;
-  const followersAsUsers = matchingMessages.map((matchingMessageObj) => {
-    return users.find((userObj) => {
-      return matchingMessageObj.following === userObj.id;
-    });
-  });
-
-  const messagesListHTML = followersAsUsers
-    .map((followerAsUserObj) => {
-      return MessageHTML(followerAsUserObj, matchingMessages);
+  const messagesListHTML = messages
+    .map((messageObj) => {
+      return MessageHTML(messageObj);
     })
     .join("");
 
