@@ -2,7 +2,7 @@
 import key from "../Settings.js";
 import { render } from  "./WeatherList.js"
 
-let weatherArray = []
+let weatherObject;
 
 const successObject = (position) => {
   let lat = position.coords.latitude
@@ -54,14 +54,16 @@ function showError(error) {
 export const getWeather = (lat, long) => {
 
   //return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=36.0546304&lon=-86.6910208&exclude=hourly&appid=8b29a4bca59654d89101420102680ded`)
-  return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=hourly&appid=${key.weatherKey}`)
+  //return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=hourly&appid=${key.weatherKey}`)
+  return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${key.weatherKey}`)
   .then(res => res.json())
   .then(
     parsedWeather => {
-      weatherArray = parsedWeather.daily
+      weatherObject = parsedWeather
+      
     }
     )
   }
   
-  export const useWeather = () => weatherArray.slice()
+  export const useWeather = () => weatherObject
 

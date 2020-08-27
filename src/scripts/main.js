@@ -12,8 +12,6 @@ import { getLocation, getWeather, useWeather } from "./weather/WeatherDataProvid
 */
 
 
-getLocation()
-
 
 
 
