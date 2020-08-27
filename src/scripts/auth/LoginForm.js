@@ -26,7 +26,7 @@ eventHub.addEventListener("click", (e) => {
 });
 
 export const useCurrentUser = () => {
-  return sessionStorage.getItem("activeUser");
+  return parseInt(sessionStorage.getItem("activeUser"));
 };
 
 const render = () => {
