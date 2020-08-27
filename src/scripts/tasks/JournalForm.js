@@ -35,11 +35,53 @@ const render = () => {
             </fieldset>
         </form>
            <input type="text" id="noteForm--name" placeholder="Task" />
-            <button id="noteForm--saveNote">Save Note</button>
+            <button id="noteForm--saveNote">Save  Task</button>
+            <button id="disableForm">Hide Task Form</button>
         </section>
     `
 }
 
-export const NoteForm = () => {
-    render()
+export const NoteButtonRender = () => {
+    contentTarget.innerHTML = 
+    `<form><input id="enableForm" type="button" value="Open Task Form"></form>`
+
+    eventHub.addEventListener("click", clickEvent => {
+        if (clickEvent.target.id === "enableForm") {
+            render()
+        }
+    })
+
+    eventHub.addEventListener("click", clickEvent => {
+        if (clickEvent.target.id === "disableForm") {
+            NoteButtonRender()
+        }
+    })
 }
+
+export const NoteForm = () => {
+    NoteButtonRender()
+}
+
+
+
+
+
+
+
+// export const NoteForm = () => {
+//     <form> 
+//   <input type="button" value="Start machine">
+// </form>
+// <p>The machine is stopped.</p>
+//     const button = document.querySelector('input');
+//     const paragraph = document.querySelector('p');
+//     button.addEventListener('click', updateButton);
+    
+    
+//     if (button.value === 'Add Task') {
+//       button.value = 'Hide Task';
+//       paragraph.textContent = 'The machine has started!';
+//     } else {
+//       button.value = 'Start machine';
+//       paragraph.textContent = 'The machine is stopped.';
+//     }

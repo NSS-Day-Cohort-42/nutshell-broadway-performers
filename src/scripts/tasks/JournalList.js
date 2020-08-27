@@ -34,3 +34,4 @@ export const NoteList = () => {
             render(allNotes)
         })
 }
+

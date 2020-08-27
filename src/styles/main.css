@@ -5,6 +5,10 @@
     width: 11.4rem;
 }
 
+#enableForm {
+    margin-top: 2rem;
+}
+
 #noteForm--date {
     width: 5rem;
     margin-top: 0.5rem;
