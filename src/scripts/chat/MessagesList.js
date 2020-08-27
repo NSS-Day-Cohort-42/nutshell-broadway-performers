@@ -47,7 +47,7 @@ eventHub.addEventListener("click", (clickEvent) => {
 
 eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id.startsWith("messageAuthorId")) {
-    const messageAuthorUserId = parseInt(clickEvent.target.id.split("--")[3]);
+    const messageAuthorUserId = parseInt(clickEvent.target.id.split("--")[1]);
     debugger;
   }
 });
