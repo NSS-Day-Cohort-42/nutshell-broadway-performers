@@ -1,6 +1,6 @@
 //import { getLocation, getWeather, showPosition } from "./weather/WeatherDataProvider.js"
 
-import { getLocation, getWeather, useWeather,locationObject } from "./weather/WeatherDataProvider.js"
+import { getLocation, getWeather, useWeather } from "./weather/WeatherDataProvider.js"
 
 
 /*
@@ -14,19 +14,9 @@ import { getLocation, getWeather, useWeather,locationObject } from "./weather/We
 
 getLocation()
 
-    // const lat = locationObject.coords.latitude,
-    // const long = locationObject.coords.longitude,
-    
 
-.then(
-    getWeather(lat, long)
 
-)
-.then(() => {
-    const weatherData = useWeather() 
-    console.log(weatherData)
-}
-)
+
  
  
     

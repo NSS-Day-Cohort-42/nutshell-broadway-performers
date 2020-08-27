@@ -5,7 +5,7 @@ const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Satur
 // this function has a single parameter that represents a single day of the forecast loop
 export const weatherHTMLRep = (weatherObj) => {
   // convert kelvin to Fahrenheit
-  const kelvinConvert = Math.round(((`${weatherObj.temp.day}`-273.15)*1.8)+32)
+  const kelvinConvert = Math.round(((`${weatherObj.current.temp}`-273.15)*1.8)+32)
   // Below is the resulting HTML representation of a single day.
   // In order to get the day of the week to display I had to create a "new Date"
   // I wrapped that new date in my days array.
@@ -15,7 +15,7 @@ export const weatherHTMLRep = (weatherObj) => {
     <div>${days[new Date((weatherObj.dt*1000)).getDay()]}</div>
     <div>Avg:</div>
     <div>${kelvinConvert}&degF</div>
-    <img src="http://openweathermap.org/img/wn/${weatherObj.weather[0].icon}@2x.png"></img>
+    <img src="http://openweathermap.org/img/wn/${weatherObj.current.weather.icon}@2x.png"></img>
   </div>
   `
 }

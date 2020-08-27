@@ -1,14 +1,19 @@
 
-import key from "../Settings.js"
+import key from "../Settings.js";
+import { render } from  "./WeatherList.js"
 
 let weatherArray = []
 
-export let locationObject = {}
-
 const successObject = (position) => {
-  locationObject = position
-  console.log(locationObject)
-  return locationObject
+  let lat = position.coords.latitude
+  let long = position.coords.longitude
+  console.log(position)
+  getWeather(lat, long)
+  .then(() => {
+    const weatherData = useWeather() 
+    console.log(weatherData)
+    render(weatherData)
+  })
 }
 
 
@@ -21,10 +26,8 @@ function errorHandler(err) {
 }
   
 export const getLocation = () => {
-
   if(navigator.geolocation) {
-
-     navigator.geolocation.getCurrentPosition(successObject, errorHandler, showError);
+     return navigator.geolocation.getCurrentPosition(successObject, errorHandler, showError);
   } else {
      alert("Sorry, browser does not support geolocation!");
   }
