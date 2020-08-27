@@ -8,11 +8,11 @@ const contentTarget = document.querySelector(".container");
 const eventHub = document.querySelector(".container");
 
 export const Nutshell = () => {
+  //friends shit
   AddNewFriendButton();
   FriendsList();
   eventHub.addEventListener("addNewFriendButtonClicked", () => {
     NewFriendEntry();
     SaveFriendButton();
   });
-  // Render all your UI components here
 };

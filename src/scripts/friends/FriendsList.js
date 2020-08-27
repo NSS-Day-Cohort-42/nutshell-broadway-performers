@@ -38,3 +38,8 @@ export const FriendsList = () => {
       render();
     });
 };
+
+eventHub.addEventListener("friendsStateChanged", () => {
+  friends = useFriends();
+  render();
+});
