@@ -4,13 +4,13 @@ import { NewFriendEntry } from "./friends/NewFriendEntry.js";
 import { SaveFriendButton } from "./friends/SaveFriendButton.js";
 import { FriendsList } from "./friends/FriendsList.js";
 import { getLocation } from "./weather/WeatherDataProvider.js";
+import { MessagesList } from "./chat/MessagesList.js";
 
 const contentTarget = document.querySelector(".container");
 const eventHub = document.querySelector(".container");
 
 export const Nutshell = () => {
-  // Render all your UI components here
-
+  //weather shit
   getLocation();
 
   //friends shit
@@ -23,5 +23,8 @@ export const Nutshell = () => {
 
   // event shit
 
-  //news shit//
+  // news shit
+
+  // chat shit
+  MessagesList();
 };

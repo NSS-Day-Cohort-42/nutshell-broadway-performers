@@ -1,52 +1,55 @@
 import { useCurrentUser } from "../auth/LoginForm.js";
 import { useUsers, getUsers } from "../auth/UsersDataProvider.js";
-import { getFriends, useFriends, deleteFriend } from "./FriendsProvider.js";
-import { FriendHTML } from "./FriendHTML.js";
+import { getMessages, useMessages, deleteMessage } from "./MessagesProvider.js";
+// import { MessageHTML } from "./MessageHTML.js";
 
 const eventHub = document.querySelector(".container");
-const contentTarget = document.querySelector(".friendsList");
+const contentTarget = document.querySelector(".messagesList");
 let currentUser; //changed this from invoking useCurrentUser() to just hanging out. seems to work the same?
 let users = [];
-let friends = [];
+let messages = [];
 
 const render = () => {
-  const matchingFriends = friends.filter((friendObj) => {
-    return friendObj.userId === currentUser;
+  const matchingMessages = messages.filter((messageObj) => {
+    return messageObj.userId === currentUser;
   });
-  const followersAsUsers = matchingFriends.map((matchingFriendObj) => {
+  debugger;
+  const followersAsUsers = matchingMessages.map((matchingMessageObj) => {
     return users.find((userObj) => {
-      return matchingFriendObj.following === userObj.id;
+      return matchingMessageObj.following === userObj.id;
     });
   });
 
-  const friendsListHTML = followersAsUsers
+  const messagesListHTML = followersAsUsers
     .map((followerAsUserObj) => {
-      return FriendHTML(followerAsUserObj, matchingFriends);
+      return MessageHTML(followerAsUserObj, matchingMessages);
     })
     .join("");
 
-  contentTarget.innerHTML = `${friendsListHTML}`;
+  contentTarget.innerHTML = `${messagesListHTML}`;
 };
 
-export const FriendsList = () => {
+export const MessagesList = () => {
   getUsers()
-    .then(getFriends)
+    .then(getMessages)
     .then(() => {
       users = useUsers();
-      friends = useFriends();
+      messages = useMessages();
       currentUser = useCurrentUser();
       render();
     });
 };
 
-eventHub.addEventListener("friendsStateChanged", () => {
-  friends = useFriends();
+eventHub.addEventListener("messagesStateChanged", () => {
+  messages = useMessages();
   render();
 });
 
 eventHub.addEventListener("click", (clickEvent) => {
-  if (clickEvent.target.id.startsWith("deleteFriend")) {
-    const idOfFriendObjToDelete = parseInt(clickEvent.target.id.split("--")[1]);
-    deleteFriend(idOfFriendObjToDelete);
+  if (clickEvent.target.id.startsWith("deleteMessage")) {
+    const idOfMessageObjToDelete = parseInt(
+      clickEvent.target.id.split("--")[1]
+    );
+    deleteMessage(idOfMessageObjToDelete);
   }
 });
