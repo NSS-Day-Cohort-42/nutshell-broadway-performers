@@ -1,6 +1,6 @@
-import { LoginForm } from "./auth/LoginForm.js"
-import { RegisterForm } from "./auth/RegisterForm.js"
-import { Nutshell } from "./Nutshell.js"
+//import { getLocation, getWeather, showPosition } from "./weather/WeatherDataProvider.js"
+
+import { getLocation, getWeather, useWeather,locationObject } from "./weather/WeatherDataProvider.js"
 
 
 /*
@@ -10,3 +10,15 @@ import { Nutshell } from "./Nutshell.js"
     4. Also, if the user authenticates, and the login form is initially shown
         ensure that the Nutshell component gets rendered
 */
+
+
+getLocation()
+getWeather(lat, long)
+.then(() => {
+    const weatherData = useWeather() 
+    console.log(weatherData)
+}
+)
+ 
+ 
+    
