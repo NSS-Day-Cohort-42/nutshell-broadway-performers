@@ -35,7 +35,6 @@ export const FriendsList = () => {
       users = useUsers();
       friends = useFriends();
       currentUser = useCurrentUser();
-      debugger;
       render();
     });
 };
