@@ -3,7 +3,7 @@ import { weatherHTMLRep } from "./WeatherHTMLConverter.js";
 
 
 const eventHub = document.querySelector(".eventHub")
-const contentTarget = document.querySelector(".container")
+const contentTarget = document.querySelector(".weatherHeader")
 
 
 // eventHub.addEventListener("parkSelected", () => {
