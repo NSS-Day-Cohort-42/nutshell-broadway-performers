@@ -32,3 +32,14 @@ export const saveFriend = (newFriendObj) => {
     .then(getFriends)
     .then(dispatchStateChangeEvent);
 };
+
+export const deleteFriend = (friendObjId) => {
+  return fetch(`http://localhost:8088/friends/${friendObjId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(getFriends)
+    .then(dispatchStateChangeEvent);
+};

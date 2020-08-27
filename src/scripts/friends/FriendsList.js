@@ -1,6 +1,6 @@
 import { useCurrentUser } from "../auth/LoginForm.js";
 import { useUsers, getUsers } from "../auth/UsersDataProvider.js";
-import { getFriends, useFriends } from "./FriendsProvider.js";
+import { getFriends, useFriends, deleteFriend } from "./FriendsProvider.js";
 import { FriendHTML } from "./FriendHTML.js";
 
 const eventHub = document.querySelector(".container");
@@ -21,7 +21,7 @@ const render = () => {
 
   const friendsListHTML = followersAsUsers
     .map((followerAsUserObj) => {
-      return FriendHTML(followerAsUserObj);
+      return FriendHTML(followerAsUserObj, matchingFriends);
     })
     .join("");
 
@@ -42,4 +42,11 @@ export const FriendsList = () => {
 eventHub.addEventListener("friendsStateChanged", () => {
   friends = useFriends();
   render();
+});
+
+eventHub.addEventListener("click", (clickEvent) => {
+  if (clickEvent.target.id.startsWith("deleteFriend")) {
+    const idOfFriendObjToDelete = parseInt(clickEvent.target.id.split("--")[1]);
+    deleteFriend(idOfFriendObjToDelete);
+  }
 });
