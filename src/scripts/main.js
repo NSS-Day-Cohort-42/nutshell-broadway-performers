@@ -13,7 +13,15 @@ import { getLocation, getWeather, useWeather,locationObject } from "./weather/We
 
 
 getLocation()
-getWeather(lat, long)
+
+    // const lat = locationObject.coords.latitude,
+    // const long = locationObject.coords.longitude,
+    
+
+.then(
+    getWeather(lat, long)
+
+)
 .then(() => {
     const weatherData = useWeather() 
     console.log(weatherData)

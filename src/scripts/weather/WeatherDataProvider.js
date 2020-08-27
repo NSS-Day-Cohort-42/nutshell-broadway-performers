@@ -3,7 +3,7 @@ import key from "../Settings.js"
 
 let weatherArray = []
 
-let locationObject = {}
+export let locationObject = {}
 
 const successObject = (position) => {
   locationObject = position
