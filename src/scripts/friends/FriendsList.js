@@ -1,15 +1,19 @@
 import { useCurrentUser } from "../auth/LoginForm.js";
 import { useUsers, getUsers } from "../auth/UsersDataProvider.js";
-import { saveFriend, getFriends, useFriends } from "./FriendsProvider.js";
+import { getFriends, useFriends } from "./FriendsProvider.js";
 
 const eventHub = document.querySelector(".container");
-const contentTarget = document.querySelector(".saveFriend");
+const contentTarget = document.querySelector(".friendsList");
 const currentUser = useCurrentUser();
 let users = [];
 let friends = [];
 
 const render = () => {
-  contentTarget.innerHTML = `<button class="" id="saveFriendButton" value="">Save New Friend</button>`;
+  contentTarget.innerHTML = `yeeeehh`;
+  const matchingFriends = friends.filter((friendObj) => {
+    return friendObj.userId === currentUser;
+  });
+  debugger;
 };
 
 export const FriendsList = () => {
@@ -18,8 +22,9 @@ export const FriendsList = () => {
     .then(() => {
       users = useUsers();
       friends = useFriends();
-      console.log(users);
-      console.log(friends);
-      //   render();
+
+      render();
     });
 };
+
+//needs to listen for friends state change event to refresh useUsers and UseFriends and and rerender

@@ -9,6 +9,7 @@ const eventHub = document.querySelector(".container");
 
 export const Nutshell = () => {
   AddNewFriendButton();
+  FriendsList();
   eventHub.addEventListener("addNewFriendButtonClicked", () => {
     NewFriendEntry();
     SaveFriendButton();
