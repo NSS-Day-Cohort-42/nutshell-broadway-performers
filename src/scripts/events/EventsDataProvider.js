@@ -30,7 +30,7 @@ export const saveEvents = (newEvents) => {
 }
 
 export const deleteEvents = (id) => {
-    return fetch(`http://localhost:8088/events/${id }`, {
+    return fetch(`http://localhost:8088/events/${id}`, {
             method: "DELETE"
         })
         .then(getEvents)

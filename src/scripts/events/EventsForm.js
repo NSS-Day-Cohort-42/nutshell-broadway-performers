@@ -20,7 +20,7 @@ eventHub.addEventListener("click", clickevent => {
 
         if (date !== "" && title !== "" && location !== "") {
             const newEvent = {
-                date: eventDate.value,
+                date: eventDate.valueAsNumber,
                 title: eventTitle.value,
                 location: eventLocation.value
             }
@@ -37,7 +37,7 @@ const render = () => {
             <h2>New Event</h2>
             <fieldset>
                 <label for="eventDate">Date of event</label>
-                <input type="date" name="eventDate" id="eventDate" required>
+                <input type="date" name="eventDate" id="eventDate" valueAsNumber required>
                 <label for="eventTitle">Event Title</label>
                 <input type="text" name="eventTitle" id="eventTitle" autoComplete="off" required>
                 <label for="eventLocation">Event Location</label>
