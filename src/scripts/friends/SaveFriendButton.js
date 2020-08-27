@@ -4,7 +4,7 @@ import { saveFriend } from "./FriendsProvider.js";
 
 const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".saveFriend");
-const currentUser = useCurrentUser();
+let currentUser = useCurrentUser();
 let users = [];
 
 const render = () => {
@@ -22,6 +22,7 @@ export const SaveFriendButton = () => {
 
 eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "saveFriendButton") {
+    currentUser = useCurrentUser();
     users = useUsers();
     const friendName = document.querySelector("#newFriendEntry").value;
     const matchingFriend = users.find((userObj) => {

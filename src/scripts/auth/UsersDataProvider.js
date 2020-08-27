@@ -5,10 +5,11 @@ const dispatchStateChangeEvent = () => {
   eventHub.dispatchEvent(usersStateChangedEvent);
 };
 
-eventHub.addEventListener("userAuthenticated", (e) => {
-  currentUserId = sessionStorage.getItem("activeUser");
-});
+// eventHub.addEventListener("userAuthenticated", (e) => {
+//   currentUserId = sessionStorage.getItem("activeUser");
+// });
 
+// let currentUserId;
 let users = [];
 
 export const useUsers = () => {
