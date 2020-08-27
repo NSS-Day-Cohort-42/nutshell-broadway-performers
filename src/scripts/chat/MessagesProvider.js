@@ -12,7 +12,7 @@ export const useMessages = () => {
 };
 
 export const getMessages = () => {
-  return fetch("http://localhost:8088/messages")
+  return fetch("http://localhost:8088/messages?_expand=user")
     .then((response) => response.json())
     .then((messagesData) => {
       messages = messagesData;
