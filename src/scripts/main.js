@@ -7,7 +7,7 @@ const eventHub = document.querySelector(".container");
 
 if (sessionStorage.getItem("activeUser")) {
   Nutshell();
-  console.log(useCurrentUser());
+  console.log(`${useCurrentUser()}`);
 } else {
   LoginForm();
   RegisterForm();

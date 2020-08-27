@@ -11,8 +11,9 @@ let messages = [];
 
 const render = () => {
   const messagesListHTML = messages
-    .map((messageObj) => {
-      return MessageHTML(messageObj);
+    .map((messageObj, currentUserId) => {
+      currentUserId = currentUser;
+      return MessageHTML(messageObj, currentUserId);
     })
     .join("");
 
