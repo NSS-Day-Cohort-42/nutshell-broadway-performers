@@ -1,4 +1,4 @@
-import { saveNote, useNotes } from "./JournalProvider.js";
+import { saveNote, useNotes } from "./TaskProvider.js";
 
 
 const contentTarget = document.querySelector(".list__column")
@@ -8,7 +8,7 @@ const eventHub = document.querySelector(".container")
 eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "noteForm--saveNote") {
 
-        const noteDate = document.querySelector("#journalDate")
+        const noteDate = document.querySelector("#taskDate")
         const noteName = document.querySelector("#noteForm--name")
   
         
@@ -25,13 +25,14 @@ eventHub.addEventListener("click", clickEvent => {
     } 
     })
 
+
 const render = () => {
     contentTarget.innerHTML = `
         <section class="entryForm">
         <form action="">
-            <fieldset id="noteForm--date">
+            <fieldset id="taskForm--date">
                 <label for="journalDate">Completion Date</label>
-                    <input class="date" type="date" name="journalDate" id="journalDate"></input>
+                    <input class="date" type="date" name="taskDate" id="taskDate"></input>
             </fieldset>
         </form>
            <input type="text" id="noteForm--name" placeholder="Task" />

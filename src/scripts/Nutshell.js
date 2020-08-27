@@ -3,8 +3,8 @@ import { AddNewFriendButton } from "./friends/AddNewFriendButton.js";
 import { NewFriendEntry } from "./friends/NewFriendEntry.js";
 import { SaveFriendButton } from "./friends/SaveFriendButton.js";
 import { FriendsList } from "./friends/FriendsList.js";
-import { NoteForm } from "./tasks/JournalForm.js";
-import { NoteList } from "./tasks/JournalList.js";
+import { NoteForm } from "./tasks/TaskForm.js";
+import { NoteList } from "./tasks/TaskList.js";
 
 
 import { getLocation } from "./weather/WeatherDataProvider.js";

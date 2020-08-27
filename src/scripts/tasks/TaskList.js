@@ -1,7 +1,7 @@
 
-import { getNotes, useNotes } from "./JournalProvider.js";
-import { noteHTMLConverter } from "./JournalHTML.js";
-import { deleteNote } from "./JournalProvider.js";
+import { getNotes, useNotes } from "./TaskProvider.js";
+import { noteHTMLConverter } from "./TaskHTML.js";
+import { deleteNote } from "./TaskProvider.js";
 
 const contentTarget = document.querySelector(".show__notes")
 const eventHub = document.querySelector(".container")
@@ -12,6 +12,7 @@ eventHub.addEventListener("click", clickEvent => {
         deleteNote(noteIdString)
     }
 })
+
   
 eventHub.addEventListener("noteStateChanged", customEvent => {
     const allNotes = useNotes()

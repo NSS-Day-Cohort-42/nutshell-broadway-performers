@@ -7,3 +7,5 @@ export const noteHTMLConverter = (noteObj) => {
         </section>
     `
 }
+
+
