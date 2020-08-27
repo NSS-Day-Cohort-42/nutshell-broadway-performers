@@ -44,3 +44,10 @@ eventHub.addEventListener("click", (clickEvent) => {
     deleteMessage(idOfMessageObjToDelete);
   }
 });
+
+eventHub.addEventListener("click", (clickEvent) => {
+  if (clickEvent.target.id.startsWith("messageAuthorId")) {
+    const messageAuthorUserId = parseInt(clickEvent.target.id.split("--")[3]);
+    debugger;
+  }
+});
