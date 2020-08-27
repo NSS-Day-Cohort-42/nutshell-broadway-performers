@@ -9,9 +9,9 @@ const contentTarget = document.querySelector(".container");
 const eventHub = document.querySelector(".container");
 
 export const Nutshell = () => {
-    // Render all your UI components here
+  // Render all your UI components here
 
-    getLocation()
+  getLocation();
 
   //friends shit
   AddNewFriendButton();
