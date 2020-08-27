@@ -26,8 +26,10 @@ eventHub.addEventListener("click", (clickEvent) => {
     const matchingFriend = users.find((userObj) => {
       return userObj.username === friendName;
     });
+    const newFriendObj = {
+      userId: currentUser,
+      following: matchingFriend.id,
+    };
     debugger;
-    console.log(matchingFriend);
-    console.log(currentUser);
   }
 });
