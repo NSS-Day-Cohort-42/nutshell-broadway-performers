@@ -1,5 +1,6 @@
 import { useCurrentUser } from "../auth/LoginForm.js";
 import { useUsers, getUsers } from "../auth/UsersDataProvider.js";
+import { saveFriend } from "./FriendsProvider.js";
 
 const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".saveFriend");
@@ -30,5 +31,7 @@ eventHub.addEventListener("click", (clickEvent) => {
       userId: currentUser,
       following: matchingFriend.id,
     };
+
+    saveFriend(newFriendObj);
   }
 });
