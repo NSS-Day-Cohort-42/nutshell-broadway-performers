@@ -19,11 +19,17 @@ eventHub.addEventListener("click", (e) => {
           if (user.password === password) {
             sessionStorage.setItem("activeUser", user.id);
             eventHub.dispatchEvent(new CustomEvent("userAuthenticated"));
+            currentUser = sessionStorage.getItem("activeUser");
+            console.log(currentUser);
           }
         }
       });
   }
 });
+
+export const useCurrentUser = () => {
+  return sessionStorage.getItem("activeUser");
+};
 
 const render = () => {
   contentTarget.innerHTML += `
