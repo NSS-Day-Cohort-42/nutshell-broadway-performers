@@ -7,12 +7,9 @@ const dispatchStateChangeEvent = () => {
 
 eventHub.addEventListener("userAuthenticated", (e) => {
   currentUserId = sessionStorage.getItem("activeUser");
-  console.log('ayyee');
 });
 
 let users = [];
-
-export const currentUserId;
 
 export const useUsers = () => {
   return users.slice();
