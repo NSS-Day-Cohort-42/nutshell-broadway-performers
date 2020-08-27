@@ -5,7 +5,7 @@ import { FriendHTML } from "./FriendHTML.js";
 
 const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".friendsList");
-const currentUser = useCurrentUser();
+let currentUser;
 let users = [];
 let friends = [];
 
@@ -34,7 +34,8 @@ export const FriendsList = () => {
     .then(() => {
       users = useUsers();
       friends = useFriends();
-
+      currentUser = useCurrentUser();
+      debugger;
       render();
     });
 };
