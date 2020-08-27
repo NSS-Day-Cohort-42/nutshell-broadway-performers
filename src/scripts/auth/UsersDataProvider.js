@@ -6,6 +6,7 @@ const dispatchStateChangeEvent = () => {
 };
 
 let users = [];
+const currentUserId
 
 export const useUsers = () => {
   return users.slice();
@@ -32,3 +33,8 @@ export const saveUser = (newUserObj) => {
     .then(getUsers)
     .then(dispatchStateChangeEvent);
 };
+
+eventHub.addEventListener("userAuthenticated", (authenticationEvent) => {
+    currentUserId = authenticationEvent.detail.currentUserId;
+    debugger
+})
