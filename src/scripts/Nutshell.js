@@ -15,4 +15,8 @@ export const Nutshell = () => {
     NewFriendEntry();
     SaveFriendButton();
   });
+
+  // event shit
+
+  //news shit//
 };
