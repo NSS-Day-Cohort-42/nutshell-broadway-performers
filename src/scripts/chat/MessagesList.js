@@ -32,7 +32,6 @@ export const MessagesList = () => {
       friends = useFriends();
       currentUser = useCurrentUser();
       render();
-      debugger;
     });
 };
 
@@ -53,6 +52,17 @@ eventHub.addEventListener("click", (clickEvent) => {
 eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id.startsWith("messageAuthorId")) {
     const messageAuthorUserId = parseInt(clickEvent.target.id.split("--")[1]);
-    debugger;
+    // this baby sees if the current user is already following another user
+    const matchingFriendObjectsForCurrentUser = friends.filter((friendObj) => {
+      return currentUser === friendObj.userId;
+    });
+    const idsOfAlreadyFollowing = matchingFriendObjectsForCurrentUser.map(
+      (MFO) => {
+        return MFO.following;
+      }
+    );
+    if (idsOfAlreadyFollowing.includes(messageAuthorUserId)) {
+      alert("WANNA GET BUCK?!!");
+    } else alert("shitnawww");
   }
 });
