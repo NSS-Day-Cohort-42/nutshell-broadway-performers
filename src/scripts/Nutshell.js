@@ -23,8 +23,6 @@ export const Nutshell = () => {
         // Render all your UI components here
 
     getLocation()
-
-    getLocation()
         //friends shit
     AddNewFriendButton();
     FriendsList();
@@ -37,8 +35,8 @@ export const Nutshell = () => {
     eventList()
     eventHub.addEventListener("addNewEventButtonClicked", () => {
             eventsForm()
-        })
-        // news shit
+    })
+    // news shit
 
     // chat shit
     MessagesList();
