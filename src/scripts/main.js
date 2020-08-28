@@ -6,16 +6,16 @@ import { getMessages, useMessages } from "./chat/MessagesProvider.js";
 const eventHub = document.querySelector(".container");
 
 if (sessionStorage.getItem("activeUser")) {
-  Nutshell();
-  console.log(`${useCurrentUser()}`);
+    Nutshell();
+    console.log(`${useCurrentUser()}`);
 } else {
-  LoginForm();
-  RegisterForm();
+    LoginForm();
+    RegisterForm();
 }
 
 eventHub.addEventListener("userAuthenticated", () => {
-  Nutshell();
-  console.log(useCurrentUser());
+    Nutshell();
+    console.log(useCurrentUser());
 });
 
 /*
