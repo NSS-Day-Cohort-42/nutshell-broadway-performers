@@ -26,8 +26,10 @@ const render = () => {
 
   contentTarget.innerHTML = `${messagesListHTML}
   <dialog id="addFriendModal">
+  <form>
   <button class="button" id="addFriendModalAddButton">Add as Friend</button>
   <button class="button" id="addFriendModalExitButton">Close</button>
+  <form>
   </dialog>`;
 };
 
