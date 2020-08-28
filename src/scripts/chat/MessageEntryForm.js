@@ -26,7 +26,7 @@ eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "submitMessage") {
         const newMessage = {
             userId: currentUser,
-            message: document.querySelector("messageText"),
+            message: document.querySelector("#messageText").value,
             message_time: new Date()
         }
 
