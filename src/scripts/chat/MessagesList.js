@@ -26,10 +26,8 @@ const render = () => {
 
   contentTarget.innerHTML = `${messagesListHTML}
   <dialog id="addFriendModal">
-  <form>
   <button class="button" id="addFriendModalAddButton">Add as Friend</button>
   <button class="button" id="addFriendModalExitButton">Close</button>
-  </form>
   </dialog>`;
 };
 
@@ -86,10 +84,13 @@ eventHub.addEventListener("click", (clickEvent) => {
             userId: currentUser,
             following: authorId,
           };
-          saveFriend(newFriend);
+            saveFriend(newFriend);
+            addFriendModal.close()
         }
       });
     }
+  } else if (clickEvent.target.id === "addFriendModalExitButton") {
+    document.querySelector("#addFriendModal").close()
   }
 });
 
