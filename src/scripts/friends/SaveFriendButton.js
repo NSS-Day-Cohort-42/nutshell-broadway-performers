@@ -4,7 +4,7 @@ import { saveFriend } from "./FriendsProvider.js";
 
 const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".saveFriend");
-let currentUser = useCurrentUser();
+let currentUser;
 let users = [];
 
 const render = () => {

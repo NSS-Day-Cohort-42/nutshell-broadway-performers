@@ -1,12 +1,13 @@
 import { LoginForm, useCurrentUser } from "./auth/LoginForm.js";
 import { RegisterForm } from "./auth/RegisterForm.js";
 import { Nutshell } from "./Nutshell.js";
+import { getMessages, useMessages } from "./chat/MessagesProvider.js";
 
 const eventHub = document.querySelector(".container");
 
 if (sessionStorage.getItem("activeUser")) {
     Nutshell();
-    console.log(useCurrentUser());
+    console.log(`${useCurrentUser()}`);
 } else {
     LoginForm();
     RegisterForm();

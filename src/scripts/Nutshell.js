@@ -7,6 +7,8 @@ import { getLocation } from "./weather/WeatherDataProvider.js";
 import { addNewEventButton } from "./events/AddNewEventButton.js";
 import { eventList } from "./events/EventsList.js";
 import { eventsForm } from "./events/EventsForm.js";
+import { MessagesList } from "./chat/MessagesList.js";
+import { messageEntryForm } from "./chat/MessageEntryForm.js";
 
 const contentTarget = document.querySelector(".container");
 const eventHub = document.querySelector(".container");
@@ -25,6 +27,12 @@ export const Nutshell = () => {
     addNewEventButton()
     eventList()
     eventHub.addEventListener("addNewEventButtonClicked", () => {
-        eventsForm()
-    })
+            eventsForm()
+        })
+        // news shit
+
+    // chat shit
+    MessagesList();
+    messageEntryForm();
+
 };

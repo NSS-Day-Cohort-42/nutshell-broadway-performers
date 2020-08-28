@@ -28,8 +28,22 @@ eventHub.addEventListener("click", clickevent => {
     }
 })
 
+// const render = () => {
+//     currentUserId = useCurrentUser()
+//     const allEventsToString = events.map(event => {
+//         const friendships = friends.filter(friend => {
+//             return friend.following === currentUserId
+//         })
+//         const friendsEvents = friendships.filter(fr => {
+//             return event.userId === fr.userId
+//         })
+//     })
+// }
+
 const render = () => {
     currentUserId = useCurrentUser()
+
+
     const matchingFriendships = friends.filter(friendshipObj => {
         return friendshipObj.userId === currentUserId
     })
@@ -45,6 +59,7 @@ const render = () => {
     const allEventsToString = matchingEvents.map(eventObj => {
         return eventsComponent(eventObj)
     }).join("")
+
     contentTarget.innerHTML = allEventsToString
 
 }
