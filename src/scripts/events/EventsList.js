@@ -30,37 +30,56 @@ eventHub.addEventListener("click", clickevent => {
 
 // const render = () => {
 //     currentUserId = useCurrentUser()
-//     const allEventsToString = events.map(event => {
-//         const friendships = friends.filter(friend => {
-//             return friend.following === currentUserId
-//         })
-//         const friendsEvents = friendships.filter(fr => {
-//             return event.userId === fr.userId
+
+//     const friendships = friends.filter(friend => {
+//         return friend.userId === currentUserId
+//     })
+//     const matchingUsers = friendships.map(cf => {
+//         return users.find(cu => {
+//             return cu.id === cf.following
 //         })
 //     })
+//     const friendsEvents = matchingUsers.map(mu => {
+//         const fe = events.find(ce => {
+//             return ce.userId === mu.id
+//         })
+//         return eventsComponent(fe)
+//     })
+
+//     console.log(friendsEvents)
+
+
+
+
+//     const matchingEvents = events.filter(eventObj => {
+
+//         return eventObj.userId === currentUserId
+//     })
+
+//     const allEventsToString = matchingEvents.map(eventObj => {
+//         return eventsComponent(eventObj)
+//     }).join("")
+
+//     contentTarget.innerHTML = friendsEvents
 // }
 
 const render = () => {
     currentUserId = useCurrentUser()
-
-
-    const matchingFriendships = friends.filter(friendshipObj => {
-        return friendshipObj.userId === currentUserId
+    const friendShips = friends.filter(friend => {
+        return friend.userId === currentUserId
     })
-    const matchFriends = matchingFriendships.filter(currentRelationship => {
-        return currentRelationship.following === users.id
+    const matchingUsers = friendShips.map(cf => {
+        return users.find(cu => {
+            return cu.id === cf.following
+        })
     })
-    console.log(matchFriends)
-    const matchingEvents = events.filter(eventObj => {
+    console.log(matchingUsers)
 
-        return eventObj.userId === currentUserId
+    const allEventsConvertedToString = events.map(currentEvent => {
+        return matchingUsers.id === currentEvent.userId
     })
+    console.log(allEventsConvertedToString)
 
-    const allEventsToString = matchingEvents.map(eventObj => {
-        return eventsComponent(eventObj)
-    }).join("")
-
-    contentTarget.innerHTML = allEventsToString
 
 }
 
