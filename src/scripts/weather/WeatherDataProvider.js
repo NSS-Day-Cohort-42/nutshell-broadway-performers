@@ -102,5 +102,4 @@ export const triggerWeatherEvent = (city) => {
   forwardGeoCoder(city)
   .then(getForecastWeather)
   .then(useEventForecastWeather)
-
 }

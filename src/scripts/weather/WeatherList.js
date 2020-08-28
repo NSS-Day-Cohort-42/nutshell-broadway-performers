@@ -38,10 +38,11 @@ export const weatherEventList = () => {
   } else {
     const city = foundEventObject.event_location;
 
-    triggerWeatherEvent(city).then(() => {
+    triggerWeatherEvent(city)
       const forecast = useEventForecastWeather();
       console.table(forecast);
-    })
+
+
   
       const eventWeatherForecast = forecast.find((forecastObject) => {
         let dateToString = forecastObject.dt + "" + "000";
