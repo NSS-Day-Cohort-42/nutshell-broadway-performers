@@ -69,20 +69,5 @@ export const NoteForm = () => {
 
 
 
-// export const NoteForm = () => {
-//     <form> 
-//   <input type="button" value="Start machine">
-// </form>
-// <p>The machine is stopped.</p>
-//     const button = document.querySelector('input');
-//     const paragraph = document.querySelector('p');
-//     button.addEventListener('click', updateButton);
-    
-    
-//     if (button.value === 'Add Task') {
-//       button.value = 'Hide Task';
-//       paragraph.textContent = 'The machine has started!';
-//     } else {
-//       button.value = 'Start machine';
-//       paragraph.textContent = 'The machine is stopped.';
-//     }
+// var checkbox = document.querySelector();
+

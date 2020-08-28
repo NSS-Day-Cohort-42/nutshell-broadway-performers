@@ -36,3 +36,10 @@ export const NoteList = () => {
         })
 }
 
+eventHub.addEventListener("change", changeEvent => {
+    if (changeEvent.target.id.startsWith("eventComplete")) {
+        const [prompt, checkId] = changeEvent.target.id.split("--")
+        document.querySelector("#task--")
+    }
+})
+ 
