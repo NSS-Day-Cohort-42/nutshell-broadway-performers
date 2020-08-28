@@ -1,10 +1,13 @@
 
-import { getNotes, useNotes } from "./TaskProvider.js";
+import { getNotes, useNotes, saveUpdatedNote } from "./TaskProvider.js";
 import { noteHTMLConverter } from "./TaskHTML.js";
 import { deleteNote } from "./TaskProvider.js";
+import { getUsers } from "../auth/UsersDataProvider.js";
+import { useCurrentUser } from "../auth/LoginForm.js";
 
 const contentTarget = document.querySelector(".show__notes")
 const eventHub = document.querySelector(".container")
+let currentUser;
 
 eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id.startsWith("noteBtn--")) {
@@ -30,7 +33,9 @@ const render = (noteArray) => {
      
 export const NoteList = () => {
     getNotes()
+        .then(getUsers)
         .then(() => {
+            currentUser = parseInt(useCurrentUser())
             const allNotes = useNotes()
             render(allNotes)
         })
@@ -39,7 +44,15 @@ export const NoteList = () => {
 eventHub.addEventListener("change", changeEvent => {
     if (changeEvent.target.id.startsWith("eventComplete")) {
         const [prompt, checkId] = changeEvent.target.id.split("--")
-        document.querySelector("#task--")
+        const idOfTaskToHide = parseInt(checkId)
+        const updatedTask = {
+            id: idOfTaskToHide,
+            date: `who cares`,
+            name: `not me`,
+            complete: true,
+            userId: currentUser
+        }
+        saveUpdatedNote(updatedTask)
     }
 })
  
