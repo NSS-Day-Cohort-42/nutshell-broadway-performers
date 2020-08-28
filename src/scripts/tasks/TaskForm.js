@@ -1,8 +1,12 @@
 import { saveNote, useNotes } from "./TaskProvider.js";
+import { useCurrentUser } from "../auth/LoginForm.js";
+import { getUsers } from "../auth/UsersDataProvider.js";
+
 
 
 const contentTarget = document.querySelector(".list__column")
 const eventHub = document.querySelector(".container")
+let currentUser;
 
 // Handle browser-generated click event in component
 eventHub.addEventListener("click", clickEvent => {
@@ -18,6 +22,8 @@ eventHub.addEventListener("click", clickEvent => {
         const newNote = {
             date: noteDate.value,
             name: noteName.value,
+            complete: false,
+            userId: currentUser
         }
 
         // Change API state and application state
@@ -60,7 +66,11 @@ export const NoteButtonRender = () => {
 }
 
 export const NoteForm = () => {
-    NoteButtonRender()
+    getUsers()
+        .then(() => {
+            currentUser = useCurrentUser()
+            NoteButtonRender()
+        })
 }
 
 
