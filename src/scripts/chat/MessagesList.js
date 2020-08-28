@@ -92,12 +92,12 @@ eventHub.addEventListener("click", (clickEvent) => {
         addFriendModal.showModal();
         addFriendModal.addEventListener("click", clickEvent => {
             if (clickEvent.target.id === "addFriendModalAddButton") {
-                console.log('YES')
                 const newFriend = {
                           userId: currentUser,
                           following: authorId,
                 };
                 console.log(newFriend)
+                saveFriend(newFriend)
             }
         })
     }
