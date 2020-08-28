@@ -3,6 +3,10 @@ import { AddNewFriendButton } from "./friends/AddNewFriendButton.js";
 import { NewFriendEntry } from "./friends/NewFriendEntry.js";
 import { SaveFriendButton } from "./friends/SaveFriendButton.js";
 import { FriendsList } from "./friends/FriendsList.js";
+import { NoteForm } from "./tasks/TaskForm.js";
+import { NoteList } from "./tasks/TaskList.js";
+
+
 import { getLocation } from "./weather/WeatherDataProvider.js";
 import { MessagesList } from "./chat/MessagesList.js";
 import { messageEntryForm } from "./chat/MessageEntryForm.js";
@@ -11,8 +15,11 @@ const contentTarget = document.querySelector(".container");
 const eventHub = document.querySelector(".container");
 
 export const Nutshell = () => {
-  //weather shit
-  getLocation();
+  NoteForm()
+  NoteList()
+    // Render all your UI components here
+
+    getLocation()
 
   //friends shit
   AddNewFriendButton();
