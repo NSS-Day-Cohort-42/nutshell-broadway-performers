@@ -5,6 +5,7 @@ import { SaveFriendButton } from "./friends/SaveFriendButton.js";
 import { FriendsList } from "./friends/FriendsList.js";
 import { getLocation } from "./weather/WeatherDataProvider.js";
 import { MessagesList } from "./chat/MessagesList.js";
+import { messageEntryForm } from "./chat/MessageEntryForm.js";
 
 const contentTarget = document.querySelector(".container");
 const eventHub = document.querySelector(".container");
@@ -27,4 +28,5 @@ export const Nutshell = () => {
 
   // chat shit
   MessagesList();
+  messageEntryForm();
 };

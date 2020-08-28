@@ -51,10 +51,8 @@ eventHub.addEventListener("messagesStateChanged", () => {
   render();
 });
 
-eventHub.addEventListener("friendsStateChanged", () => {
-    debugger
+eventHub.addEventListener("friendsStateChanged", () => {   
     friends = useFriends();
-    debugger
 });
 
 eventHub.addEventListener("click", (clickEvent) => {
