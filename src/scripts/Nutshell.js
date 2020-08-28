@@ -8,6 +8,8 @@ import { NoteList } from "./tasks/TaskList.js";
 
 
 import { getLocation } from "./weather/WeatherDataProvider.js";
+import { MessagesList } from "./chat/MessagesList.js";
+import { messageEntryForm } from "./chat/MessageEntryForm.js";
 
 const contentTarget = document.querySelector(".container");
 const eventHub = document.querySelector(".container");
@@ -26,4 +28,12 @@ export const Nutshell = () => {
     NewFriendEntry();
     SaveFriendButton();
   });
+
+  // event shit
+
+  // news shit
+
+  // chat shit
+  MessagesList();
+  messageEntryForm();
 };
