@@ -2,12 +2,14 @@ import { useCurrentUser } from "../auth/LoginForm.js";
 import { useUsers, getUsers } from "../auth/UsersDataProvider.js";
 import { getMessages, useMessages, deleteMessage } from "./MessagesProvider.js";
 import { MessageHTML } from "./MessageHTML.js";
+import { getFriends, useFriends } from "../friends/FriendsProvider.js";
 
 const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".messagesList");
 let currentUser; //changed this from invoking useCurrentUser() to just hanging out. seems to work the same?
 let users = [];
 let messages = [];
+let friends = [];
 
 const render = () => {
   const messagesListHTML = messages
@@ -23,11 +25,14 @@ const render = () => {
 export const MessagesList = () => {
   getUsers()
     .then(getMessages)
+    .then(getFriends)
     .then(() => {
       users = useUsers();
       messages = useMessages();
+      friends = useFriends();
       currentUser = useCurrentUser();
       render();
+      debugger;
     });
 };
 
