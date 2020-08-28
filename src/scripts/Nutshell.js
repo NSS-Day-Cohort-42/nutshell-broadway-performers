@@ -13,6 +13,7 @@ import { eventList } from "./events/EventsList.js";
 import { eventsForm } from "./events/EventsForm.js";
 import { MessagesList } from "./chat/MessagesList.js";
 import { messageEntryForm } from "./chat/MessageEntryForm.js";
+import { AddNewArticleButton } from "./news/AddNewArticleButton.js";
 
 const contentTarget = document.querySelector(".container");
 const eventHub = document.querySelector(".container");
@@ -41,6 +42,7 @@ export const Nutshell = () => {
     })
 
     // news shit
+    AddNewArticleButton();
 
     // chat shit
     MessagesList();
