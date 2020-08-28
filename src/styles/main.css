@@ -1,0 +1,32 @@
+<<<<<<< HEAD
+@import "./events.css";
+=======
+/* TASK CSS */
+.entryForm {
+    display: flex;
+    flex-direction: column;
+    width: 11.4rem;
+}
+
+#enableForm {
+    margin-top: 2rem;
+}
+
+#taskForm--date {
+    width: 5rem;
+    margin-top: 0.5rem;
+    border-radius: 0.4rem;
+}
+
+#noteForm--name {
+    margin-left: 0.1rem;
+    height: 2rem;
+}
+
+.note {
+    margin-top: 1.2rem;
+    line-height: 1.5;
+}
+
+/* END TASK CSS */
+>>>>>>> master

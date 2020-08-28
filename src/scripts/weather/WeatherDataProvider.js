@@ -72,7 +72,6 @@ let cityArray = []
 
 export const forwardGeoCoder = (cityName) => {
   return fetch(
-    //`http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${key.weatherKey}`
     `https://api.opencagedata.com/geocode/v1/json?q=${cityName}&key=${key.geocodingKey}&countrycode=USA&limit=1`
   )
     .then((response) => response.json())
@@ -92,7 +91,7 @@ export const getForecastWeather = () => {
   return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${eventLocLat}&lon=${eventLocLong}&exclude=hourly&appid=${key.weatherKey}`)
     .then((res) => res.json())
     .then((parsedForecastWeather) => {
-      forecastArray = parsedForecastWeather;
+      forecastArray = parsedForecastWeather.daily;
     });
 }
 
@@ -102,5 +101,6 @@ export const useEventForecastWeather = () => forecastArray.slice()
 export const triggerWeatherEvent = (city) => {
   forwardGeoCoder(city)
   .then(getForecastWeather)
-  .then(() => { console.log(forecastArray) })
+  .then(useEventForecastWeather)
+
 }

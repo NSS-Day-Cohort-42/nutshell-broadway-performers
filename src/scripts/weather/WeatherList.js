@@ -1,5 +1,8 @@
 import { weatherHTMLRep, eventWeatherHTMLRep } from "./WeatherHTMLConverter.js";
-import { triggerWeatherEvent, useEventForecastWeather } from "./WeatherDataProvider.js";
+import {
+  triggerWeatherEvent,
+  useEventForecastWeather,
+} from "./WeatherDataProvider.js";
 
 const eventHub = document.querySelector(".eventHub");
 const contentTarget = document.querySelector(".weatherHeader");
@@ -22,35 +25,34 @@ const useEvents = () => {
   ];
 };
 export const weatherEventList = () => {
+  const EventList = useEvents();
 
+  const foundEventObject = EventList.find((event) => {
+    return selectedEventWeather === event.id;
+  });
 
-const EventList = useEvents();
+  //NOTE: 432000000 === 5 days
+  const fiveDaysFromNow = Date.now() + 432000000;
+  if (foundEventObject.event_date > fiveDaysFromNow) {
+    alert("can't show weather forecast for a date that far in advance");
+  } else {
+    const city = foundEventObject.event_location;
 
-const foundEventObject = EventList.find((event) => {
-  return selectedEventWeather === event.id;
-});
+    triggerWeatherEvent(city).then(() => {
+      const forecast = useEventForecastWeather();
+      console.table(forecast);
+    })
+  
+      const eventWeatherForecast = forecast.find((forecastObject) => {
+        let dateToString = forecastObject.dt + "" + "000";
+        const dateToNumber = parseInt(dateToString);
+        console.log(dateToNumber);
+        return dateToNumber === foundEventObject.event_date;
+      });
+      renderForecast(eventWeatherForecast); //<----correct object from the array gets passed in here
+  }
 
-//NOTE: 432000000 === 5 days
-const fiveDaysFromNow = Date.now() + 432000000;
-if (foundEventObject.event_date > fiveDaysFromNow) {
-  alert("can't show weather forecast for a date that far in advance");
-} else {
- const city = foundEventObject.event_location;
-
-  triggerWeatherEvent(city)
-    const forecast = useEventForecastWeather();
-    console.table(forecast);
-    const eventWeatherForecast = forecast.find((forecastObject) => {
-      let dateToString = forecastObject.dt + "" + "000"
-      const dateToNumber = parseInt(dateToString)
-      console.log(dateToNumber)
-      return dateToNumber === foundEventObject.event_date;
-    });
-    renderForecast(eventWeatherForecast); //<----correct object from the array gets passed in here
-
-}
-}
-
+};
 
 export const render = (weatherArr) => {
   let weatherHTMLString = "";
@@ -66,9 +68,6 @@ const renderForecast = (eventWeatherObject) => {
   eventWeatherHTMLstring = eventWeatherHTMLRep(eventWeatherObject);
   alert(`${eventWeatherHTMLstring}`);
 };
-
-
-
 
 // this didn't work. it would be cool if it did.
 

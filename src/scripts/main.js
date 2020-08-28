@@ -1,21 +1,22 @@
 import { LoginForm, useCurrentUser } from "./auth/LoginForm.js";
 import { RegisterForm } from "./auth/RegisterForm.js";
 import { Nutshell } from "./Nutshell.js";
+import { getMessages, useMessages } from "./chat/MessagesProvider.js";
 
 
 const eventHub = document.querySelector(".container");
 
 if (sessionStorage.getItem("activeUser")) {
-  Nutshell();
-  console.log(useCurrentUser());
+    Nutshell();
+    console.log(`${useCurrentUser()}`);
 } else {
-  LoginForm();
-  RegisterForm();
+    LoginForm();
+    RegisterForm();
 }
 
 eventHub.addEventListener("userAuthenticated", () => {
-  Nutshell();
-  console.log(useCurrentUser());
+    Nutshell();
+    console.log(useCurrentUser());
 });
 
 /*
@@ -25,10 +26,3 @@ eventHub.addEventListener("userAuthenticated", () => {
     4. Also, if the user authenticates, and the login form is initially shown
         ensure that the Nutshell component gets rendered
 */
-
-
-
-
- 
- 
-    
