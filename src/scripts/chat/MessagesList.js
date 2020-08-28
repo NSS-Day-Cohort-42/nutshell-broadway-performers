@@ -14,6 +14,7 @@ let currentUser; //changed this from invoking useCurrentUser() to just hanging o
 let users = [];
 let messages = [];
 let friends = [];
+let authorId;
 
 const render = () => {
   const messagesListHTML = messages
@@ -45,6 +46,14 @@ export const MessagesList = () => {
     });
 };
 
+function handleUserInput(returnValue){
+    if (returnValue === 'Close' || returnValue === null) {
+        console.log('no dice')
+    } else if (returnValue === 'Add as Friend') {
+        console.log('yes plz')
+    }
+}
+
 eventHub.addEventListener("messagesStateChanged", () => {
   messages = useMessages();
   render();
@@ -66,6 +75,7 @@ eventHub.addEventListener("click", (clickEvent) => {
 eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id.startsWith("messageAuthorId")) {
     const messageAuthorUserId = parseInt(clickEvent.target.id.split("--")[1]);
+    authorId = messageAuthorUserId;
     // this baby sees if the current user is already following another user
     const matchingFriendObjectsForCurrentUser = friends.filter((friendObj) => {
       return currentUser === friendObj.userId;
@@ -78,21 +88,32 @@ eventHub.addEventListener("click", (clickEvent) => {
     if (idsOfAlreadyFollowing.includes(messageAuthorUserId)) {
       alert("WANNA GET BUCK?!!");
     } else {
-      document.querySelector("#addFriendModal").showModal();
-      eventHub.addEventListener("click", (clickEvent) => {
-        if (
-          (clickEvent.target.id = document.querySelector(
-            "#addFriendModalAddButton"
-          ))
-        ) {
-          const newFriend = {
-            userId: currentUser,
-            following: messageAuthorUserId,
-          };
-          debugger;
-          // saveFriend({ userId: currentUser, following: messageAuthorUserId });
-        }
-      });
+        const addFriendModal = document.querySelector("#addFriendModal")
+        addFriendModal.showModal();
+        addFriendModal.addEventListener("click", clickEvent => {
+            if (clickEvent.target.id === "addFriendModalAddButton") {
+                console.log('YES')
+                const newFriend = {
+                          userId: currentUser,
+                          following: authorId,
+                };
+                console.log(newFriend)
+            }
+        })
     }
   }
 });
+
+// eventHub.addEventListener("click", (clickEvent) => {
+//   if (clickEvent.target.id === document.querySelector("#addFriendModalAddButton")) {
+//     const newFriend = {
+//       userId: currentUser,
+//       following: authorId,
+//     };
+//     if (typeof authorId !== "undefined") {
+//       console.log(newFriend);
+//       debugger;
+//     }
+//     // saveFriend(newFriend);
+//   }
+// });
