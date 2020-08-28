@@ -33,7 +33,7 @@ export const deleteNote = (noteId) => {
 }
 
 export const saveUpdatedNote = (updatedNote) => {
-    return fetch(`http://localhost:8088/notes/${parseInt(updatedNote.id)}`, {
+    return fetch(`http://localhost:8088/tasks/${updatedNote.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
