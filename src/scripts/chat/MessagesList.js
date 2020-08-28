@@ -26,7 +26,7 @@ const render = () => {
 
   contentTarget.innerHTML = `${messagesListHTML}
   <dialog id="addFriendModal">
-  <form method="dialog">
+  <form>
   <button class="button" id="addFriendModalAddButton">Add as Friend</button>
   <button class="button" id="addFriendModalExitButton">Close</button>
   </form>
@@ -52,7 +52,9 @@ eventHub.addEventListener("messagesStateChanged", () => {
 });
 
 eventHub.addEventListener("friendsStateChanged", () => {
-  friends = useFriends();
+    debugger
+    friends = useFriends();
+    debugger
 });
 
 eventHub.addEventListener("click", (clickEvent) => {
@@ -61,11 +63,7 @@ eventHub.addEventListener("click", (clickEvent) => {
       clickEvent.target.id.split("--")[1]
     );
     deleteMessage(idOfMessageObjToDelete);
-  }
-});
-
-eventHub.addEventListener("click", (clickEvent) => {
-  if (clickEvent.target.id.startsWith("messageAuthorId")) {
+  } else if (clickEvent.target.id.startsWith("messageAuthorId")) {
     const messageAuthorUserId = parseInt(clickEvent.target.id.split("--")[1]);
     authorId = messageAuthorUserId;
     // this baby sees if the current user is already following another user
@@ -80,18 +78,21 @@ eventHub.addEventListener("click", (clickEvent) => {
     if (idsOfAlreadyFollowing.includes(messageAuthorUserId)) {
       alert("You're already following this user... duh?");
     } else {
-        const addFriendModal = document.querySelector("#addFriendModal")
-        addFriendModal.showModal();
-        addFriendModal.addEventListener("click", clickEvent => {
-            if (clickEvent.target.id === "addFriendModalAddButton") {
-                const newFriend = {
-                          userId: currentUser,
-                          following: authorId,
-                };
-                saveFriend(newFriend)
-            }
-        })
+      const addFriendModal = document.querySelector("#addFriendModal");
+      addFriendModal.showModal();
+      addFriendModal.addEventListener("click", (clickEvent) => {
+        if (clickEvent.target.id === "addFriendModalAddButton") {
+          const newFriend = {
+            userId: currentUser,
+            following: authorId,
+          };
+          saveFriend(newFriend);
+        }
+      });
     }
   }
 });
 
+// eventHub.addEventListener("click", (clickEvent) => {
+
+// });
