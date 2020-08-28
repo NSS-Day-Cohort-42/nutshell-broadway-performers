@@ -18,3 +18,19 @@ export const weatherHTMLRep = (weatherObj) => {
   </div>
   `
 }
+
+export const eventWeatherHTMLRep = (eventWeatherObj) => {
+  // convert kelvin to Fahrenheit
+  const kelvinConvert = Math.round(((`${eventWeatherObj.list[0].main.temp}`-273.15)*1.8)+32)
+  // Below is the resulting HTML representation of a single day.
+  // In order to get the day of the week to display I had to create a "new Date"
+  // I wrapped that new date in my days array.
+  // This allowed my new Date function to return a numerical value of 0-6 which would correspondingly display the name as it relates to the array. 
+  return`
+  <div class="weatherContainerOutput">
+    <div>${days[new Date((eventWeatherObj.list[0].dt*1000)).getDay()]}</div>
+    <div>${kelvinConvert}&degF</div>
+    <img src="http://openweathermap.org/img/wn/${eventWeatherObj.list[0].weather.icon}@2x.png"></img>
+  </div>
+  `
+}
