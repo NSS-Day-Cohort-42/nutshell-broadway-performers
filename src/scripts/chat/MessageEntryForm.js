@@ -1,4 +1,5 @@
 import { useCurrentUser } from "../auth/LoginForm.js";
+import { saveMessage } from "./MessagesProvider.js";
 const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".messageEntryForm");
 
@@ -15,7 +16,7 @@ const render = () => {
     contentTarget.innerHTML = `
     <h2>Enter Chat Message:</h2>
     <fieldset id="messageForm">
-    <textarea id="note-text" placeholder="WASSAP"></textarea>
+    <textarea id="messageText" placeholder="WASSAP"></textarea>
     <button id="submitMessage">Submit</button>
     </fieldset>   `
 }
@@ -24,8 +25,12 @@ const render = () => {
 eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "submitMessage") {
         const newMessage = {
-            userId: currentUser
+            userId: currentUser,
+            message: document.querySelector("messageText"),
+            message_time: new Date()
         }
+
+        saveMessage(newMessage)
     }
 })
 
