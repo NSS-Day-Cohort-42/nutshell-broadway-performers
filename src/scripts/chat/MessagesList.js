@@ -19,7 +19,13 @@ const render = () => {
     })
     .join("");
 
-  contentTarget.innerHTML = `${messagesListHTML}`;
+  contentTarget.innerHTML = `${messagesListHTML}
+  <dialog id="addFriendModal">
+  <form method="dialog">
+  <button class="button" id="addFriendModalAddButton">Add as Friend</button>
+  <button class="button" id="addFriendModalExitButton">Close</button>
+  </form>
+  </dialog>`;
 };
 
 export const MessagesList = () => {
@@ -41,10 +47,7 @@ eventHub.addEventListener("messagesStateChanged", () => {
 });
 
 eventHub.addEventListener("friendsStateChanged", () => {
-  debugger;
   friends = useFriends();
-  debugger;
-  //   render();
 });
 
 eventHub.addEventListener("click", (clickEvent) => {
@@ -70,6 +73,6 @@ eventHub.addEventListener("click", (clickEvent) => {
     );
     if (idsOfAlreadyFollowing.includes(messageAuthorUserId)) {
       alert("WANNA GET BUCK?!!");
-    } else alert("shitnawww");
+    } else document.querySelector("#addFriendModal").showModal();
   }
 });
