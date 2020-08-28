@@ -21,7 +21,6 @@ eventHub.addEventListener("noteStateChanged", customEvent => {
     const allNotes = useNotes()
 
     render(allNotes)
-    alert('fuck yeah that state changed')
 })
 
 const render = (noteArray) => {
