@@ -17,6 +17,10 @@ const contentTarget = document.querySelector(".container");
 const eventHub = document.querySelector(".container");
 
 export const Nutshell = () => {
+    //weather shit
+    getLocation()
+    
+    // tasks shit
     NoteForm()
     NoteList()
         // Render all your UI components here
@@ -31,13 +35,15 @@ export const Nutshell = () => {
         NewFriendEntry();
         SaveFriendButton();
     });
+
     //event shit
     addNewEventButton()
     eventList()
     eventHub.addEventListener("addNewEventButtonClicked", () => {
             eventsForm()
-        })
-        // news shit
+    })
+
+    // news shit
 
     // chat shit
     MessagesList();

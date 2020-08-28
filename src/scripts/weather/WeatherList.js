@@ -31,28 +31,35 @@ export const weatherEventList = () => {
     return selectedEventWeather === event.id;
   });
 
-  //NOTE: 432000000 === 5 days
-  const fiveDaysFromNow = Date.now() + 432000000;
+  //NOTE: 604800000 === 7 days
+  const fiveDaysFromNow = Date.now() + 604800000;
   if (foundEventObject.event_date > fiveDaysFromNow) {
     alert("can't show weather forecast for a date that far in advance");
   } else {
     const city = foundEventObject.event_location;
 
-    triggerWeatherEvent(city)
+    triggerWeatherEvent(city).then(() => {
       const forecast = useEventForecastWeather();
       console.table(forecast);
 
-
-  
       const eventWeatherForecast = forecast.find((forecastObject) => {
-        let dateToString = forecastObject.dt + "" + "000";
-        const dateToNumber = parseInt(dateToString);
-        console.log(dateToNumber);
-        return dateToNumber === foundEventObject.event_date;
-      });
-      renderForecast(eventWeatherForecast); //<----correct object from the array gets passed in here
-  }
+        const forecastDate = new Date(forecastObject.dt * 1000);
+        const forecastDay = forecastDate.getDay();
+        const forecastMonth = forecastDate.getMonth();
+        const forecastYear = forecastDate.getFullYear();
+        const eventDate = new Date(foundEventObject.event_date);
+        const eventDay = eventDate.getDay();
+        const eventMonth = eventDate.getMonth();
+        const eventYear = eventDate.getFullYear();
 
+        const forecastYearMonthDay = `${forecastYear}${forecastMonth}${forecastDay}`;
+        const eventYearMonthDay = `${eventYear}${eventMonth}${eventDay}`;
+
+        return forecastYearMonthDay === eventYearMonthDay;
+      });
+      renderForecast(eventWeatherForecast);
+    });
+  }
 };
 
 export const render = (weatherArr) => {
@@ -67,7 +74,7 @@ export const render = (weatherArr) => {
 const renderForecast = (eventWeatherObject) => {
   let eventWeatherHTMLstring = "";
   eventWeatherHTMLstring = eventWeatherHTMLRep(eventWeatherObject);
-  alert(`${eventWeatherHTMLstring}`);
+  alert(`<dialog>${eventWeatherHTMLstring}</dialog>`);
 };
 
 // this didn't work. it would be cool if it did.
@@ -78,3 +85,4 @@ const renderForecast = (eventWeatherObject) => {
 //   }
 //   return this * Math.pow(base, Math.floor(Math.log(b) / Math.log(base)) + 1) + b;
 // };
+

@@ -99,7 +99,7 @@ export const useEventForecastWeather = () => forecastArray.slice()
 
 
 export const triggerWeatherEvent = (city) => {
-  forwardGeoCoder(city)
+  return forwardGeoCoder(city)
   .then(getForecastWeather)
   .then(useEventForecastWeather)
 }
