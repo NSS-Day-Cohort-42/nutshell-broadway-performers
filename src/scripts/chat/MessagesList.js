@@ -2,7 +2,11 @@ import { useCurrentUser } from "../auth/LoginForm.js";
 import { useUsers, getUsers } from "../auth/UsersDataProvider.js";
 import { getMessages, useMessages, deleteMessage } from "./MessagesProvider.js";
 import { MessageHTML } from "./MessageHTML.js";
-import { getFriends, useFriends } from "../friends/FriendsProvider.js";
+import {
+  getFriends,
+  useFriends,
+  saveFriend,
+} from "../friends/FriendsProvider.js";
 
 const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".messagesList");
@@ -73,6 +77,22 @@ eventHub.addEventListener("click", (clickEvent) => {
     );
     if (idsOfAlreadyFollowing.includes(messageAuthorUserId)) {
       alert("WANNA GET BUCK?!!");
-    } else document.querySelector("#addFriendModal").showModal();
+    } else {
+      document.querySelector("#addFriendModal").showModal();
+      eventHub.addEventListener("click", (clickEvent) => {
+        if (
+          (clickEvent.target.id = document.querySelector(
+            "#addFriendModalAddButton"
+          ))
+        ) {
+          const newFriend = {
+            userId: currentUser,
+            following: messageAuthorUserId,
+          };
+          debugger;
+          // saveFriend({ userId: currentUser, following: messageAuthorUserId });
+        }
+      });
+    }
   }
 });
