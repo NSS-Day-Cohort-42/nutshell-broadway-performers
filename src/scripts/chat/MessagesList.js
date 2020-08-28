@@ -46,14 +46,6 @@ export const MessagesList = () => {
     });
 };
 
-function handleUserInput(returnValue){
-    if (returnValue === 'Close' || returnValue === null) {
-        console.log('no dice')
-    } else if (returnValue === 'Add as Friend') {
-        console.log('yes plz')
-    }
-}
-
 eventHub.addEventListener("messagesStateChanged", () => {
   messages = useMessages();
   render();
@@ -86,7 +78,7 @@ eventHub.addEventListener("click", (clickEvent) => {
       }
     );
     if (idsOfAlreadyFollowing.includes(messageAuthorUserId)) {
-      alert("WANNA GET BUCK?!!");
+      alert("You're already following this user... duh?");
     } else {
         const addFriendModal = document.querySelector("#addFriendModal")
         addFriendModal.showModal();
@@ -96,7 +88,6 @@ eventHub.addEventListener("click", (clickEvent) => {
                           userId: currentUser,
                           following: authorId,
                 };
-                console.log(newFriend)
                 saveFriend(newFriend)
             }
         })
@@ -104,16 +95,3 @@ eventHub.addEventListener("click", (clickEvent) => {
   }
 });
 
-// eventHub.addEventListener("click", (clickEvent) => {
-//   if (clickEvent.target.id === document.querySelector("#addFriendModalAddButton")) {
-//     const newFriend = {
-//       userId: currentUser,
-//       following: authorId,
-//     };
-//     if (typeof authorId !== "undefined") {
-//       console.log(newFriend);
-//       debugger;
-//     }
-//     // saveFriend(newFriend);
-//   }
-// });
