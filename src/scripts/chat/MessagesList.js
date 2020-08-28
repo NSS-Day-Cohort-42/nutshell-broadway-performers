@@ -40,6 +40,13 @@ eventHub.addEventListener("messagesStateChanged", () => {
   render();
 });
 
+eventHub.addEventListener("friendsStateChanged", () => {
+  debugger;
+  friends = useFriends();
+  debugger;
+  //   render();
+});
+
 eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id.startsWith("deleteMessage")) {
     const idOfMessageObjToDelete = parseInt(
