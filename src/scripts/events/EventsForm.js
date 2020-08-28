@@ -2,33 +2,36 @@
 //this component creates a form for events 
 import { saveEvents, getEvents, useEvents } from "./EventsDataProvider.js"
 import { useUsers, getUsers } from "../auth/UsersDataProvider.js"
+import { useCurrentUser } from "../auth/LoginForm.js"
 
 let events = []
 let users = []
-let currentUserId = useUsers()
-console.log(currentUserId)
+let currentUserId;
+
 
 
 const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".eventsForm")
 
 eventHub.addEventListener("click", clickevent => {
+
     if (clickevent.target.id === "saveEvent") {
 
         const eventDate = document.querySelector("#eventDate")
         const eventTitle = document.querySelector("#eventTitle")
         const eventLocation = document.querySelector("#eventLocation")
-
+        currentUserId = useCurrentUser()
+        let thisUser = currentUserId
         let date = eventDate.value
         let title = eventTitle.value
         let location = eventLocation.value
-
+        console.log(thisUser)
         if (date !== "" && title !== "" && location !== "") {
             const newEvent = {
                 date: eventDate.valueAsNumber,
                 title: eventTitle.value,
                 location: eventLocation.value,
-                userId: currentUserId
+                userId: thisUser
             }
             saveEvents(newEvent)
         } else {
@@ -59,6 +62,8 @@ export const eventsForm = () => {
         .then(getUsers)
         .then(() => {
             events = useEvents()
+            users = useUsers()
+            console.log(users)
             render()
         })
 }
