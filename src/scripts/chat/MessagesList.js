@@ -10,6 +10,12 @@ import {
 
 const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".messagesList");
+const modalTarget = document.querySelector(".modalContainer--chat");
+
+const showModalDialog = () => {
+  document.getElementById("addFriendModal").showModal();
+};
+
 let currentUser; //changed this from invoking useCurrentUser() to just hanging out. seems to work the same?
 let users = [];
 let messages = [];
@@ -26,11 +32,13 @@ const render = () => {
 
   contentTarget.innerHTML = `<h2 class="featureHeading">Public Chat Messages:</h2>
   ${messagesListHTML}
-  <dialog id="addFriendModal">
-  <form>
+`;
+};
+
+const renderModal = () => {
+  modalTarget.innerHTML = `<dialog id="addFriendModal">
   <button class="button" id="addFriendModalAddButton">Add as Friend</button>
   <button class="button" id="addFriendModalExitButton">Close</button>
-  <form>
   </dialog>`;
 };
 
@@ -52,8 +60,8 @@ eventHub.addEventListener("messagesStateChanged", () => {
   render();
 });
 
-eventHub.addEventListener("friendsStateChanged", () => {   
-    friends = useFriends();
+eventHub.addEventListener("friendsStateChanged", () => {
+  friends = useFriends();
 });
 
 eventHub.addEventListener("click", (clickEvent) => {
@@ -62,39 +70,83 @@ eventHub.addEventListener("click", (clickEvent) => {
       clickEvent.target.id.split("--")[1]
     );
     deleteMessage(idOfMessageObjToDelete);
-  } else if (clickEvent.target.id.startsWith("messageAuthorId")) {
-    const messageAuthorUserId = parseInt(clickEvent.target.id.split("--")[1]);
-    authorId = messageAuthorUserId;
-    // this baby sees if the current user is already following another user
-    const matchingFriendObjectsForCurrentUser = friends.filter((friendObj) => {
-      return currentUser === friendObj.userId;
-    });
-    const idsOfAlreadyFollowing = matchingFriendObjectsForCurrentUser.map(
-      (MFO) => {
-        return MFO.following;
-      }
-    );
-    if (idsOfAlreadyFollowing.includes(messageAuthorUserId)) {
-      alert("You're already following this user... duh?");
-    } else {
-      const addFriendModal = document.querySelector("#addFriendModal");
-      addFriendModal.showModal();
-      addFriendModal.addEventListener("click", (clickEvent) => {
-        if (clickEvent.target.id === "addFriendModalAddButton") {
-          const newFriend = {
-            userId: currentUser,
-            following: authorId,
-          };
-            saveFriend(newFriend);
-            addFriendModal.close()
-        }
-      });
-    }
-  } else if (clickEvent.target.id === "addFriendModalExitButton") {
-    document.querySelector("#addFriendModal").close()
   }
 });
 
+eventHub.addEventListener("click", (clickEvent) => {
+  if (clickEvent.target.id.startsWith("messageAuthorId")) {
+    const messageAuthorUserId = parseInt(clickEvent.target.id.split("--")[1]);
+    authorId = messageAuthorUserId;
+    handleClickFunction(); //trav 12
+  }
+
+  if (clickEvent.target.id === "addFriendModalExitButton") {
+    const dialog = event.target.parentNode;
+    dialog.close();
+  }
+
+  if (clickEvent.target.id === "addFriendModalAddButton") {
+    const newFriend = {
+      userId: currentUser,
+      following: authorId,
+    };
+    saveFriend(newFriend);
+    const dialog = event.target.parentNode;
+    dialog.close();
+  }
+});
+
+const handleClickFunction = () => {
+  const matchingFriendObjectsForCurrentUser = friends.filter((friendObj) => {
+    return currentUser === friendObj.userId;
+  });
+  const idsOfAlreadyFollowing = matchingFriendObjectsForCurrentUser.map(
+    (MFO) => {
+      return MFO.following;
+    }
+  );
+  if (idsOfAlreadyFollowing.includes(authorId)) {
+    alert("You're already following this user... duh?");
+  } else {
+    /* do stuff */
+    //like reutrn a value and then fucking FINALLy
+    renderModal();
+    showModalDialog();
+  }
+};
+
 // eventHub.addEventListener("click", (clickEvent) => {
 
-// });
+//   if (clickEvent.target.id.startsWith("messageAuthorId")) {
+//     const messageAuthorUserId = parseInt(clickEvent.target.id.split("--")[1]);
+//     authorId = messageAuthorUserId;
+//     // this baby sees if the current user is already following another user
+//     const matchingFriendObjectsForCurrentUser = friends.filter((friendObj) => {
+//       return currentUser === friendObj.userId;
+//     });
+//     const idsOfAlreadyFollowing = matchingFriendObjectsForCurrentUser.map(
+//       (MFO) => {
+//         return MFO.following;
+//       }
+//     );
+//     if (idsOfAlreadyFollowing.includes(messageAuthorUserId)) {
+//       alert("You're already following this user... duh?");
+//     } else {
+//       const addFriendModal = document.querySelector("#addFriendModal");
+//       addFriendModal.showModal();
+//       addFriendModal.addEventListener("click", (clickEvent) => {
+//         if (clickEvent.target.id === "addFriendModalAddButton") {
+//           const newFriend = {
+//             userId: currentUser,
+//             following: authorId,
+//           };
+//           saveFriend(newFriend);
+//           addFriendModal.close()
+//         }
+//       });
+//     }
+//   } else if (clickEvent.target.id === "addFriendModalExitButton") {
+//     document.querySelector("#addFriendModal").close()
+//   }
+
+// })
