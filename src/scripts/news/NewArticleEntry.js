@@ -28,7 +28,7 @@ eventHub.addEventListener("click", clickEvent => {
             userId: currentUserId,
             article_title: document.querySelector("#newArticleTitle").value,
             article_synopsis: document.querySelector("#newsArticleText").value,
-            article_URL: document.querySelector("#newArticleURL").value
+            article_URL: `<a href="${document.querySelector("#newArticleURL").value}" target="_blank">Article Link</a>`
         }
         saveArticle(newArticle)
     }
