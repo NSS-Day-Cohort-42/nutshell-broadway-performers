@@ -21,11 +21,15 @@ const render = () => {
 };
 
 eventHub.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id === "#saveNewArticleButton") {
+    if (clickEvent.target.id === "saveNewArticleButton") {
         const newArticle = {
             time_added: Date.now(),
-
+            userId: currentUserId,
+            article_title: document.querySelector("#newArticleTitle").value,
+            article_synopsis: document.querySelector("#newsArticleText").value,
+            article_URL: document.querySelector("#newArticleURL").value
         }
+        console.log(newArticle)
     }
 })
 
