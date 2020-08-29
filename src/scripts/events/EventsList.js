@@ -51,6 +51,8 @@ const render = () => {
         return currentRelationship.following === users.id
     })
     console.log(matchFriends)
+git st
+    //
     const matchingEvents = events.filter(eventObj => {
 
         return eventObj.userId === currentUserId
