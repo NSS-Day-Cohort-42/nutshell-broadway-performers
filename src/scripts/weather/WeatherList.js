@@ -7,6 +7,10 @@ import {
 const eventHub = document.querySelector(".eventHub");
 const contentTarget = document.querySelector(".weatherHeader");
 
+const showModalDialog = () => { 
+  document.getElementById("weatherModal").showModal();
+}
+
 //eventHub.addEventListener("eventWeatherButtonClicked", () => { //<--- Custom event name- need to get with the team on this
 
 //const selectedEventWeather = document.querySelector("#eventSelect").value //<--- this might need some work. Not sure about ID or using .value
@@ -60,6 +64,7 @@ export const weatherEventList = () => {
       renderForecast(eventWeatherForecast);
     });
   }
+  showModalDialog()
 };
 
 export const render = (weatherArr) => {
@@ -74,7 +79,8 @@ export const render = (weatherArr) => {
 const renderForecast = (eventWeatherObject) => {
   let eventWeatherHTMLstring = "";
   eventWeatherHTMLstring = eventWeatherHTMLRep(eventWeatherObject);
-  alert(`<dialog>${eventWeatherHTMLstring}</dialog>`);
+  contentTarget.innerHTML = `<dialog id="weatherModal">${eventWeatherHTMLstring}</dialog>`
+  
 };
 
 // this didn't work. it would be cool if it did.
