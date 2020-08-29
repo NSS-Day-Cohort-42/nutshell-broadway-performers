@@ -25,7 +25,8 @@ const render = () => {
     })
     .join("");
 
-  contentTarget.innerHTML = `${friendsListHTML}`;
+  contentTarget.innerHTML = `<h2 class="featureHeading">Friends:</h2>
+  ${friendsListHTML}`;
 };
 
 export const FriendsList = () => {

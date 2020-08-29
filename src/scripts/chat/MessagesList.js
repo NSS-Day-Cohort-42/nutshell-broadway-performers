@@ -24,7 +24,8 @@ const render = () => {
     })
     .join("");
 
-  contentTarget.innerHTML = `${messagesListHTML}
+  contentTarget.innerHTML = `<h2 class="featureHeading">Public Chat Messages:</h2>
+  ${messagesListHTML}
   <dialog id="addFriendModal">
   <form>
   <button class="button" id="addFriendModalAddButton">Add as Friend</button>
