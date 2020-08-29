@@ -15,6 +15,7 @@ import { MessagesList } from "./chat/MessagesList.js";
 import { messageEntryForm } from "./chat/MessageEntryForm.js";
 import { AddNewArticleButton } from "./news/AddNewArticleButton.js";
 import { NewArticleEntry } from "./news/NewArticleEntry.js";
+import { articleList } from "./news/ArticlesList.js";
 
 const contentTarget = document.querySelector(".container");
 const eventHub = document.querySelector(".container");
@@ -44,6 +45,7 @@ export const Nutshell = () => {
 
     // news shit
     AddNewArticleButton();
+    articleList();
     eventHub.addEventListener("addNewArticleButtonClicked", () => {
         NewArticleEntry();
 })
