@@ -42,28 +42,37 @@ eventHub.addEventListener("click", clickevent => {
 
 const render = () => {
     currentUserId = useCurrentUser()
-
-
-    const matchingFriendships = friends.filter(friendshipObj => {
-        return friendshipObj.userId === currentUserId
-    })
-    const matchFriends = matchingFriendships.filter(currentRelationship => {
-        return currentRelationship.following === users.id
-    })
-    console.log(matchFriends)
-git st
-    //
     const matchingEvents = events.filter(eventObj => {
-
         return eventObj.userId === currentUserId
     })
-
     const allEventsToString = matchingEvents.map(eventObj => {
         return eventsComponent(eventObj)
     }).join("")
-
     contentTarget.innerHTML = allEventsToString
 
+
+    //begin epic string of variable definitions to grab all events for all friends
+    const matchingFriends = friends.filter(friendObj => {
+        return friendObj.userId === currentUserId
+    })
+
+    const matchingFriendsAsUsers = matchingFriends.map(matchingFriendObj => {
+        return (users.find(userObj => {
+            return matchingFriendObj.following === userObj.id
+        }))
+    })
+
+    const matchingFriendsUserIdVals = matchingFriendsAsUsers.map(matchingFriendObj => {
+        return matchingFriendObj.id
+    })
+
+    const matchingUserEvents = events.filter(eventObj => {
+        return (matchingFriendsUserIdVals.includes(eventObj.userId))
+    })
+
+    debugger
+
+    
 }
 
 export const eventList = () => {
