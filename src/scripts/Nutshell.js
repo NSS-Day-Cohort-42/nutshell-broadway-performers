@@ -24,9 +24,6 @@ export const Nutshell = () => {
     NoteForm()
     NoteList()
         // Render all your UI components here
-
-    getLocation()
-    weatherEventList()
   
         //friends shit
     AddNewFriendButton();

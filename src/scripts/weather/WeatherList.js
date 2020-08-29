@@ -1,19 +1,27 @@
 import { weatherHTMLRep, eventWeatherHTMLRep } from "./WeatherHTMLConverter.js";
-import {
-  triggerWeatherEvent,
-  useEventForecastWeather,
-} from "./WeatherDataProvider.js";
+import { triggerWeatherEvent, useEventForecastWeather } from "./WeatherDataProvider.js";
 
-const eventHub = document.querySelector(".eventHub");
+const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".weatherHeader");
+const modalTarget = document.querySelector(".modalContainer--weather") 
 
 const showModalDialog = () => { 
   document.getElementById("weatherModal").showModal();
 }
 
 //eventHub.addEventListener("eventWeatherButtonClicked", () => { //<--- Custom event name- need to get with the team on this
-
-//const selectedEventWeather = document.querySelector("#eventSelect").value //<--- this might need some work. Not sure about ID or using .value
+eventHub.addEventListener("click", (clickEvent) => {
+  if (clickEvent.target.id === "weatherButton") {
+    //const selectedEventWeather = document.querySelector("#eventSelect").value //<--- this might need some work. Not sure about ID or using .value
+    weatherEventList()
+    
+    console.log("click event triggered")
+  }
+  if (clickEvent.target.id === "close") {
+    const dialog = event.target.parentNode;
+    dialog.close()
+}
+})
 const selectedEventWeather = 1;
 
 //testing function
@@ -44,7 +52,6 @@ export const weatherEventList = () => {
 
     triggerWeatherEvent(city).then(() => {
       const forecast = useEventForecastWeather();
-      console.table(forecast);
 
       const eventWeatherForecast = forecast.find((forecastObject) => {
         const forecastDate = new Date(forecastObject.dt * 1000);
@@ -62,15 +69,17 @@ export const weatherEventList = () => {
         return forecastYearMonthDay === eventYearMonthDay;
       });
       renderForecast(eventWeatherForecast);
+      showModalDialog()
     });
   }
-  showModalDialog()
-};
+}
+
+
 
 export const render = (weatherArr) => {
   let weatherHTMLString = "";
   weatherHTMLString = weatherHTMLRep(weatherArr);
-
+  
   contentTarget.innerHTML = `
   <div class="weatherString">${weatherHTMLString}</div>
   `;
@@ -79,7 +88,7 @@ export const render = (weatherArr) => {
 const renderForecast = (eventWeatherObject) => {
   let eventWeatherHTMLstring = "";
   eventWeatherHTMLstring = eventWeatherHTMLRep(eventWeatherObject);
-  contentTarget.innerHTML = `<dialog id="weatherModal">${eventWeatherHTMLstring}</dialog>`
+  modalTarget.innerHTML = `<dialog id="weatherModal">${eventWeatherHTMLstring}<button id="close">🆇</button></dialog>`
   
 };
 
