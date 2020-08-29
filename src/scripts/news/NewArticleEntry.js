@@ -1,5 +1,6 @@
 import { getUsers, useUsers } from "../auth/UsersDataProvider.js";
 import { useCurrentUser } from "../auth/LoginForm.js";
+import { saveArticle } from "./ArticlesDataProvider.js";
 
 const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".addArticle");
@@ -29,7 +30,7 @@ eventHub.addEventListener("click", clickEvent => {
             article_synopsis: document.querySelector("#newsArticleText").value,
             article_URL: document.querySelector("#newArticleURL").value
         }
-        console.log(newArticle)
+        saveArticle(newArticle)
     }
 })
 
