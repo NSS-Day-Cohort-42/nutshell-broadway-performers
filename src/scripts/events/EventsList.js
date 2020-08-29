@@ -28,17 +28,10 @@ eventHub.addEventListener("click", clickevent => {
     }
 })
 
-// const render = () => {
-//     currentUserId = useCurrentUser()
-//     const allEventsToString = events.map(event => {
-//         const friendships = friends.filter(friend => {
-//             return friend.following === currentUserId
-//         })
-//         const friendsEvents = friendships.filter(fr => {
-//             return event.userId === fr.userId
-//         })
-//     })
-// }
+eventHub.addEventListener("friendsStateChanged", () => {
+    friends = useFriends()
+    render()
+})
 
 const render = () => {
     currentUserId = useCurrentUser()
