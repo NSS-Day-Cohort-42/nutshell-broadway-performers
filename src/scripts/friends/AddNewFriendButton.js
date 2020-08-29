@@ -2,7 +2,7 @@ const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".addFriend");
 
 const render = () => {
-  contentTarget.innerHTML = `<button class="" id="addFriendButton" value="">Add a Friend</button>`;
+  contentTarget.innerHTML = `<button class="" id="addFriendButton" name="addFriendButton" value="">Add a Friend</button>`;
 };
 
 export const AddNewFriendButton = () => {
@@ -10,7 +10,7 @@ export const AddNewFriendButton = () => {
 };
 
 export const ShowFriendButton = () => {
-  return `<button class="" id="addFriendButton" value="">Add a Friend</button>`
+  return `<button class="" id="addFriendButton" name="addFriendButton" value="">Add a Friend</button>`
 }
 
 eventHub.addEventListener("click", (clickEvent) => {
