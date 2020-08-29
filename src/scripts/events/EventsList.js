@@ -48,8 +48,6 @@ const render = () => {
     const allEventsToString = matchingEvents.map(eventObj => {
         return eventsComponent(eventObj)
     }).join("")
-    contentTarget.innerHTML = allEventsToString
-
 
     //begin epic string of variable definitions to grab all events for all friends
     const matchingFriends = friends.filter(friendObj => {
@@ -70,9 +68,15 @@ const render = () => {
         return (matchingFriendsUserIdVals.includes(eventObj.userId))
     })
 
-    debugger
+    const allMatchingUserEventstoString = matchingUserEvents.map(matchingUserEventObj => {
+        return eventsComponent(matchingUserEventObj)
+    }).join("")
 
-    
+    contentTarget.innerHTML = `<h2>My Events:</h2>
+                            <div>${allEventsToString}</div>
+                            <h2>Friends Events:</h2>
+                            <div>${allMatchingUserEventstoString}</div>
+                              `
 }
 
 export const eventList = () => {
