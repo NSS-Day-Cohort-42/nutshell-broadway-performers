@@ -12,6 +12,7 @@ let events = []
 let currentUserId
 let friends = []
 let users = []
+let matchingEventForecast = []
 
 eventHub.addEventListener("eventStateChanged", () => eventList())
 
@@ -96,7 +97,10 @@ eventHub.addEventListener("click", clickEvent => {
             .then(useEventForecast)
             .then(() => {
                 const eventForecast = useEventForecast()
-                console.log(matchingEventDateFormatted)
+                matchingEventForecast = eventForecast.find(forecastObj => {
+                    return forecastObj.valid_date === matchingEventDateFormatted
+                })
+                console.log(matchingEventForecast)
             })
     }
 })
