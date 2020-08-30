@@ -100,7 +100,7 @@ eventHub.addEventListener("click", clickEvent => {
                 matchingEventForecast = eventForecast.find(forecastObj => {
                     return forecastObj.valid_date === matchingEventDateFormatted
                 })
-                console.log(matchingEventForecast)
+                
             })
     }
 })

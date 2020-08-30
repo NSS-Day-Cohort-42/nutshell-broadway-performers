@@ -25,7 +25,6 @@ eventHub.addEventListener("click", clickevent => {
         let date = eventDate.value
         let title = eventTitle.value
         let location = eventLocation.value
-        console.log(thisUser)
         if (date !== "" && title !== "" && location !== "") {
             const newEvent = {
                 date: eventDate.valueAsNumber,
