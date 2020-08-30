@@ -30,27 +30,27 @@ eventHub.addEventListener("click", clickevent => {
 
 // const render = () => {
 //     currentUserId = useCurrentUser()
-
-//     const friendships = friends.filter(friend => {
-//         return friend.userId === currentUserId
-//     })
-//     const matchingUsers = friendships.map(cf => {
-//         return users.find(cu => {
-//             return cu.id === cf.following
+//     const allEventsToString = events.map(event => {
+//         const friendships = friends.filter(friend => {
+//             return friend.following === currentUserId
+//         })
+//         const friendsEvents = friendships.filter(fr => {
+//             return event.userId === fr.userId
 //         })
 //     })
-//     const friendsEvents = matchingUsers.map(mu => {
-//         const fe = events.find(ce => {
-//             return ce.userId === mu.id
-//         })
-//         return eventsComponent(fe)
+// }
+
+// const render = () => {
+//     currentUserId = useCurrentUser()
+
+
+//     const matchingFriendships = friends.filter(friendshipObj => {
+//         return friendshipObj.userId === currentUserId
 //     })
-
-//     console.log(friendsEvents)
-
-
-
-
+//     const matchFriends = matchingFriendships.filter(currentRelationship => {
+//         return currentRelationship.following === users.id
+//     })
+//     console.log(matchFriends)
 //     const matchingEvents = events.filter(eventObj => {
 
 //         return eventObj.userId === currentUserId
@@ -60,28 +60,35 @@ eventHub.addEventListener("click", clickevent => {
 //         return eventsComponent(eventObj)
 //     }).join("")
 
-//     contentTarget.innerHTML = friendsEvents
+//     contentTarget.innerHTML = allEventsToString
+
 // }
 
 const render = () => {
     currentUserId = useCurrentUser()
-    const friendShips = friends.filter(friend => {
-        return friend.userId === currentUserId
+
+    const friendships = friends.filter(cf => {
+        return cf.userId === currentUserId
     })
-    const matchingUsers = friendShips.map(cf => {
-        return users.find(cu => {
-            return cu.id === cf.following
+    const matchingUsers = friendships.map(currentFriendship => {
+        return users.find(currentUser => {
+            return currentUser.id === currentFriendship.following
         })
     })
     console.log(matchingUsers)
-
-    const allEventsConvertedToString = events.map(currentEvent => {
-        return matchingUsers.id === currentEvent.userId
-    })
-    console.log(allEventsConvertedToString)
+        //return matchingUsers
 
 
+
+
+    //return eventsComponent()
 }
+
+
+
+
+
+
 
 export const eventList = () => {
     getEvents()

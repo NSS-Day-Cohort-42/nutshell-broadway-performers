@@ -14,6 +14,7 @@ import { eventsForm } from "./events/EventsForm.js";
 import { MessagesList } from "./chat/MessagesList.js";
 import { messageEntryForm } from "./chat/MessageEntryForm.js";
 
+
 const contentTarget = document.querySelector(".container");
 const eventHub = document.querySelector(".container");
 
@@ -33,6 +34,7 @@ export const Nutshell = () => {
         SaveFriendButton();
     });
     //event shit
+
     addNewEventButton()
     eventList()
     eventHub.addEventListener("addNewEventButtonClicked", () => {
