@@ -3,6 +3,7 @@ import { eventsComponent } from "./EventsComponent.js"
 import { useCurrentUser } from "../auth/LoginForm.js"
 import { getFriends, useFriends } from "../friends/FriendsProvider.js"
 import { getUsers, useUsers } from "../auth/UsersDataProvider.js"
+import { getEventForecast } from "../weather/ForecastDataProvider.js"
 
 const contentTarget = document.querySelector(".eventList")
 const eventHub = document.querySelector(".container")
@@ -87,14 +88,19 @@ export const eventList = () => {
 eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id.startsWith("weatherForecast--")) {
         const eventId = parseInt(clickEvent.target.id.split("--")[1])
-        const matchingEventObj = events.find(eventObj => eventObj.id === eventId)  
-        const eventForecastButtonAction = new CustomEvent('eventForecastButtonClicked', {
-            detail: {
-                eventLocation: matchingEventObj.location,
-                eventDate: matchingEventObj.date
-            }
-        }
-        )
-        eventHub.dispatchEvent(eventForecastButtonAction)
+        const matchingEventObj = events.find(eventObj => eventObj.id === eventId)
+        getEventForecast(matchingEventObj.location).
+            then()
     }
 })
+
+
+//to pack up as custom event iffff wanted or needed?
+                // const eventForecastButtonAction = new CustomEvent('eventForecastButtonClicked', {
+                //     detail: {
+                //         eventLocation: matchingEventObj.location,
+                //         eventDate: matchingEventObj.date
+                //     }
+                // }
+                // )
+                // eventHub.dispatchEvent(eventForecastButtonAction)
