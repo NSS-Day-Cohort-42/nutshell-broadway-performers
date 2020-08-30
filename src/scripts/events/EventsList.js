@@ -3,7 +3,7 @@ import { eventsComponent } from "./EventsComponent.js"
 import { useCurrentUser } from "../auth/LoginForm.js"
 import { getFriends, useFriends } from "../friends/FriendsProvider.js"
 import { getUsers, useUsers } from "../auth/UsersDataProvider.js"
-import { getEventForecast } from "../weather/ForecastDataProvider.js"
+import { getEventForecast, useEventForecast } from "../weather/ForecastDataProvider.js"
 
 const contentTarget = document.querySelector(".eventList")
 const eventHub = document.querySelector(".container")
@@ -12,6 +12,7 @@ let events = []
 let currentUserId
 let friends = []
 let users = []
+
 eventHub.addEventListener("eventStateChanged", () => eventList())
 
 eventHub.addEventListener("click", clickevent => {
@@ -89,8 +90,14 @@ eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id.startsWith("weatherForecast--")) {
         const eventId = parseInt(clickEvent.target.id.split("--")[1])
         const matchingEventObj = events.find(eventObj => eventObj.id === eventId)
-        getEventForecast(matchingEventObj.location).
-            then()
+        const matchingEventDateRaw = new Date(matchingEventObj.date)
+        const matchingEventDateFormatted = matchingEventDateRaw.toISOString().substring(0,10)
+        getEventForecast(matchingEventObj.location)
+            .then(useEventForecast)
+            .then(() => {
+                const eventForecast = useEventForecast()
+                console.log(matchingEventDateFormatted)
+            })
     }
 })
 
