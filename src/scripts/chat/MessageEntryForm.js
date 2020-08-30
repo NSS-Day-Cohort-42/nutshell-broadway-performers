@@ -35,10 +35,3 @@ eventHub.addEventListener("click", clickEvent => {
 })
 
 
-
-// {
-//     "id": 1,
-//     "userId": 1,
-//     "message": "who said that",
-//     "message_time": "party oclock"
-//   },

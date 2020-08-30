@@ -122,4 +122,14 @@ eventHub.addEventListener("click", (clickEvent) => {
 }
 });
 
+setInterval(() => { //start setInterval callback
+  if (chatWindowIsOpen) { // open if statement  
+    getMessages()
+      .then(() => {
+        messages = useMessages()
+        render()
+    })
+  } // close if statement
+}, 3000) //close callback argument, define interval time and close setInterval arg list)
 
+let chatWindowIsOpen = true
