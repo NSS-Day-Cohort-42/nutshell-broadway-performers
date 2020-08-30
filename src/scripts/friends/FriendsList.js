@@ -50,4 +50,9 @@ eventHub.addEventListener("click", (clickEvent) => {
     const idOfFriendObjToDelete = parseInt(clickEvent.target.id.split("--")[1]);
     deleteFriend(idOfFriendObjToDelete);
   }
+
 });
+
+// if (clickEvent.target.id.startsWith("privateChat--withUser--")) {
+//   const idOfFriendsUserObj
+// }
