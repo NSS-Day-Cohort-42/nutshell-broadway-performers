@@ -19,13 +19,6 @@ eventHub.addEventListener("userAuthenticated", () => {
     console.log(useCurrentUser());
 });
 
-getCurrentWeather(`Nashville`)
-    .then(useCurrentWeather)
-    .then(() => {
-        const testForecast = useCurrentWeather()
-        console.log(testForecast)
-    }
-)
 /*
     1. Check if the user is authenticated by looking in session storage for `activeUser`
     2. If so, render the Nutshell component

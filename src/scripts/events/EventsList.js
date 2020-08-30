@@ -3,7 +3,7 @@ import { eventsComponent } from "./EventsComponent.js"
 import { useCurrentUser } from "../auth/LoginForm.js"
 import { getFriends, useFriends } from "../friends/FriendsProvider.js"
 import { getUsers, useUsers } from "../auth/UsersDataProvider.js"
-import { getEventForecast, useEventForecast } from "../weather/ForecastDataProvider.js"
+import { getEventForecast, useEventForecast, getCurrentWeather, useCurrentWeather } from "../weather/ForecastDataProvider.js"
 import { FriendsEventsComponent } from "./FriendsEventsComponent.js"
 
 const contentTarget = document.querySelector(".eventList")
@@ -115,7 +115,20 @@ eventHub.addEventListener("click", clickEvent => {
                         <button class="forecastCloseButton" id="forecastCloseButton--${eventId}">Close Forecast</button>
                     </div>`
             })
-        } else alert('Event is too far in the future, soooo sorry about it') 
+        } else getCurrentWeather(matchingEventObj.location)
+            .then(useCurrentWeather)
+            .then(() => {
+                const currentWeatherObject = useCurrentWeather()
+                document.querySelector(`#eventForecast--${eventId}`).innerHTML =
+                    `<div class="eventForecastDetails currentWeather">
+                        <h3 class="eventForecastDetails__heading">Date is out of range</h3>
+                        <p>But here's what it's like there now!</p>
+                        <div class="eventForecastDetails_temp">${currentWeatherObject.temp}&#176<div>
+                        <div class="eventForecastDetails_icon"><img src="https://www.weatherbit.io/static/img/icons/${currentWeatherObject.weather.icon}.png"</div>
+                        <div class="eventForecastDetails_conditions">${currentWeatherObject.weather.description}<div>
+                        <button class="forecastCloseButton" id="forecastCloseButton--${eventId}">Close Forecast</button>
+                    </div>`
+            })
         
     }
     if (clickEvent.target.id.startsWith("forecastCloseButton")) {
