@@ -12,3 +12,18 @@ export const getEventForecast = (eventLocation) => {
 export const useEventForecast = () => {
 return forecast.slice()
 }
+
+
+let currentWeather = []
+
+export const getCurrentWeather = (eventLocation) => {
+    return fetch(`https://api.weatherbit.io/v2.0/current?city=${eventLocation}&units=I&key=b61604c210ad4e5fbb4f208cf0792b27`)
+        .then(res => res.json())
+        .then(parsedResponse => {
+            currentWeather = parsedResponse.data
+        })
+}
+
+export const useCurrentWeather = () => {
+return currentWeather.slice()
+}

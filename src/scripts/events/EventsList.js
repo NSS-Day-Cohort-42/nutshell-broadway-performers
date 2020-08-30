@@ -92,8 +92,10 @@ export const eventList = () => {
 eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id.startsWith("weatherForecastButton--")) {
         const eventId = parseInt(clickEvent.target.id.split("--")[1])
+        //Find event object that matches the clicked on item and juice its date in ms
         const matchingEventObj = events.find(eventObj => eventObj.id === eventId)
         const matchingEventDateRaw = new Date(matchingEventObj.date)
+        // see if the matching event's date is more than 16 days in the future, and if so, try to get forecast
         currentDate = Date.now()
         if (matchingEventDateRaw - currentDate < 1296000000) {
             const matchingEventDateFormatted = matchingEventDateRaw.toISOString().substring(0, 10)
