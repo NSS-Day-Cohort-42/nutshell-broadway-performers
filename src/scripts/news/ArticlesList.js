@@ -3,6 +3,7 @@ import { articlesComponent } from "./ArticlesComponent.js"
 import { useCurrentUser } from "../auth/LoginForm.js"
 import { getFriends, useFriends } from "../friends/FriendsProvider.js"
 import { getUsers, useUsers } from "../auth/UsersDataProvider.js"
+import { FriendsArticlesComponent } from "./FriendsArticlesComponent.js"
 
 const contentTarget = document.querySelector(".articlesList")
 const eventHub = document.querySelector(".container")
@@ -14,7 +15,7 @@ let users = []
 eventHub.addEventListener("articleStateChanged", () => articleList())
 
 eventHub.addEventListener("click", clickevent => {
-    if (clickevent.target.id.startsWith("deleteEvent")) {
+    if (clickevent.target.id.startsWith("deleteArticle")) {
         const [prefix, id] = clickevent.target.id.split("--")
         const deleteEvent = new CustomEvent("deleteButtonClicked", {
             detail: {
@@ -62,7 +63,7 @@ const render = () => {
     })
 
     const allMatchingUserArticlestoString = matchingUserArticles.map(matchingUserEventObj => {
-        return articlesComponent(matchingUserEventObj)
+        return FriendsArticlesComponent(matchingUserEventObj)
     }).join("")
 
     contentTarget.innerHTML = `<h2>My Articles:</h2>

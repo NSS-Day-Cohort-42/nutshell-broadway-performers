@@ -10,5 +10,5 @@ export const getEventForecast = (eventLocation) => {
 }
 
 export const useEventForecast = () => {
-    return forecast.slice()
+return forecast.slice()
 }
