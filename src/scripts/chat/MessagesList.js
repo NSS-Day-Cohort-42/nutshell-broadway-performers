@@ -18,6 +18,7 @@ let users = [];
 let messages = [];
 let friends = [];
 let authorId;
+let chatWindowIsOpen = false;
 
 export const MessagesList = () => {
   getUsers()
@@ -28,6 +29,7 @@ export const MessagesList = () => {
     messages = useMessages();
     friends = useFriends();
     currentUser = useCurrentUser();
+    chatWindowIsOpen = true;
     render();
   });
 };
@@ -129,6 +131,4 @@ setInterval(() => { //start setInterval callback
         render()
     })
   } // close if statement
-}, 3000) //close callback argument, define interval time and close setInterval arg list)
-
-let chatWindowIsOpen = true
+}, 2000) //close callback argument, define interval time and close setInterval arg list)
