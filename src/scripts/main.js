@@ -2,6 +2,7 @@ import { LoginForm, useCurrentUser } from "./auth/LoginForm.js";
 import { RegisterForm } from "./auth/RegisterForm.js";
 import { Nutshell } from "./Nutshell.js";
 import { getMessages, useMessages } from "./chat/MessagesProvider.js";
+import { getEventForecast, useEventForecast } from "./weather/ForecastDataProvider.js";
 
 const eventHub = document.querySelector(".container");
 
@@ -18,6 +19,13 @@ eventHub.addEventListener("userAuthenticated", () => {
     console.log(useCurrentUser());
 });
 
+getEventForecast(`Nashville`)
+    .then(useEventForecast)
+    .then(() => {
+        const testForecast = useEventForecast()
+        console.log(testForecast)
+    }
+)
 /*
     1. Check if the user is authenticated by looking in session storage for `activeUser`
     2. If so, render the Nutshell component
