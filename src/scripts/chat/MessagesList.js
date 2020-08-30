@@ -101,7 +101,8 @@ eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id.startsWith("messageAuthorId")) {
     const messageAuthorUserId = parseInt(clickEvent.target.id.split("--")[1]);
     authorId = messageAuthorUserId;
-    handleClickFunction();
+    if (authorId === currentUser) { alert('datsyouuuu') }
+    else handleClickFunction();
   }
 
   if (clickEvent.target.id === "addFriendModalExitButton") {
@@ -110,7 +111,6 @@ eventHub.addEventListener("click", (clickEvent) => {
   }
 
   if (clickEvent.target.id === "addFriendModalAddButton") {
-    if (!authorId === currentUser) {
       const newFriend = {
         userId: currentUser,
         following: authorId,
@@ -118,7 +118,6 @@ eventHub.addEventListener("click", (clickEvent) => {
     saveFriend(newFriend);
     const dialog = event.target.parentNode;
     dialog.close();
-  } else alert('its you!')
 }
 });
 
