@@ -5,7 +5,7 @@ import { FriendHTML } from "./FriendHTML.js";
 
 const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".friendsList");
-let currentUser; //changed this from invoking useCurrentUser() to just hanging out. seems to work the same?
+let currentUser; 
 let users = [];
 let friends = [];
 

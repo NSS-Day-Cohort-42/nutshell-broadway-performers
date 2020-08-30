@@ -4,6 +4,7 @@ import { useCurrentUser } from "../auth/LoginForm.js"
 import { getFriends, useFriends } from "../friends/FriendsProvider.js"
 import { getUsers, useUsers } from "../auth/UsersDataProvider.js"
 import { getEventForecast, useEventForecast } from "../weather/ForecastDataProvider.js"
+import { FriendsEventsComponent } from "./FriendsEventsComponent.js"
 
 const contentTarget = document.querySelector(".eventList")
 const eventHub = document.querySelector(".container")
@@ -65,7 +66,7 @@ const render = () => {
     })
 
     const allMatchingUserEventstoString = matchingUserEvents.map(matchingUserEventObj => {
-        return eventsComponent(matchingUserEventObj)
+        return FriendsEventsComponent(matchingUserEventObj)
     }).join("")
 
     contentTarget.innerHTML = `<h2>My Events:</h2>
@@ -88,7 +89,7 @@ export const eventList = () => {
 }
 
 eventHub.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id.startsWith("weatherForecast--")) {
+    if (clickEvent.target.id.startsWith("weatherForecastButton--")) {
         const eventId = parseInt(clickEvent.target.id.split("--")[1])
         const matchingEventObj = events.find(eventObj => eventObj.id === eventId)
         const matchingEventDateRaw = new Date(matchingEventObj.date)
@@ -100,18 +101,18 @@ eventHub.addEventListener("click", clickEvent => {
                 matchingEventForecast = eventForecast.find(forecastObj => {
                     return forecastObj.valid_date === matchingEventDateFormatted
                 })
-                
+                document.querySelector(`#eventForecast--${eventId}`).innerHTML = 
+                    `<div class="eventForecastDetails">
+                        <h3 class="eventForecastDetails__heading">Event Forecast</h3>
+                        <div class="eventForecastDetails_temp">${matchingEventForecast.temp}&#176<div>
+                        <div class="eventForecastDetails_icon"><img src="https://www.weatherbit.io/static/img/icons/${matchingEventForecast.weather.icon}.png"</div>
+                        <div class="eventForecastDetails_conditions">${matchingEventForecast.weather.description}<div>
+                        <button class="forecastCloseButton" id="forecastCloseButton--${eventId}">Close Forecast</button>
+                    </div>`
             })
     }
+    if (clickEvent.target.id.startsWith("forecastCloseButton")) {
+        const idToClose = clickEvent.target.id.split("--")[1]
+        document.querySelector(`#eventForecast--${idToClose}`).innerHTML = ""
+    }
 })
-
-
-//to pack up as custom event iffff wanted or needed?
-                // const eventForecastButtonAction = new CustomEvent('eventForecastButtonClicked', {
-                //     detail: {
-                //         eventLocation: matchingEventObj.location,
-                //         eventDate: matchingEventObj.date
-                //     }
-                // }
-                // )
-                // eventHub.dispatchEvent(eventForecastButtonAction)

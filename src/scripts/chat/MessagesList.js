@@ -110,14 +110,16 @@ eventHub.addEventListener("click", (clickEvent) => {
   }
 
   if (clickEvent.target.id === "addFriendModalAddButton") {
-    const newFriend = {
-      userId: currentUser,
-      following: authorId,
-    };
+    if (!authorId === currentUser) {
+      const newFriend = {
+        userId: currentUser,
+        following: authorId,
+      };
     saveFriend(newFriend);
     const dialog = event.target.parentNode;
     dialog.close();
-  }
+  } else alert('its you!')
+}
 });
 
 
