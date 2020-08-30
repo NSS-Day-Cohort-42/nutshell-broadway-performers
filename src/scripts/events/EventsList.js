@@ -10,10 +10,11 @@ const contentTarget = document.querySelector(".eventList")
 const eventHub = document.querySelector(".container")
 
 let events = []
-let currentUserId
 let friends = []
 let users = []
 let matchingEventForecast = []
+let currentUserId
+let currentDate
 
 eventHub.addEventListener("eventStateChanged", () => eventList())
 
@@ -93,7 +94,9 @@ eventHub.addEventListener("click", clickEvent => {
         const eventId = parseInt(clickEvent.target.id.split("--")[1])
         const matchingEventObj = events.find(eventObj => eventObj.id === eventId)
         const matchingEventDateRaw = new Date(matchingEventObj.date)
-        const matchingEventDateFormatted = matchingEventDateRaw.toISOString().substring(0,10)
+        currentDate = Date.now()
+        if (matchingEventDateRaw - currentDate < 1296000000) {
+            const matchingEventDateFormatted = matchingEventDateRaw.toISOString().substring(0, 10)
         getEventForecast(matchingEventObj.location)
             .then(useEventForecast)
             .then(() => {
@@ -101,7 +104,7 @@ eventHub.addEventListener("click", clickEvent => {
                 matchingEventForecast = eventForecast.find(forecastObj => {
                     return forecastObj.valid_date === matchingEventDateFormatted
                 })
-                document.querySelector(`#eventForecast--${eventId}`).innerHTML = 
+                document.querySelector(`#eventForecast--${eventId}`).innerHTML =
                     `<div class="eventForecastDetails">
                         <h3 class="eventForecastDetails__heading">Event Forecast</h3>
                         <div class="eventForecastDetails_temp">${matchingEventForecast.temp}&#176<div>
@@ -110,6 +113,8 @@ eventHub.addEventListener("click", clickEvent => {
                         <button class="forecastCloseButton" id="forecastCloseButton--${eventId}">Close Forecast</button>
                     </div>`
             })
+        } else alert('Event is too far in the future, soooo sorry about it') 
+        
     }
     if (clickEvent.target.id.startsWith("forecastCloseButton")) {
         const idToClose = clickEvent.target.id.split("--")[1]
