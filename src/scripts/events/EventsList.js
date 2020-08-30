@@ -83,3 +83,18 @@ export const eventList = () => {
             render()
         })
 }
+
+eventHub.addEventListener("click", clickEvent => {
+    if (clickEvent.target.id.startsWith("weatherForecast--")) {
+        const eventId = parseInt(clickEvent.target.id.split("--")[1])
+        const matchingEventObj = events.find(eventObj => eventObj.id === eventId)  
+        const eventForecastButtonAction = new CustomEvent('eventForecastButtonClicked', {
+            detail: {
+                eventLocation: matchingEventObj.location,
+                eventDate: matchingEventObj.date
+            }
+        }
+        )
+        eventHub.dispatchEvent(eventForecastButtonAction)
+    }
+})
