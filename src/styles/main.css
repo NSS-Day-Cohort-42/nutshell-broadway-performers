@@ -1,4 +1,5 @@
 @import "./events.css";
+@import "./chat.css";
 
 .dashboard {
     display: flex;

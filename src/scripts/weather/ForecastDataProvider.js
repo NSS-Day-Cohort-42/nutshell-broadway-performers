@@ -7,12 +7,16 @@ export const getEventForecast = (eventLocation) => {
         .then(parsedResponse => {
             forecast = parsedResponse.data
         })
+        .catch(errorResponse => {
+            alert('info not available for that locaiton! gotta be a city for this to work okay?')
+    })
 }
 
 export const useEventForecast = () => {
 return forecast.slice()
 }
 
+// If date is out of range, try to get current weather for specified location
 
 let currentWeather
 
@@ -22,6 +26,9 @@ export const getCurrentWeather = (eventLocation) => {
         .then(parsedResponse => {
             currentWeather = parsedResponse.data[0]
         })
+        .catch(errorResponse => {
+            alert('info not available for that locaiton!')
+    })
 }
 
 export const useCurrentWeather = () => {

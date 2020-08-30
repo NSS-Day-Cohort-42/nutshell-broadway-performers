@@ -115,6 +115,8 @@ eventHub.addEventListener("click", clickEvent => {
                         <button class="forecastCloseButton" id="forecastCloseButton--${eventId}">Close Forecast</button>
                     </div>`
             })
+
+            //if the location is valid but the date is out of range, show current weather there... .just to tease them i guess? idk MVP RULES MAN I DIDNT MAKE THEM UP
         } else getCurrentWeather(matchingEventObj.location)
             .then(useCurrentWeather)
             .then(() => {
