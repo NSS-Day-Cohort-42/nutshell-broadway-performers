@@ -1,50 +1,47 @@
 @import "./events.css";
 @import "./chat.css";
 
-.dashboard {
-    display: flex;
-    justify-content: space-between;
+.main {
+  display: flex;
+  justify-content: space-between;
 }
 
-.dashboard > article {
-    flex: 1
-}
-
-.dashboard section {
-    border: 3px solid;
-    margin: 5px;
-    padding: 5px
+.main section {
+  flex: 1;
+  border: 3px solid;
+  margin: 5px;
+  padding: 5px;
 }
 
 section:empty {
-    display: none
+  display: none;
 }
 
 /* TASK CSS */
 .entryForm {
-    display: flex;
-    flex-direction: column;
-    width: 11.4rem;
+  display: flex;
+  flex-direction: column;
+  width: 11.4rem;
 }
 
 #enableForm {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 #taskForm--date {
-    width: 5rem;
-    margin-top: 0.5rem;
-    border-radius: 0.4rem;
+  width: 5rem;
+  margin-top: 0.5rem;
+  border-radius: 0.4rem;
 }
 
 #noteForm--name {
-    margin-left: 0.1rem;
-    height: 2rem;
+  margin-left: 0.1rem;
+  height: 2rem;
 }
 
 .note {
-    margin-top: 1.2rem;
-    line-height: 1.5;
+  margin-top: 1.2rem;
+  line-height: 1.5;
 }
 
 /* END TASK CSS */

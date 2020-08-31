@@ -18,50 +18,39 @@ import { getUsers, useUsers } from "./auth/UsersDataProvider.js";
 // import { weatherEventList } from "./weather/WeatherList.js"
 
 const eventHub = document.querySelector(".container");
-let currentUserName
+let currentUserName;
 
 export const Nutshell = () => {
+  //weather
+  getLocation();
 
-    //call to grab current user for displaying in header
-    getUsers()
-        .then(useCurrentUser)
-        .then(useUsers)
-        .then(() => {
-            currentUserName = useUsers().find(userObj => userObj.id === useCurrentUser()).username
-            document.querySelector("header").innerHTML = `<h1>Currently Logged In As: ${currentUserName}</h1>`
-        })
+  // tasks
+  NoteForm();
+  NoteList();
 
-    //weather 
-    getLocation()
+  //friends
+  AddNewFriendButton();
+  FriendsList();
+  eventHub.addEventListener("addNewFriendButtonClicked", () => {
+    NewFriendEntry();
+    SaveFriendButton();
+  });
 
-    // tasks 
-    NoteForm()
-    NoteList()
+  //events
+  addNewEventButton();
+  eventList();
+  eventHub.addEventListener("addNewEventButtonClicked", () => {
+    eventsForm();
+  });
 
-    //friends 
-    AddNewFriendButton();
-    FriendsList();
-    eventHub.addEventListener("addNewFriendButtonClicked", () => {
-        NewFriendEntry();
-        SaveFriendButton();
-    });
+  // news
+  AddNewArticleButton();
+  articleList();
+  eventHub.addEventListener("addNewArticleButtonClicked", () => {
+    NewArticleEntry();
+  });
 
-    //events 
-    addNewEventButton()
-    eventList()
-    eventHub.addEventListener("addNewEventButtonClicked", () => {
-        eventsForm()
-    })
-
-    // news 
-    AddNewArticleButton();
-    articleList();
-    eventHub.addEventListener("addNewArticleButtonClicked", () => {
-        NewArticleEntry();
-    })
-
-    // chat 
-    MessagesList();
-    messageEntryForm();
-
+  // chat
+  MessagesList();
+  messageEntryForm();
 };
