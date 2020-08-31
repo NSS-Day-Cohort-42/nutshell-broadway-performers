@@ -1,4 +1,3 @@
-
 import { getNotes, useNotes, saveUpdatedNote } from "./TaskProvider.js";
 import { noteHTMLConverter } from "./TaskHTML.js";
 import { deleteNote } from "./TaskProvider.js";
@@ -16,7 +15,7 @@ eventHub.addEventListener("click", clickEvent => {
     }
 })
 
-  
+
 eventHub.addEventListener("noteStateChanged", customEvent => {
     const allNotes = useNotes()
 
@@ -24,15 +23,19 @@ eventHub.addEventListener("noteStateChanged", customEvent => {
 })
 
 const render = (noteArray) => {
-
+    currentUser = useCurrentUser()
+    const matchingNotes = noteArray.filter(noteObj => {
+        return noteObj.userId === currentUser
+    })
+    console.log(matchingNotes)
     contentTarget.innerHTML = `<h2 class="featureHeading">My Tasks:</h2>
-        ${noteArray.reverse().map(
+        ${matchingNotes.reverse().map(
         (noteObj) => { 
             return noteHTMLConverter(noteObj)
         }
     ).join("")}`
 }
-     
+
 export const NoteList = () => {
     getNotes()
         .then(getUsers)
@@ -57,20 +60,20 @@ eventHub.addEventListener("change", changeEvent => {
         saveUpdatedNote(updatedTask)
     }
 })
- 
+
 eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id.startsWith("editNote--")) {
-         const answer1 = window.prompt("Fill prompt to update Task")
-          const answer2 = window.prompt("Enter a new valid Date")
-          const [prompt, editId] = clickEvent.target.id.split("--")
-          const idOfEdit = parseInt(editId)
-          const updatedEdit = {
-              id: idOfEdit,
-              date: answer2,
-              name: answer1,
-              complete: false,
-              userId: currentUser
-          }
-          saveUpdatedNote(updatedEdit)
+        const answer1 = window.prompt("Fill prompt to update Task")
+        const answer2 = window.prompt("Enter a new valid Date")
+        const [prompt, editId] = clickEvent.target.id.split("--")
+        const idOfEdit = parseInt(editId)
+        const updatedEdit = {
+            id: idOfEdit,
+            date: answer2,
+            name: answer1,
+            complete: false,
+            userId: currentUser
+        }
+        saveUpdatedNote(updatedEdit)
     }
-})  
+})
