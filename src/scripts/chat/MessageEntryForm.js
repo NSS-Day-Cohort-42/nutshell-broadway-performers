@@ -6,6 +6,7 @@ const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".messageEntryForm");
 
 let currentUser; 
+let currentUserObject;
 let friends = [];
 let users = [];
 let matchingFriends = []
@@ -20,7 +21,7 @@ export const messageEntryForm = () => {
         .then(() => {
             friends = useFriends()
             users = useUsers()
-
+            currentUserObject = users.find(userObj => userObj.id === currentUser)
             render()
         })
 }
@@ -55,7 +56,7 @@ eventHub.addEventListener("click", clickEvent => {
                 alert('NOICE')
                 const newMessage = {
                     userId: currentUser,
-                    message: document.querySelector("#messageText").value,
+                    message: `${document.querySelector("#messageText").value} (Private Message to ${enteredChatName})`,
                     message_time: new Date()
                 }
                 saveMessage(newMessage)

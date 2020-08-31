@@ -7,11 +7,7 @@ export const FriendHTML = (friendUserObj, matchingFriends) => {
             <div class="friend__name">
             ${friendUserObj.username}
             </div>
-
-            <button class="button friend__privateChatButton" id="privateChat--withUser--${friendUserObj.id}">
-            Open Private Chat
-            </button>
-
+            
             <button class="button friend__deleteButton" id="deleteFriend--${friendObj.id}">Delete Friend?</button>
 
             </section>
