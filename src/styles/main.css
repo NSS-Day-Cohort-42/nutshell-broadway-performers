@@ -13,7 +13,7 @@
   justify-content: space-between;
 }
 
-.main section {
+.main article {
   flex: 1;
   border: 3px solid;
   margin: 5px;
