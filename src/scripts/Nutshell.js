@@ -15,12 +15,17 @@ import { AddNewArticleButton } from "./news/AddNewArticleButton.js";
 import { NewArticleEntry } from "./news/NewArticleEntry.js";
 import { articleList } from "./news/ArticlesList.js";
 import { getUsers, useUsers } from "./auth/UsersDataProvider.js";
+import { UserWelcome } from "./auth/UserWelcome.js";
 // import { weatherEventList } from "./weather/WeatherList.js"
 
 const eventHub = document.querySelector(".container");
 let currentUserName;
 
 export const Nutshell = () => {
+
+  //user welcome
+   UserWelcome();
+    
   //weather
   getLocation();
 
