@@ -40,7 +40,6 @@ export const weatherEventList = () => {
 
     triggerWeatherEvent(city).then(() => {
       const forecast = useEventForecastWeather();
-      console.table(forecast);
 
       const eventWeatherForecast = forecast.find((forecastObject) => {
         const forecastDate = new Date(forecastObject.dt * 1000);

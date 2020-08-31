@@ -1,6 +1,6 @@
 import { getUsers, useUsers } from "../auth/UsersDataProvider.js";
 import { useCurrentUser } from "../auth/LoginForm.js";
-import { saveArticle } from "./ArticlesDataProvider.js";
+import { saveArticle, saveUpdatedArticle } from "./ArticlesDataProvider.js";
 
 const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".addArticle");
@@ -30,9 +30,25 @@ eventHub.addEventListener("click", clickEvent => {
             article_synopsis: document.querySelector("#newsArticleText").value,
             article_URL: `<a href="${document.querySelector("#newArticleURL").value}" target="_blank">Article Link</a>`
         }
-        saveArticle(newArticle)
-    }
-})
+        
+
+
+
+        if (id.value === "") {
+            // No id value, so POST new entry with `saveEntry()`
+            // from data provider
+            saveArticle(newArticle);
+          } else {
+            newEntry.id = parseInt(id.value);
+            saveUpdatedArticle(newArticle);
+          }
+          document.querySelector("article").reset();
+        }
+
+
+
+
+    })
 
 export const NewArticleEntry = () => {
     getUsers()
