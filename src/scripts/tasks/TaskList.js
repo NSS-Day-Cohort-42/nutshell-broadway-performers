@@ -24,11 +24,13 @@ eventHub.addEventListener("noteStateChanged", customEvent => {
 })
 
 const render = (noteArray) => {
-    contentTarget.innerHTML = noteArray.reverse().map(
+
+    contentTarget.innerHTML = `<h2 class="featureHeading">My Tasks:</h2>
+        ${noteArray.reverse().map(
         (noteObj) => { 
             return noteHTMLConverter(noteObj)
         }
-    ).join("")
+    ).join("")}`
 }
      
 export const NoteList = () => {

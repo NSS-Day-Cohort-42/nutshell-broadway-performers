@@ -1,4 +1,24 @@
 @import "./events.css";
+@import "./chat.css";
+
+.dashboard {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard > article {
+    flex: 1
+}
+
+.dashboard section {
+    border: 3px solid;
+    margin: 5px;
+    padding: 5px
+}
+
+section:empty {
+    display: none
+}
 /* TASK CSS */
 .entryForm {
     display: flex;

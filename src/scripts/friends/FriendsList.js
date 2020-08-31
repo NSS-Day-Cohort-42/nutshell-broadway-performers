@@ -5,7 +5,7 @@ import { FriendHTML } from "./FriendHTML.js";
 
 const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".friendsList");
-let currentUser; //changed this from invoking useCurrentUser() to just hanging out. seems to work the same?
+let currentUser; 
 let users = [];
 let friends = [];
 
@@ -25,7 +25,8 @@ const render = () => {
     })
     .join("");
 
-  contentTarget.innerHTML = `${friendsListHTML}`;
+  contentTarget.innerHTML = `<h2 class="featureHeading">Friends:</h2>
+  ${friendsListHTML}`;
 };
 
 export const FriendsList = () => {
@@ -49,4 +50,9 @@ eventHub.addEventListener("click", (clickEvent) => {
     const idOfFriendObjToDelete = parseInt(clickEvent.target.id.split("--")[1]);
     deleteFriend(idOfFriendObjToDelete);
   }
+
 });
+
+// if (clickEvent.target.id.startsWith("privateChat--withUser--")) {
+//   const idOfFriendsUserObj
+// }

@@ -3,9 +3,13 @@ export const FriendHTML = (friendUserObj, matchingFriends) => {
     return friendUserObj.id === matchingFriendObj.following;
   });
 
-  return `<div class="friend">
+  return `  <section class="friend item" id="friendship--${friendObj.id}">
+            <div class="friend__name">
             ${friendUserObj.username}
             </div>
-            <button id="deleteFriend--${friendObj.id}">Delete Friend</button>
+            
+            <button class="button friend__deleteButton" id="deleteFriend--${friendObj.id}">Delete Friend?</button>
+
+            </section>
     `;
 };

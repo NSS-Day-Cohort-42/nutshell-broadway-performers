@@ -2,6 +2,7 @@ import { LoginForm, useCurrentUser } from "./auth/LoginForm.js";
 import { RegisterForm } from "./auth/RegisterForm.js";
 import { Nutshell } from "./Nutshell.js";
 import { getMessages, useMessages } from "./chat/MessagesProvider.js";
+import { getCurrentWeather, useCurrentWeather } from "./weather/ForecastDataProvider.js";
 
 
 const eventHub = document.querySelector(".container");
