@@ -48,15 +48,15 @@ const render = () => {
     const sortedEvents = matchingEvents.sort((eventA, eventB) => {
         return eventA.date - eventB.date
     })
-    console.log(sortedEvents)
+
     let nextEvent = []
     const nextEventComingUp = sortedEvents.shift()
-    console.log(nextEventComingUp)
+
     const pushFirstEvent = () => {
         nextEvent.push(nextEventComingUp)
     }
     pushFirstEvent()
-    console.log(nextEvent)
+
     const nextEventToString = nextEvent.map(ne => {
         return nextEventsComponent(ne)
     }).join("")
