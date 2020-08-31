@@ -5,14 +5,14 @@ import { Nutshell } from "./Nutshell.js";
 const eventHub = document.querySelector(".container");
 
 if (sessionStorage.getItem("activeUser")) {
-    Nutshell();
+  Nutshell();
 } else {
-    LoginForm();
-    RegisterForm();
+  LoginForm();
+  RegisterForm();
 }
 
 eventHub.addEventListener("userAuthenticated", () => {
-    Nutshell();
+  Nutshell();
 });
 
 /*
