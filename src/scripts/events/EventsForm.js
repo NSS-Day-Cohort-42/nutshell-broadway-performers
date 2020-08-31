@@ -62,7 +62,6 @@ export const eventsForm = () => {
         .then(() => {
             events = useEvents()
             users = useUsers()
-            console.log(users)
             render()
         })
 }
