@@ -18,9 +18,8 @@ let currentUserObj;
 let users = [];
 let messages = [];
 let friends = [];
-let friendsIDs = [];
 let authorId;
-let chatWindowIsOpen = false;
+let chatWindowIsOpen;
 
 export const MessagesList = () => {
   getUsers()
@@ -32,7 +31,6 @@ export const MessagesList = () => {
     friends = useFriends();
     currentUser = useCurrentUser();
     currentUserObj = users.find(userObj => userObj.id === currentUser)
-    friendsIDs = currentUserObj.friends.map(friendEntry => friendEntry.following)
     chatWindowIsOpen = true;
     render();
   });
@@ -99,9 +97,6 @@ eventHub.addEventListener("messagesStateChanged", () => {
 
 eventHub.addEventListener("friendsStateChanged", () => {
   friends = useFriends();
-  messages = useMessages();
-  users = useUsers();
-  friendsIDs = currentUserObj.friends.map(friendEntry => friendEntry.following)
   console.log('heard a friend chage yo')
   render();
 });
@@ -141,7 +136,7 @@ eventHub.addEventListener("click", (clickEvent) => {
 
 
 setInterval(() => { //start setInterval callback
-  if (chatWindowIsOpen = true) { // open if statement  
+  if (chatWindowIsOpen) { // open if statement  
     getMessages()
       .then(() => {
         messages = useMessages()
