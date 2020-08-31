@@ -1,3 +1,21 @@
 .message__author{
     font-size: x-large;
+    font-family: Prompt;
+}
+
+#messageText {
+    font-family: Prompt;
+}
+
+.message__message {
+    font-family: Ubuntu;
+}
+
+.messageList {
+    font-family: Ubuntu;
+}
+
+.message {
+    display: flex;
+    flex-direction: row;
 }

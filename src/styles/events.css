@@ -6,4 +6,9 @@
 .firstEvent {
     background-color: blanchedalmond;
     font-weight: bolder;
+    font-family: Ubuntu;
+}
+
+.events {
+    font-family: Ubuntu;
 }

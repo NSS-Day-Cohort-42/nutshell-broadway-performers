@@ -1,5 +1,21 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:regular,thin|Prompt:regular,bold);
+
 @import "./events.css";
 @import "./chat.css";
+@import "./weather.css";
+@import "./articles.css";
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Ubuntu;
+}
+
+button {
+    font-family: Prompt;
+}
+
+fieldset, input, textarea,label {
+    font-family: Ubuntu;
+}
 
 .dashboard {
     display: flex;
@@ -45,6 +61,12 @@ section:empty {
 .note {
     margin-top: 1.2rem;
     line-height: 1.5;
+}
+.name {
+    font-family: Ubuntu;
+}
+.date {
+    font-family: Ubuntu;
 }
 
 /* END TASK CSS */
