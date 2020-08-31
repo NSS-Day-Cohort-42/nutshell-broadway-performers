@@ -7,7 +7,7 @@ import { getLocation, uesCityData, forwardGeoCoder, triggerWeatherEvent } from "
 import { weatherEventList } from "./weather/WeatherList.js"
 import { NoteForm } from "./tasks/TaskForm.js";
 import { NoteList } from "./tasks/TaskList.js";
-import { getLocation } from "./weather/WeatherDataProvider.js";
+
 import { addNewEventButton } from "./events/AddNewEventButton.js";
 import { eventList } from "./events/EventsList.js";
 import { eventsForm } from "./events/EventsForm.js";
@@ -31,9 +31,9 @@ export const Nutshell = () => {
             currentUserName = useUsers().find(userObj => userObj.id === useCurrentUser()).username
             document.querySelector("header").innerHTML = `<h1>Currently Logged In As: ${currentUserName}</h1>`
         })
-    //weather shit
+        //weather shit
     getLocation()
-    
+
     // tasks shit
     NoteForm()
     NoteList()
@@ -41,8 +41,8 @@ export const Nutshell = () => {
 
     getLocation()
     weatherEventList()
-  
-        //friends shit
+
+    //friends shit
     AddNewFriendButton();
     FriendsList();
     eventHub.addEventListener("addNewFriendButtonClicked", () => {
@@ -54,7 +54,7 @@ export const Nutshell = () => {
     addNewEventButton()
     eventList()
     eventHub.addEventListener("addNewEventButtonClicked", () => {
-            eventsForm()
+        eventsForm()
     })
 
     // news shit
@@ -62,7 +62,7 @@ export const Nutshell = () => {
     articleList();
     eventHub.addEventListener("addNewArticleButtonClicked", () => {
         NewArticleEntry();
-})
+    })
 
     // chat shit
     MessagesList();
