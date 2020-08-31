@@ -12,8 +12,7 @@ const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".messagesList");
 const modalTarget = document.querySelector(".modalContainer--chat");
 
-
-let currentUser; 
+let currentUser;
 let currentUserObj;
 let users = [];
 let messages = [];
@@ -23,17 +22,17 @@ let chatWindowIsOpen;
 
 export const MessagesList = () => {
   getUsers()
-  .then(getMessages)
-  .then(getFriends)
-  .then(() => {
-    users = useUsers();
-    messages = useMessages();
-    friends = useFriends();
-    currentUser = useCurrentUser();
-    currentUserObj = users.find(userObj => userObj.id === currentUser)
-    chatWindowIsOpen = true;
-    render();
-  });
+    .then(getMessages)
+    .then(getFriends)
+    .then(() => {
+      users = useUsers();
+      messages = useMessages();
+      friends = useFriends();
+      currentUser = useCurrentUser();
+      currentUserObj = users.find((userObj) => userObj.id === currentUser);
+      chatWindowIsOpen = true;
+      render();
+    });
 };
 
 // modal shit
@@ -45,19 +44,19 @@ const handleClickFunction = () => {
     (MFO) => {
       return MFO.following;
     }
-    );
-    if (idsOfAlreadyFollowing.includes(authorId)) {
-      alert("You're already following this user... duh?");
-    } else {
-      renderModal();
-      showModalDialog();
-    }
-  };
-  
-const showModalDialog = () => {
-    document.getElementById("addFriendModal").showModal();
+  );
+  if (idsOfAlreadyFollowing.includes(authorId)) {
+    alert("You're already following this user... duh?");
+  } else {
+    renderModal();
+    showModalDialog();
+  }
 };
-  
+
+const showModalDialog = () => {
+  document.getElementById("addFriendModal").showModal();
+};
+
 const renderModal = () => {
   modalTarget.innerHTML = `<dialog id="addFriendModal">
   <button class="button" id="addFriendModalAddButton">Add as Friend</button>
@@ -67,12 +66,18 @@ const renderModal = () => {
 
 // main render function
 const render = () => {
-  const friendIDs = currentUserObj.friends.map(friendEntry => friendEntry.following)
-  const filteredMessages = messages.filter(messageObj => {
-    return (!messageObj.message.startsWith("@") || (messageObj.message.startsWith(`@${currentUserObj.username}`)) && (friendIDs.includes(messageObj.userId)) || messageObj.userId === currentUser)
-  }
-  )
-  const sortedMessages = filteredMessages.reverse().slice(0,9).reverse()
+  const friendIDs = currentUserObj.friends.map(
+    (friendEntry) => friendEntry.following
+  );
+  const filteredMessages = messages.filter((messageObj) => {
+    return (
+      !messageObj.message.startsWith("@") ||
+      (messageObj.message.startsWith(`@${currentUserObj.username}`) &&
+        friendIDs.includes(messageObj.userId)) ||
+      messageObj.userId === currentUser
+    );
+  });
+  const sortedMessages = filteredMessages.reverse().slice(0, 9).reverse();
   const messagesListHTML = sortedMessages
     .map((messageObj, currentUserId) => {
       currentUserId = currentUser;
@@ -85,7 +90,6 @@ const render = () => {
 `;
 };
 
-
 //event handlers. they just LOVE handling things
 eventHub.addEventListener("messagesStateChanged", () => {
   messages = useMessages();
@@ -93,6 +97,7 @@ eventHub.addEventListener("messagesStateChanged", () => {
 });
 
 eventHub.addEventListener("friendsStateChanged", () => {
+  users = getUsers();
   friends = useFriends();
   render();
 });
@@ -110,8 +115,9 @@ eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id.startsWith("messageAuthorId")) {
     const messageAuthorUserId = parseInt(clickEvent.target.id.split("--")[1]);
     authorId = messageAuthorUserId;
-    if (authorId === currentUser) { alert('datsyouuuu') }
-    else handleClickFunction();
+    if (authorId === currentUser) {
+      alert("datsyouuuu");
+    } else handleClickFunction();
   }
 
   if (clickEvent.target.id === "addFriendModalExitButton") {
@@ -120,25 +126,26 @@ eventHub.addEventListener("click", (clickEvent) => {
   }
 
   if (clickEvent.target.id === "addFriendModalAddButton") {
-      const newFriend = {
-        userId: currentUser,
-        following: authorId,
-      };
+    const newFriend = {
+      userId: currentUser,
+      following: authorId,
+    };
     saveFriend(newFriend);
     const dialog = event.target.parentNode;
     dialog.close();
-}
+  }
 });
 
-
-setInterval(() => { //start setInterval callback
-  if (chatWindowIsOpen) { // open if statement  
+setInterval(() => {
+  //start setInterval callback
+  if (chatWindowIsOpen) {
+    // open if statement
     getMessages()
       .then(getFriends)
       .then(() => {
-        friends = useFriends()
-        messages = useMessages()
-        render()
-    })
+        friends = useFriends();
+        messages = useMessages();
+        render();
+      });
   } // close if statement
-}, 2000) //close callback argument, define interval time and close setInterval arg list)
+}, 2000); //close callback argument, define interval time and close setInterval arg list)
