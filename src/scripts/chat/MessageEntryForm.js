@@ -53,6 +53,12 @@ eventHub.addEventListener("click", clickEvent => {
             const enteredChatName = document.querySelector("#messageText").value.split(" ")[0].substring(1)
             if (matchingFriendsUsernames.includes(enteredChatName)) {
                 alert('NOICE')
+                const newMessage = {
+                    userId: currentUser,
+                    message: document.querySelector("#messageText").value,
+                    message_time: new Date()
+                }
+                saveMessage(newMessage)
             } else {
                 alert('you must be following someone as a friend to send a private message!')
             }
