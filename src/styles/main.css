@@ -1,6 +1,11 @@
 @import "./events.css";
 @import "./chat.css";
 
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
 .main {
   display: flex;
   justify-content: space-between;
@@ -20,6 +25,7 @@
 section:empty {
   display: none;
 }
+
 
 /* TASK CSS */
 .entryForm {
