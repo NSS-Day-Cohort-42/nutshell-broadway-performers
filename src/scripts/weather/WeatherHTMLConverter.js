@@ -30,7 +30,7 @@ export const eventWeatherHTMLRep = (eventWeatherObj) => {
   <div class="weatherContainerOutput">
     <div>${days[new Date((eventWeatherObj.dt*1000)).getDay()]}</div>
     <div>${kelvinConvert}&degF</div>
-    <img src="http://openweathermap.org/img/wn/${eventWeatherObj.weather.icon}@2x.png"></img>
+    <img src="http://openweathermap.org/img/wn/${eventWeatherObj.weather[0].icon}@2x.png"></img>
   </div>
   `
 }
