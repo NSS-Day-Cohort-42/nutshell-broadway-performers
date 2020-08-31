@@ -1,10 +1,9 @@
 import { useCurrentUser } from "./auth/LoginForm.js";
+import { getLocation} from "./weather/WeatherDataProvider.js";
 import { AddNewFriendButton } from "./friends/AddNewFriendButton.js";
 import { NewFriendEntry } from "./friends/NewFriendEntry.js";
 import { SaveFriendButton } from "./friends/SaveFriendButton.js";
 import { FriendsList } from "./friends/FriendsList.js";
-import { getLocation, uesCityData, forwardGeoCoder, triggerWeatherEvent } from "./weather/WeatherDataProvider.js";
-import { weatherEventList } from "./weather/WeatherList.js"
 import { NoteForm } from "./tasks/TaskForm.js";
 import { NoteList } from "./tasks/TaskList.js";
 import { addNewEventButton } from "./events/AddNewEventButton.js";
@@ -16,8 +15,8 @@ import { AddNewArticleButton } from "./news/AddNewArticleButton.js";
 import { NewArticleEntry } from "./news/NewArticleEntry.js";
 import { articleList } from "./news/ArticlesList.js";
 import { getUsers, useUsers } from "./auth/UsersDataProvider.js";
+// import { weatherEventList } from "./weather/WeatherList.js"
 
-const contentTarget = document.querySelector(".container");
 const eventHub = document.querySelector(".container");
 let currentUserName
 
