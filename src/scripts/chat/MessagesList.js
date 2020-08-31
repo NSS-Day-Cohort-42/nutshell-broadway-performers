@@ -88,16 +88,12 @@ const render = () => {
 
 //event handlers. they just LOVE handling things
 eventHub.addEventListener("messagesStateChanged", () => {
-  friends = useFriends();
   messages = useMessages();
-  users = useUsers();
-  friendsIDs = currentUserObj.friends.map(friendEntry => friendEntry.following)
   render();
 });
 
 eventHub.addEventListener("friendsStateChanged", () => {
   friends = useFriends();
-  console.log('heard a friend chage yo')
   render();
 });
 
@@ -138,7 +134,9 @@ eventHub.addEventListener("click", (clickEvent) => {
 setInterval(() => { //start setInterval callback
   if (chatWindowIsOpen) { // open if statement  
     getMessages()
+      .then(getFriends)
       .then(() => {
+        friends = useFriends()
         messages = useMessages()
         render()
     })
