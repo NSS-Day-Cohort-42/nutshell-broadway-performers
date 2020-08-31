@@ -1,5 +1,5 @@
 import { useCurrentUser } from "./auth/LoginForm.js";
-import { getLocation} from "./weather/WeatherDataProvider.js";
+import { getLocation } from "./weather/WeatherDataProvider.js";
 import { AddNewFriendButton } from "./friends/AddNewFriendButton.js";
 import { NewFriendEntry } from "./friends/NewFriendEntry.js";
 import { SaveFriendButton } from "./friends/SaveFriendButton.js";
@@ -30,14 +30,14 @@ export const Nutshell = () => {
             currentUserName = useUsers().find(userObj => userObj.id === useCurrentUser()).username
             document.querySelector("header").innerHTML = `<h1>Currently Logged In As: ${currentUserName}</h1>`
         })
-    
+
     //weather 
     getLocation()
-    
+
     // tasks 
     NoteForm()
     NoteList()
-  
+
     //friends 
     AddNewFriendButton();
     FriendsList();
@@ -50,7 +50,7 @@ export const Nutshell = () => {
     addNewEventButton()
     eventList()
     eventHub.addEventListener("addNewEventButtonClicked", () => {
-            eventsForm()
+        eventsForm()
     })
 
     // news 
@@ -58,7 +58,7 @@ export const Nutshell = () => {
     articleList();
     eventHub.addEventListener("addNewArticleButtonClicked", () => {
         NewArticleEntry();
-})
+    })
 
     // chat 
     MessagesList();
