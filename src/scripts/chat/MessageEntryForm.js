@@ -1,24 +1,26 @@
 import { useCurrentUser } from "../auth/LoginForm.js";
 import { saveMessage } from "./MessagesProvider.js";
 import { getFriends, useFriends } from "../friends/FriendsProvider.js";
+import { getUsers, useUsers } from "../auth/UsersDataProvider.js";
 const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".messageEntryForm");
 
 let currentUser; 
+let friends = [];
+let users = [];
 let matchingFriends = []
+let matchingFriendsAsUsers = []
 let matchingFriendsIds = []
 let matchingFriendsUsernames = []
 
 export const messageEntryForm = () => {
     currentUser = useCurrentUser()
     getFriends()
+        .then(getUsers)
         .then(() => {
-            matchingFriends = useFriends().filter(friendObj => {
-                return (friendObj.userId === currentUser)
-            })
-            matchingFriendsIds = matchingFriends.map(MFO => {
-                return (MFO.following)
-            })  
+            friends = useFriends()
+            users = useUsers()
+
             render()
         })
 }
@@ -36,7 +38,24 @@ const render = () => {
 eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "submitMessage") {
         if (document.querySelector("#messageText").value.startsWith("@")) {
-            alert('whew')
+            matchingFriends = friends.filter(friendObj => {
+                return (friendObj.userId === currentUser)
+            })
+            matchingFriendsIds = matchingFriends.map(MFO => {
+                return (MFO.following)
+            })
+            matchingFriendsAsUsers = users.filter(userObj => {
+                return (matchingFriendsIds.includes(userObj.id))
+            })
+            matchingFriendsUsernames = matchingFriendsAsUsers.map(MFUObj => {
+                return (MFUObj.username)
+            })
+            const enteredChatName = document.querySelector("#messageText").value.split(" ")[0].substring(1)
+            if (matchingFriendsUsernames.includes(enteredChatName)) {
+                alert('NOICE')
+            } else {
+                alert('you must be following someone as a friend to send a private message!')
+            }
         }
 
         else {
@@ -52,4 +71,6 @@ eventHub.addEventListener("click", clickEvent => {
     }
 })
 
-
+eventHub.addEventListener("friendsStateChanged", () => {
+    friends = useFriends();
+  });
