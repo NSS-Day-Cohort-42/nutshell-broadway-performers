@@ -58,3 +58,19 @@ eventHub.addEventListener("change", changeEvent => {
     }
 })
  
+eventHub.addEventListener("click", clickEvent => {
+    if (clickEvent.target.id.startsWith("editNote--")) {
+         const answer1 = window.prompt("Fill prompt to update Task")
+          const answer2 = window.prompt("Enter a new valid Date")
+          const [prompt, editId] = clickEvent.target.id.split("--")
+          const idOfEdit = parseInt(editId)
+          const updatedEdit = {
+              id: idOfEdit,
+              date: answer2,
+              name: answer1,
+              complete: false,
+              userId: currentUser
+          }
+          saveUpdatedNote(updatedEdit)
+    }
+})  
