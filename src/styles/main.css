@@ -32,3 +32,6 @@ section:empty {
   display: none;
 }
 
+article h2{
+    text-align: center
+}

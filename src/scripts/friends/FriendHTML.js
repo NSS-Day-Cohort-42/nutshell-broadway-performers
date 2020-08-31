@@ -4,11 +4,10 @@ export const FriendHTML = (friendUserObj, matchingFriends) => {
   });
 
   return `  <section class="friend item" id="friendship--${friendObj.id}">
-            <div class="friend__name">
+            <div class="name friend__name">
             ${friendUserObj.username}
             </div>
-            
-            <button class="button friend__deleteButton" id="deleteFriend--${friendObj.id}">Delete Friend?</button>
+            <button class="button friend__delete delete--button" id="deleteFriend--${friendObj.id}">Delete Friend?</button>
 
             </section>
     `;
