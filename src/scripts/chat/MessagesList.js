@@ -35,7 +35,6 @@ export const MessagesList = () => {
     friendsIDs = currentUserObj.friends.map(friendEntry => friendEntry.following)
     chatWindowIsOpen = true;
     render();
-    console.log(friendsIDs)
   });
 };
 
@@ -70,8 +69,9 @@ const renderModal = () => {
 
 // main render function
 const render = () => {
+  const friendIDs = currentUserObj.friends.map(friendEntry => friendEntry.following)
   const filteredMessages = messages.filter(messageObj => {
-    return (!messageObj.message.startsWith("@") || (messageObj.message.startsWith(`@${currentUserObj.username}`)) && (friendsIDs.includes(messageObj.userId)) || messageObj.userId === currentUser)
+    return (!messageObj.message.startsWith("@") || (messageObj.message.startsWith(`@${currentUserObj.username}`)) && (friendIDs.includes(messageObj.userId)) || messageObj.userId === currentUser)
   }
   )
   const sortedMessages = filteredMessages.reverse().slice(0,9).reverse()
@@ -90,7 +90,10 @@ const render = () => {
 
 //event handlers. they just LOVE handling things
 eventHub.addEventListener("messagesStateChanged", () => {
+  friends = useFriends();
   messages = useMessages();
+  users = useUsers();
+  friendsIDs = currentUserObj.friends.map(friendEntry => friendEntry.following)
   render();
 });
 
@@ -98,6 +101,8 @@ eventHub.addEventListener("friendsStateChanged", () => {
   friends = useFriends();
   messages = useMessages();
   users = useUsers();
+  friendsIDs = currentUserObj.friends.map(friendEntry => friendEntry.following)
+  console.log('heard a friend chage yo')
   render();
 });
 
@@ -134,8 +139,9 @@ eventHub.addEventListener("click", (clickEvent) => {
 }
 });
 
+
 setInterval(() => { //start setInterval callback
-  if (chatWindowIsOpen) { // open if statement  
+  if (chatWindowIsOpen = true) { // open if statement  
     getMessages()
       .then(() => {
         messages = useMessages()
