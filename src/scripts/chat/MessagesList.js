@@ -80,7 +80,7 @@ const render = () => {
     })
     .join("");
 
-  contentTarget.innerHTML = `<h2 class="featureHeading">Public Chat Messages:</h2>
+  contentTarget.innerHTML = `<h2 class="featureHeading">Chat Messages:</h2>
   ${messagesListHTML}
 `;
 };
