@@ -4,6 +4,7 @@ import { Nutshell } from "./Nutshell.js";
 import { getMessages, useMessages } from "./chat/MessagesProvider.js";
 import { getCurrentWeather, useCurrentWeather } from "./weather/ForecastDataProvider.js";
 
+
 const eventHub = document.querySelector(".container");
 
 if (sessionStorage.getItem("activeUser")) {

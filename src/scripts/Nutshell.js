@@ -3,6 +3,8 @@ import { AddNewFriendButton } from "./friends/AddNewFriendButton.js";
 import { NewFriendEntry } from "./friends/NewFriendEntry.js";
 import { SaveFriendButton } from "./friends/SaveFriendButton.js";
 import { FriendsList } from "./friends/FriendsList.js";
+import { getLocation, uesCityData, forwardGeoCoder, triggerWeatherEvent } from "./weather/WeatherDataProvider.js";
+import { weatherEventList } from "./weather/WeatherList.js"
 import { NoteForm } from "./tasks/TaskForm.js";
 import { NoteList } from "./tasks/TaskList.js";
 import { getLocation } from "./weather/WeatherDataProvider.js";
@@ -35,8 +37,12 @@ export const Nutshell = () => {
     // tasks shit
     NoteForm()
     NoteList()
+        // Render all your UI components here
 
-    //friends shit
+    getLocation()
+    weatherEventList()
+  
+        //friends shit
     AddNewFriendButton();
     FriendsList();
     eventHub.addEventListener("addNewFriendButtonClicked", () => {
