@@ -5,6 +5,7 @@ import { getFriends, useFriends } from "../friends/FriendsProvider.js"
 import { getUsers, useUsers } from "../auth/UsersDataProvider.js"
 import { getEventForecast, useEventForecast, getCurrentWeather, useCurrentWeather } from "../weather/ForecastDataProvider.js"
 import { FriendsEventsComponent } from "./FriendsEventsComponent.js"
+import { nextEventsComponent } from "./NextEventComponent.js"
 
 const contentTarget = document.querySelector(".eventList")
 const eventHub = document.querySelector(".container")
@@ -43,6 +44,22 @@ const render = () => {
     const matchingEvents = events.filter(eventObj => {
         return eventObj.userId === currentUserId
     })
+
+    const sortedEvents = matchingEvents.sort((eventA, eventB) => {
+        return eventA.date - eventB.date
+    })
+    console.log(sortedEvents)
+    let nextEvent = []
+    const nextEventComingUp = sortedEvents.shift()
+    console.log(nextEventComingUp)
+    const pushFirstEvent = () => {
+        nextEvent.push(nextEventComingUp)
+    }
+    pushFirstEvent()
+    console.log(nextEvent)
+    const nextEventToString = nextEvent.map(ne => {
+        return nextEventsComponent(ne)
+    }).join("")
     const allEventsToString = matchingEvents.map(eventObj => {
         return eventsComponent(eventObj)
     }).join("")
@@ -71,6 +88,7 @@ const render = () => {
     }).join("")
 
     contentTarget.innerHTML = `<h2>My Events:</h2>
+                            <div>${nextEventToString}</div>
                             <div>${allEventsToString}</div>
                             <h2>Friends Events:</h2>
                             <div>${allMatchingUserEventstoString}</div>
@@ -92,29 +110,29 @@ export const eventList = () => {
 eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id.startsWith("weatherForecastButton--")) {
         const eventId = parseInt(clickEvent.target.id.split("--")[1])
-        //Find event object that matches the clicked on item and juice its date in ms
+            //Find event object that matches the clicked on item and juice its date in ms
         const matchingEventObj = events.find(eventObj => eventObj.id === eventId)
         const matchingEventDateRaw = new Date(matchingEventObj.date)
-        // see if the matching event's date is more than 16 days in the future, and if so, try to get forecast
+            // see if the matching event's date is more than 16 days in the future, and if so, try to get forecast
         currentDate = Date.now()
         if (matchingEventDateRaw - currentDate < 1296000000) {
             const matchingEventDateFormatted = matchingEventDateRaw.toISOString().substring(0, 10)
-        getEventForecast(matchingEventObj.location)
-            .then(useEventForecast)
-            .then(() => {
-                const eventForecast = useEventForecast()
-                matchingEventForecast = eventForecast.find(forecastObj => {
-                    return forecastObj.valid_date === matchingEventDateFormatted
-                })
-                document.querySelector(`#eventForecast--${eventId}`).innerHTML =
-                    `<div class="eventForecastDetails">
+            getEventForecast(matchingEventObj.location)
+                .then(useEventForecast)
+                .then(() => {
+                    const eventForecast = useEventForecast()
+                    matchingEventForecast = eventForecast.find(forecastObj => {
+                        return forecastObj.valid_date === matchingEventDateFormatted
+                    })
+                    document.querySelector(`#eventForecast--${eventId}`).innerHTML =
+                        `<div class="eventForecastDetails">
                         <h3 class="eventForecastDetails__heading">Event Forecast</h3>
                         <div class="eventForecastDetails_temp">${matchingEventForecast.temp}&#176<div>
                         <div class="eventForecastDetails_icon"><img src="https://www.weatherbit.io/static/img/icons/${matchingEventForecast.weather.icon}.png"</div>
                         <div class="eventForecastDetails_conditions">${matchingEventForecast.weather.description}<div>
                         <button class="forecastCloseButton" id="forecastCloseButton--${eventId}">Close Forecast</button>
                     </div>`
-            })
+                })
 
             //if the location is valid but the date is out of range, show current weather there... .just to tease them i guess? idk MVP RULES MAN I DIDNT MAKE THEM UP
         } else getCurrentWeather(matchingEventObj.location)
@@ -131,7 +149,7 @@ eventHub.addEventListener("click", clickEvent => {
                         <button class="forecastCloseButton" id="forecastCloseButton--${eventId}">Close Forecast</button>
                     </div>`
             })
-        
+
     }
     if (clickEvent.target.id.startsWith("forecastCloseButton")) {
         const idToClose = clickEvent.target.id.split("--")[1]
