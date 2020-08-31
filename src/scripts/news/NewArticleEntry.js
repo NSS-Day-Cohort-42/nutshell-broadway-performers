@@ -9,7 +9,7 @@ let users = [];
 let currentUserId;
 
 const render = () => {
-  contentTarget.innerHTML = `<fieldset>
+  contentTarget.innerHTML = `<fieldset id="article-form">
     <label for="newArticleTitle">News Item Title</label>
     <input id="newArticleTitle" type="text">
     <label for="newsArticleText">Enter Article Details</label>
@@ -24,23 +24,32 @@ const render = () => {
 
 eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "saveNewArticleButton") {
+      const id = document.querySelector("#articleId").value
     const newArticle = {
       time_added: Date.now(),
-      userId: currentUserId,
+      userId: useCurrentUser(),
       article_title: document.querySelector("#newArticleTitle").value,
       article_synopsis: document.querySelector("#newsArticleText").value,
-      article_URL: document.querySelector("#newArticleURL").value
+      article_URL: document.querySelector("#newArticleURL").value,
     };
 
-    if (id.value === "") {
+    if (id === "") {
       // No id value, so POST new entry with `saveEntry()`
       // from data provider
       saveArticle(newArticle);
     } else {
-      newEntry.id = parseInt(id.value);
+      newArticle.id = parseInt(id);
       saveUpdatedArticle(newArticle);
     }
-    document.querySelector("article").reset();
+    const articleTitle = document.querySelector("#newArticleTitle");
+    const articleSynopsis = document.querySelector("#newsArticleText");
+    const articleURL = document.querySelector("#newArticleURL");
+    const articleId = document.querySelector("#articleId");
+  
+    articleTitle.value = ""
+    articleSynopsis.value = ""
+    articleURL.value = ""
+    articleId.value = ""
   }
 });
 
