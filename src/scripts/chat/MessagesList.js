@@ -34,7 +34,6 @@ export const MessagesList = () => {
   });
 };
 
-
 // modal shit
 const handleClickFunction = () => {
   const matchingFriendObjectsForCurrentUser = friends.filter((friendObj) => {
@@ -66,7 +65,11 @@ const renderModal = () => {
 
 // main render function
 const render = () => {
-  const sortedMessages = messages.reverse().slice(0,4).reverse()
+  const filteredMessages = messages.filter(messageObj => {
+    return messageObj
+  }
+  )
+  const sortedMessages = filteredMessages.reverse().slice(0,4).reverse()
   const messagesListHTML = sortedMessages
     .map((messageObj, currentUserId) => {
       currentUserId = currentUser;
