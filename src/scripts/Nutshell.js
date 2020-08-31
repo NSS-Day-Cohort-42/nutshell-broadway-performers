@@ -3,7 +3,7 @@ import { AddNewFriendButton } from "./friends/AddNewFriendButton.js";
 import { NewFriendEntry } from "./friends/NewFriendEntry.js";
 import { SaveFriendButton } from "./friends/SaveFriendButton.js";
 import { FriendsList } from "./friends/FriendsList.js";
-import { getLocation, uesCityData, forwardGeoCoder, triggerWeatherEvent } from "./weather/WeatherDataProvider.js";
+// import { getLocation, uesCityData, forwardGeoCoder, triggerWeatherEvent } from "./weather/WeatherDataProvider.js";
 import { weatherEventList } from "./weather/WeatherList.js"
 import { NoteForm } from "./tasks/TaskForm.js";
 import { NoteList } from "./tasks/TaskList.js";
