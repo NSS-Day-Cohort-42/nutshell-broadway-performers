@@ -14,6 +14,7 @@ const modalTarget = document.querySelector(".modalContainer--chat");
 
 
 let currentUser; 
+let currentUserObj;
 let users = [];
 let messages = [];
 let friends = [];
@@ -29,8 +30,10 @@ export const MessagesList = () => {
     messages = useMessages();
     friends = useFriends();
     currentUser = useCurrentUser();
+    currentUserObj = users.find(userObj => userObj.id === currentUser)
     chatWindowIsOpen = true;
     render();
+    console.log(currentUserObj)
   });
 };
 
@@ -66,7 +69,7 @@ const renderModal = () => {
 // main render function
 const render = () => {
   const filteredMessages = messages.filter(messageObj => {
-    return messageObj
+    return (!messageObj.message.startsWith("@") || messageObj.message.startsWith(`@${currentUserObj.username}`))
   }
   )
   const sortedMessages = filteredMessages.reverse().slice(0,4).reverse()
