@@ -80,3 +80,19 @@ section:empty {
 article h2{
     text-align: center
 }
+
+.item {
+  padding:10px 0;
+  place-content: baseline
+}
+
+.addButtonFormContainer {
+  padding: 1rem;
+  margin: 1rem 0;
+  border: 3px solid #7C7C7C
+}
+
+
+.addButton {
+  text-align: center
+}

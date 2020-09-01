@@ -18,35 +18,39 @@
       </article>
       <article class="dashboard">
             <!-- header content -->
-            <header class="header">
+         <header class="header">
                <!-- container for welcome component -->
-               <article class="welcome">
+            <article class="welcome">
                   <section class="userWelcome"></section>
                </article>
                <!-- container for weather component -->
                <article class="weather">
                   <section class="weatherHeader"></section>
                </article>
-            </header>
+         </header>
             <!-- main page content -->
             </header>
             <!-- container for all friends components -->
             <main class="main">
             <div class="content--left">
-               <article class="friends content--left">
+               <article class="friends feature">
                   <section class="friendsList"></section>
-                  <section class="addFriend"></section>
+                  <div class="addButtonFormContainer">
+                  <section class="addFriend addButton"></section>
                   <section class="saveFriend"></section>
+                  </div>
                </article>
                <!-- container for all task components -->
-               <article class="tasks content--left">
+               <article class="tasks feature">
                   <section class="show__notes"></section>
-                  <section class="list__column"></section>
+                  <div class="addButtonFormContainer">
+                  <section class="list__column addButton"></section>
+                  </div>
                </article>
                <!-- container for all chat components -->
             </div>
             <div class="content--center">
-               <article class="chat">
+               <article class="chat feature">
                   <section class="messagesList"></section>
                   <section class="messageEntryForm"></section>
                   <div class="modalContainer--chat"></div>
@@ -54,16 +58,20 @@
             </div>
             <div class="content--right">
                <!-- container for all events components -->
-               <article class="events content--right">
+               <article class="events feature">
                   <section class="eventList"></section>
-                  <section class="addEvent"></section>
-                  <section class="eventsForm"></section>
+                  <div class="addButtonFormContainer">
+                     <section class="addEvent addButton"></section>
+                     <section class="eventsForm"></section>
+                  </div>
                </article>
                <!-- container for all news components -->
-               <article class="news content--right">
+               <article class="news feature">
                   <section class="articlesList"></section>
-                  <section class="addArticle"></section>
-                  <section class="articlesForm"></section>
+                  <div class="addButtonFormContainer">
+                     <section class="addArticle addButton"></section>
+                     <section class="articlesForm"></section>
+                  </div>   
                </article>
                </div>
                <!-- end main content -->
