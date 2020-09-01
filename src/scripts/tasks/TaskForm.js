@@ -14,13 +14,13 @@ eventHub.addEventListener("click", clickEvent => {
 
         const noteDate = document.querySelector("#taskDate")
         const noteName = document.querySelector("#noteForm--name")
-  
-        
+
+
 
         // Make a new object representation of a note
 
         const newNote = {
-            date: noteDate.value,
+            date: noteDate.valueAsNumber,
             name: noteName.value,
             complete: false,
             userId: currentUser
@@ -28,8 +28,8 @@ eventHub.addEventListener("click", clickEvent => {
 
         // Change API state and application state
         saveNote(newNote)
-    } 
-    })
+    }
+})
 
 
 const render = () => {
@@ -38,19 +38,19 @@ const render = () => {
         <form action="">
             <fieldset id="taskForm--date">
                 <label for="journalDate">Completion Date</label>
-                    <input class="date" type="date" name="taskDate" id="taskDate"></input>
+                    <input class="date" type="date" name="taskDate" valueAsNumber id="taskDate"></input>
             </fieldset>
         </form>
            <input type="text" id="noteForm--name" placeholder="Task" />
-            <button id="noteForm--saveNote">Save  Task</button>
-            <button id="disableForm">Hide Task Form</button>
+            <button id="noteForm--saveNote"><i class="fas fa-save"></i>  Task</button>
+            <button id="disableForm"><i class="fas fa-minus-square"></i> Hide</button>
         </section>
     `
 }
 
 export const NoteButtonRender = () => {
-    contentTarget.innerHTML = 
-    `<form><input id="enableForm" type="button" value="Open Task Form"></form>`
+    contentTarget.innerHTML =
+        `<button id="enableForm" type="button" value="Open Task Form">Open Task Form</button>`
 
     eventHub.addEventListener("click", clickEvent => {
         if (clickEvent.target.id === "enableForm") {
@@ -80,4 +80,3 @@ export const NoteForm = () => {
 
 
 // var checkbox = document.querySelector();
-

@@ -130,7 +130,7 @@ eventHub.addEventListener("click", clickEvent => {
                         <div class="eventForecastDetails_temp">${matchingEventForecast.temp}&#176<div>
                         <div class="eventForecastDetails_icon"><img src="https://www.weatherbit.io/static/img/icons/${matchingEventForecast.weather.icon}.png"</div>
                         <div class="eventForecastDetails_conditions">${matchingEventForecast.weather.description}<div>
-                        <button class="forecastCloseButton" id="forecastCloseButton--${eventId}">Close Forecast</button>
+                        <button class="forecastCloseButton" id="forecastCloseButton--${eventId}"><i class="fas fa-times"></i></button>
                     </div>`
                 })
 
@@ -146,7 +146,7 @@ eventHub.addEventListener("click", clickEvent => {
                         <div class="eventForecastDetails_temp">${currentWeatherObject.temp}&#176<div>
                         <div class="eventForecastDetails_icon"><img src="https://www.weatherbit.io/static/img/icons/${currentWeatherObject.weather.icon}.png"</div>
                         <div class="eventForecastDetails_conditions">${currentWeatherObject.weather.description}<div>
-                        <button class="forecastCloseButton" id="forecastCloseButton--${eventId}">Close Forecast</button>
+                        <button class="forecastCloseButton" id="forecastCloseButton--${eventId}"><i class="fas fa-times"></i></button>
                     </div>`
             })
 

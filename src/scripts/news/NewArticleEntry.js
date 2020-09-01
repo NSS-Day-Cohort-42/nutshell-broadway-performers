@@ -17,7 +17,7 @@ const render = () => {
     <label for="newArticleURL">Enter link URL</label>    
     <input id="newArticleURL">
     <input type="hidden" name="articleId" id="articleId" value="">
-    <button id="saveNewArticleButton">Save article</button>
+    <button id="saveNewArticleButton"><i class="fas fa-save"></i> article</button>
     </fieldset>
   `;
 };
