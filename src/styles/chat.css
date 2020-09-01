@@ -1,3 +1,40 @@
 .message__author{
+    padding-right: 5px;
     font-size: x-large;
+    font-family: Prompt;
+    color: #001B2E
+}
+
+#messageText {
+    font-family: Prompt;
+    color: #001B2E
+}
+
+.message__message {
+    font-family: Ubuntu;
+    color: #001B2E;
+    padding-right: 5px;
+}
+
+.messageList {
+    font-family: Ubuntu;
+    color: #001B2E
+}
+
+.message {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2px;
+}
+
+.item.message{
+    display: flex;
+    align-items:center;
+}
+
+#messageForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

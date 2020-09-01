@@ -2,7 +2,7 @@ const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".addEvent")
 
 const render = () => {
-    contentTarget.innerHTML = `<button class="" id="addEventButton" value="">Add new event</button>`
+    contentTarget.innerHTML = `<button class="" id="addEventButton" value=""><i class="fas fa-calendar-plus"></i> Add new event</button>`
 };
 
 export const addNewEventButton = () => {

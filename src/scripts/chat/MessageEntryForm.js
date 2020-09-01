@@ -31,7 +31,7 @@ const render = () => {
     <h2>Enter Chat Message:</h2>
     <fieldset id="messageForm">
     <textarea id="messageText" placeholder="WASSAP"></textarea>
-    <button id="submitMessage">Submit</button>
+    <button id="submitMessage"><i class="far fa-paper-plane"></i></button>
     </fieldset>   `
 }
 

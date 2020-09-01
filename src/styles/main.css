@@ -1,5 +1,45 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:regular,thin|Prompt:regular,bold);
+
 @import "./events.css";
 @import "./chat.css";
+@import "./weather.css";
+@import "./articles.css";
+@import "./friends.css";
+@import "./tasks.css";
+
+
+header {
+    background-color: #D64933;
+}
+
+body {
+    background-color: #FBF7F4;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Ubuntu;
+    color: #001B2E
+}
+
+button {
+    font-family: Prompt;
+    background-color: #7C7C7C; /* Blue background */
+    border: none; /* Remove borders */
+    color: #FBF7F4; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+  }
+  
+  /* Darker background on mouse-over */
+  button:hover {
+    background-color: #003c66;
+  }
+
+fieldset, input, textarea,label {
+    font-family: Ubuntu;
+    color: #001B2E
+}
 
 .header{
     display: flex;
@@ -13,45 +53,52 @@
 
 .main article {
   flex: 1;
-}
-
-.main section {
-  flex: 1;
-  border: 3px solid;
   margin: 5px;
   padding: 5px;
 }
 
-section:empty {
-  display: none;
+.content--center{
+    flex: 2;
+}
+
+.content--left, .content--right{
+    flex: 1
 }
 
 
-/* TASK CSS */
-.entryForm {
-  display: flex;
-  flex-direction: column;
-  width: 11.4rem;
+.name {
+    font-family: Ubuntu;
+    color: #001B2E
+}
+.date {
+    font-family: Ubuntu;
+    color: #001B2E
 }
 
-#enableForm {
-  margin-top: 2rem;
+article h2{
+    text-align: center
 }
 
-#taskForm--date {
-  width: 5rem;
-  margin-top: 0.5rem;
-  border-radius: 0.4rem;
+.item {
+  padding:10px 0;
+  place-content: baseline
 }
 
-#noteForm--name {
-  margin-left: 0.1rem;
-  height: 2rem;
+.addButtonFormContainer {
+  padding: 1rem;
+  margin: 1rem 0;
+  /* border: 3px solid #7C7C7C */
 }
 
-.note {
-  margin-top: 1.2rem;
-  line-height: 1.5;
+div:empty{
+  display:none;
 }
 
-/* END TASK CSS */
+.addButton {
+  text-align: center
+}
+
+fieldset {
+  text-align: left;
+  display: flex
+}

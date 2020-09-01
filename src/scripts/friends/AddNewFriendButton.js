@@ -10,7 +10,7 @@ export const AddNewFriendButton = () => {
 };
 
 export const ShowFriendButton = () => {
-  return `<button class="" id="addFriendButton" name="addFriendButton" value="">Add a Friend</button>`
+  return `<button class="" id="addFriendButton" name="addFriendButton" value=""><i class="fas fa-user-friends"></i> Add Friend</button>`
 }
 
 eventHub.addEventListener("click", (clickEvent) => {

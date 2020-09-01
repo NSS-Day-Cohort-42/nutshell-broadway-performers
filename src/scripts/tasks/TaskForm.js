@@ -42,15 +42,15 @@ const render = () => {
             </fieldset>
         </form>
            <input type="text" id="noteForm--name" placeholder="Task" />
-            <button id="noteForm--saveNote">Save  Task</button>
-            <button id="disableForm">Hide Task Form</button>
+            <button id="noteForm--saveNote"><i class="fas fa-save"></i>  Task</button>
+            <button id="disableForm"><i class="fas fa-minus-square"></i> Hide</button>
         </section>
     `
 }
 
 export const NoteButtonRender = () => {
     contentTarget.innerHTML =
-        `<form><input id="enableForm" type="button" value="Open Task Form"></form>`
+        `<button id="enableForm" type="button" value="Open Task Form">Open Task Form</button>`
 
     eventHub.addEventListener("click", clickEvent => {
         if (clickEvent.target.id === "enableForm") {
