@@ -18,7 +18,7 @@ let users = [];
 let messages = [];
 let friends = [];
 let authorId;
-let chatWindowIsOpen;
+let chatWindowIsOpen
 
 export const MessagesList = () => {
   getUsers()
@@ -30,12 +30,12 @@ export const MessagesList = () => {
       friends = useFriends();
       currentUser = useCurrentUser();
       currentUserObj = users.find((userObj) => userObj.id === currentUser);
-      chatWindowIsOpen = true;
+      chatWindowIsOpen = false;
       render();
     });
 };
 
-// modal shit
+// modal stuff
 const handleClickFunction = () => {
   const matchingFriendObjectsForCurrentUser = friends.filter((friendObj) => {
     return currentUser === friendObj.userId;
@@ -64,19 +64,43 @@ const renderModal = () => {
   </dialog>`;
 };
 
+eventHub.addEventListener("messagesStateChanged", () => {
+  messages = useMessages();
+  render();
+});
+
+eventHub.addEventListener("friendsStateChanged", () => {
+MessagesList()
+});
+
+
 // main render function
 const render = () => {
-  const friendIDs = currentUserObj.friends.map(
-    (friendEntry) => friendEntry.following
-  );
+  currentUser = useCurrentUser()
+  const matchingFriends = friends.filter(friendObj => {
+    return friendObj.userId === currentUser
+  })
+  
+const matchingFriendsAsUsers = matchingFriends.map(matchingFriendObj => {
+    return (users.find(userObj => {
+        return matchingFriendObj.following === userObj.id
+    }))
+})
+
+const matchingFriendsUserIdVals = matchingFriendsAsUsers.map(matchingFriendObj => {
+  return matchingFriendObj.id
+})
+
+
   const filteredMessages = messages.filter((messageObj) => {
     return (
       !messageObj.message.startsWith("@") ||
       (messageObj.message.startsWith(`@${currentUserObj.username}`) &&
-        friendIDs.includes(messageObj.userId)) ||
+      matchingFriendsUserIdVals.includes(messageObj.userId)) ||
       messageObj.userId === currentUser
     );
   });
+
   const sortedMessages = filteredMessages.reverse().slice(0, 9).reverse();
   const messagesListHTML = sortedMessages
     .map((messageObj, currentUserId) => {
@@ -91,16 +115,6 @@ const render = () => {
 };
 
 //event handlers. they just LOVE handling things
-eventHub.addEventListener("messagesStateChanged", () => {
-  messages = useMessages();
-  render();
-});
-
-eventHub.addEventListener("friendsStateChanged", () => {
-  users = getUsers();
-  friends = useFriends();
-  render();
-});
 
 eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id.startsWith("deleteMessage")) {
@@ -138,7 +152,7 @@ eventHub.addEventListener("click", (clickEvent) => {
 
 setInterval(() => {
   //start setInterval callback
-  if (chatWindowIsOpen) {
+  if (chatWindowIsOpen === true ) {
     // open if statement
     getMessages()
       .then(getFriends)

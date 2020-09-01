@@ -1,7 +1,7 @@
 @import "./events.css";
 @import "./chat.css";
 @import "./friends.css";
-@import "./tasks";
+@import "./tasks.css";
 
 .header{
     display: flex;
