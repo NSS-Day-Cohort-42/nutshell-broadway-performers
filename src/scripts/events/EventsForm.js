@@ -51,6 +51,7 @@ const render = () => {
                 <label for="eventLocation">Event Location</label>
                 <input type="text" name="eventLocation" id="eventLocation" autoComplete="off" required>
                 <button id="saveEvent"><i class="fas fa-calendar-check"></i> Save</button>
+                <button class="button close---button" id="closeEventForm">Close</button>
             </fieldset>
         </section>
     `
@@ -65,3 +66,9 @@ export const eventsForm = () => {
             render()
         })
 }
+
+eventHub.addEventListener("click", clickEvent => {
+    if (clickEvent.target.id === "closeEventForm") {
+        contentTarget.innerHTML = ""
+    }
+})
