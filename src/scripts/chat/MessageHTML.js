@@ -19,7 +19,7 @@ export const MessageHTML = (messageObj, currentUserId) => {
 
             <div class="message__message" id="textForMessageId--${messageObj.id}">${messageObj.message}</div>
             
-            <button class="button delete__button" id="deleteMessage--${messageObj.id}">Delete Message</button>
+            <button class="button delete__button" id="deleteMessage--${messageObj.id}"><i class="fas fa-trash-alt"></i>Delete Message</button>
 
             </div>
     `;

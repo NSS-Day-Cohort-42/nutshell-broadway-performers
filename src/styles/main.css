@@ -11,7 +11,18 @@ h1, h2, h3, h4, h5, h6 {
 
 button {
     font-family: Prompt;
-}
+    background-color: #001b2e; /* Blue background */
+    border: none; /* Remove borders */
+    color: #FBF7F4; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+  }
+  
+  /* Darker background on mouse-over */
+  button:hover {
+    background-color: #003c66;
+  }
 
 fieldset, input, textarea,label {
     font-family: Ubuntu;
