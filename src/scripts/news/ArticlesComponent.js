@@ -8,7 +8,7 @@ export const articlesComponent = (articleObj) => {
         <div class="article__synopsis"> Caption: ${articleObj.article_synopsis}</div>
         <div class="article__url">${articleObj.article_URL}</div>
         <button id="deleteArticle--${articleObj.id}"><i class="fas fa-trash-alt"></i></button>
-        <button id="editArticle--${articleObj.id}"><i class="fas fa-edit"></i></button>
+        <button id="editArticle--${articleObj.id}">Edit</button>
          </section>
     `
 }

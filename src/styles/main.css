@@ -65,9 +65,7 @@ fieldset, input, textarea,label {
     flex: 1
 }
 
-section:empty {
-  display: none;
-}
+
 .name {
     font-family: Ubuntu;
     color: #001B2E
@@ -89,7 +87,11 @@ article h2{
 .addButtonFormContainer {
   padding: 1rem;
   margin: 1rem 0;
-  border: 3px solid #7C7C7C
+  /* border: 3px solid #7C7C7C */
+}
+
+div:empty{
+  display:none;
 }
 
 .addButton {
