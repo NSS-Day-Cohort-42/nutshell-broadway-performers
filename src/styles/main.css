@@ -92,7 +92,11 @@ article h2{
   border: 3px solid #7C7C7C
 }
 
-
 .addButton {
   text-align: center
+}
+
+fieldset {
+  text-align: left;
+  display: flex
 }

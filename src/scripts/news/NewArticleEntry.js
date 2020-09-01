@@ -3,7 +3,7 @@ import { useCurrentUser } from "../auth/LoginForm.js";
 import { saveArticle, saveUpdatedArticle, useArticles } from "./ArticlesDataProvider.js";
 
 const eventHub = document.querySelector(".container");
-const contentTarget = document.querySelector(".addArticle");
+const contentTarget = document.querySelector(".articlesForm");
 
 let users = [];
 let currentUserId;
@@ -18,9 +18,16 @@ const render = () => {
     <input id="newArticleURL" placeholder="Enter link URL">
     <input type="hidden" name="articleId" id="articleId" value="">
     <button id="saveNewArticleButton"><i class="fas fa-save"></i> article</button>
+    <button class="button article__closeButton close--button" id="articleEntryFormCloseButton">Close</button>
     </fieldset>
   `;
 };
+
+eventHub.addEventListener("click", clickEvent => {
+  if (clickEvent.target.id === "articleEntryFormCloseButton") {
+    contentTarget.innerHTML = ""
+  }
+})
 
 eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "saveNewArticleButton") {

@@ -4,7 +4,7 @@ const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".addFriend");
 
 const render = () => {
-  contentTarget.innerHTML = `<label for="newFriendEntry">Enter Username to Add</label><input id="newFriendEntry" name="newFriendEntry" type="text"></input>
+  contentTarget.innerHTML = `<label for="newFriendEntry"></label><input id="newFriendEntry" name="newFriendEntry" type="text" placeholder="Enter Username to Add"></input>
                               <button id="closeNewFriendEntry"><i class="fas fa-window-close"></i></button>`;
 };
 
