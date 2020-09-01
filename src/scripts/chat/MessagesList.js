@@ -30,7 +30,7 @@ export const MessagesList = () => {
       friends = useFriends();
       currentUser = useCurrentUser();
       currentUserObj = users.find((userObj) => userObj.id === currentUser);
-      chatWindowIsOpen = false;
+      chatWindowIsOpen = true;
       render();
     });
 };
