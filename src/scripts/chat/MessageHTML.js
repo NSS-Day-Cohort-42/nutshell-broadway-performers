@@ -17,6 +17,7 @@ export const MessageHTML = (messageObj, currentUserId) => {
             ${messageObj.user.username}:
             </div>
 
+            
             <div class="message__message" id="textForMessageId--${messageObj.id}">${messageObj.message}</div>
             
             <button class="button message__delete delete--button" id="deleteMessage--${messageObj.id}">Delete Message</button>
