@@ -6,10 +6,10 @@ export const eventsComponent = (eventObj) => {
         <div class="date event__date">${new Date(eventObj.date).toLocaleDateString(
           "en-US"
         )}</div>
-        <button class="button delete__event delete--button" id="deleteEvent--${eventObj.id}">Delete</button>
+        <button class="button delete__event delete--button" id="deleteEvent--${eventObj.id}"><i class="fas fa-calendar-minus"></i></button>
         <button class="button showForecast__event forecast--button" id="weatherForecastButton--${
           eventObj.id
-        }">Weather Forecast</button>
+        }"><i class="fas fa-sun"></i></button>
         <div class="forecast event__forecast" id="eventForecast--${eventObj.id}"></div>
          </section>
     `;

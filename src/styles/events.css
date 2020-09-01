@@ -6,4 +6,21 @@
 .firstEvent {
     background-color: blanchedalmond;
     font-weight: bolder;
+    font-family: Ubuntu;
+    color: #001B2E;
+}
+
+.eventList {
+    font-family: Ubuntu;
+    color: #001B2E;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2px;
+}
+
+.events {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

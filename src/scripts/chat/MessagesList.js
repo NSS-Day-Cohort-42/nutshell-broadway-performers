@@ -59,8 +59,8 @@ const showModalDialog = () => {
 
 const renderModal = () => {
   modalTarget.innerHTML = `<dialog id="addFriendModal">
-  <button class="button" id="addFriendModalAddButton">Add as Friend</button>
-  <button class="button" id="addFriendModalExitButton">Close</button>
+  <button class="button" id="addFriendModalAddButton"><i class="fas fa-user-friends"></i> Add as Friend</button>
+  <button class="button" id="addFriendModalExitButton"><i class="far fa-window-close"></i></button>
   </dialog>`;
 };
 

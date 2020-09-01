@@ -7,7 +7,7 @@ export const FriendHTML = (friendUserObj, matchingFriends) => {
             <div class="name friend__name">
             ${friendUserObj.username}
             </div>
-            <button class="button friend__delete delete--button" id="deleteFriend--${friendObj.id}">Delete Friend?</button>
+            <button class="button friend__delete delete--button" id="deleteFriend--${friendObj.id}"><i class="fas fa-user-slash"></i></button>
 
             </section>
     `;

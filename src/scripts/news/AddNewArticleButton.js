@@ -2,7 +2,7 @@ const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector(".addArticle");
 
 const render = () => {
-  contentTarget.innerHTML = `<button class="" id="addArticleButton" value="">Add an Article</button>`;
+  contentTarget.innerHTML = `<button class="" id="addArticleButton" value=""><i class="fas fa-plus-square"></i> Article</button>`;
 };
 
 export const AddNewArticleButton = () => {
