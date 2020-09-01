@@ -18,7 +18,7 @@ export const MessageHTML = (messageObj, currentUserId) => {
             </div>
 
             <div class="message__message" id="textForMessageId--${messageObj.id}">${messageObj.message}</div>
-            å
+            
             <button class="button message__delete delete--button" id="deleteMessage--${messageObj.id}">Delete Message</button>
 
             </section>

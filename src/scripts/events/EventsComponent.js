@@ -7,10 +7,10 @@ export const eventsComponent = (eventObj) => {
           "en-US"
         )}</div>
         <button class="button delete__event delete--button" id="deleteEvent--${eventObj.id}">Delete</button>
-        <button class="button forecast__event forecast--button" id="weatherForecastButton--${
+        <button class="button showForecast__event forecast--button" id="weatherForecastButton--${
           eventObj.id
         }">Weather Forecast</button>
-        <div id="eventForecast--${eventObj.id}"></div>
+        <div class="forecast event__forecast" id="eventForecast--${eventObj.id}"></div>
          </section>
     `;
 };
