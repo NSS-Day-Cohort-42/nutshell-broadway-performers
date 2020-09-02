@@ -50,6 +50,7 @@ fieldset, input, textarea,label {
 .header{
     display: flex;
     justify-content: space-between;
+    padding: 0 2rem;
 }
 
 .main {
@@ -109,3 +110,4 @@ fieldset {
   text-align: left;
   display: flex
 }
+
