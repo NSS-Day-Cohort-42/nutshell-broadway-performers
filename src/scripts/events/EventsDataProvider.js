@@ -7,7 +7,7 @@ const dispatchStateChangeEvent = () => {
 }
 
 export const getEvents = () => {
-    return fetch("http://localhost:8088/events")
+    return fetch("http://localhost:8088/events?_expand=user")
         .then(response => response.json())
         .then(apiData =>
             events = apiData)

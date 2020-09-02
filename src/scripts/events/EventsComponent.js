@@ -2,7 +2,7 @@ export const eventsComponent = (eventObj) => {
   return `
     <section id="entry--${eventObj.id}" class="item events">
         <div class="eventDetails">
-        <div class="name event__title"><strong>Event:</strong> ${eventObj.title}</div>        
+        <div class="name event__title">${eventObj.title}</div>        
         <div class="location event__location"><strong>Location:</strong> ${eventObj.location}</div>
         <div class="date event__date"><strong>Date:</strong> ${new Date(eventObj.date).toLocaleDateString(
           "en-US"

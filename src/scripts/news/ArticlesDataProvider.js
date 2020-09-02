@@ -50,7 +50,7 @@ export const useArticles = () => {
 }
 
 export const getArticles = () => {
-    return fetch('http://localhost:8088/news')
+    return fetch('http://localhost:8088/news?_expand=user')
     .then(response => response.json())
     .then(parsedArticles => {
         articles = parsedArticles
