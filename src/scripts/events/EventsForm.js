@@ -51,7 +51,7 @@ const render = () => {
                 <label for="eventLocation">Event Location</label>
                 <input type="text" name="eventLocation" id="eventLocation" autoComplete="off" required>
                 <button id="saveEvent"><i class="fas fa-calendar-check"></i> Save</button>
-                <button class="button close---button" id="closeEventForm">Close</button>
+                <button class="button close---button" id="closeEventForm"><i class="fas fa-window-close"></i></button>
             </fieldset>
         </section>
     `
