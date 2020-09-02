@@ -1,5 +1,9 @@
 .article {
     font-family: Ubuntu;
-    color: #001B2E
+    color: #001B2E;
+    overflow: auto;
+}
+.articlesList {
+    
 }
 

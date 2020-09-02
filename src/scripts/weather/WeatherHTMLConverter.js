@@ -12,9 +12,11 @@ export const weatherHTMLRep = (weatherObj) => {
   // This allowed my new Date function to return a numerical value of 0-6 which would correspondingly display the name as it relates to the array. 
   return`
   <div class="weatherContainerOutput">
-    <div>${days[new Date((weatherObj.dt*1000)).getDay()]}</div>
-    <div>${kelvinConvert}&degF</div>
-    <img src="http://openweathermap.org/img/wn/${weatherObj.weather[0].icon}@2x.png"></img>
+  <section class="weatherTempDay">
+    <div class="weatherDay">${days[new Date((weatherObj.dt*1000)).getDay()]}</div>
+    <div class="weatherTemp">${kelvinConvert}&degF</div>
+    </section>
+    <img class="weatherIcon" src="http://openweathermap.org/img/wn/${weatherObj.weather[0].icon}@2x.png"></img>
   </div>
   `
 }

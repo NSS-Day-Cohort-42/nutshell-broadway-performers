@@ -1,4 +1,14 @@
 .weatherContainerOutput {
     font-family: Prompt;
-    color: #001B2E
+    color: #001B2E;
+    display: flex;
+    align-items: center;
+}
+.weatherTemp {
+    font-size: xx-large;
+}
+
+.weatherTempDay {
+    display: flex;
+    flex-direction: column;
 }

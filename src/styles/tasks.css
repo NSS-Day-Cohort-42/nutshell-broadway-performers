@@ -11,8 +11,9 @@
   }
   
   #noteForm--name {
-    margin-left: 0.1rem;
+    margin: 0.1rem;
     height: 2rem;
+
   }
   
   .note {

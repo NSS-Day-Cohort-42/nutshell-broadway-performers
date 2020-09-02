@@ -17,8 +17,21 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 2px;
+    height: 500px;
 }
 
 .events {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
 
+.eventDetails {
+    display: flex;
+    flex-direction: column;
+}
+
+.eventButtons {
+    display: flex;
+    flex-direction: column;
 }
