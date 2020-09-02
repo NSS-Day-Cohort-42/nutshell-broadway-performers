@@ -123,6 +123,17 @@ eventHub.addEventListener("click", (clickEvent) => {
     );
     deleteMessage(idOfMessageObjToDelete);
   }
+
+  if (clickEvent.target.id.startsWith("editMessage--")) {
+    const idOfMessageToUpdate = parseInt(
+      clickEvent.target.id.split("--")[1]
+    )
+    eventHub.dispatchEvent(new CustomEvent("editMessageButtonClicked", {
+      detail: {
+        messageId: idOfMessageToUpdate
+      }
+    }))
+  }
 });
 
 eventHub.addEventListener("click", (clickEvent) => {

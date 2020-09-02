@@ -19,6 +19,8 @@ export const MessageHTML = (messageObj, currentUserId) => {
 
             
             <div class="message__message" id="textForMessageId--${messageObj.id}">${messageObj.message}</div>
+
+            <button class="button edit__button" id="editMessage--${messageObj.id}"><i class="fas fa-edit"></i></button>
             
             <button class="button delete__button" id="deleteMessage--${messageObj.id}"><i class="fas fa-trash-alt"></i></button>
 

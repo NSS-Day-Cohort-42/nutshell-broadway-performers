@@ -7,13 +7,18 @@
 @import "./friends.css";
 @import "./tasks.css";
 
+i{
+    pointer-events: none;
+}
 
 header {
     background-color: #D64933;
+    height: 155px;
 }
 
 body {
     background-color: #FBF7F4;
+    margin: 0
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -29,6 +34,7 @@ button {
     padding: 12px 16px; /* Some padding */
     font-size: 16px; /* Set a font size */
     cursor: pointer; /* Mouse pointer on hover */
+    margin: 5px
   }
   
   /* Darker background on mouse-over */
@@ -44,6 +50,7 @@ fieldset, input, textarea,label {
 .header{
     display: flex;
     justify-content: space-between;
+    padding: 0 2rem;
 }
 
 .main {
@@ -62,7 +69,8 @@ fieldset, input, textarea,label {
 }
 
 .content--left, .content--right{
-    flex: 1
+    flex: 1;
+    flex-flow: column wrap;
 }
 
 
@@ -81,7 +89,7 @@ article h2{
 
 .item {
   padding:10px 0;
-  place-content: baseline
+  
 }
 
 .addButtonFormContainer {
@@ -102,3 +110,4 @@ fieldset {
   text-align: left;
   display: flex
 }
+

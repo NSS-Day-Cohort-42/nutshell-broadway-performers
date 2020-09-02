@@ -7,7 +7,7 @@ const dispatchStateChangeEvent = () => {
 }
 
 export const getEvents = () => {
-    return fetch("http://localhost:8088/events")
+    return fetch("http://localhost:8088/events?_expand=user")
         .then(response => response.json())
         .then(apiData =>
             events = apiData)
@@ -28,6 +28,18 @@ export const saveEvents = (newEvents) => {
         .then(getEvents)
         .then(dispatchStateChangeEvent)
 }
+
+export const updateEvent = (updatedEventObj) => {
+    return fetch(`http://localhost:8088/events/${updatedEventObj.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedEventObj),
+    })
+      .then(getEvents)
+      .then(dispatchStateChangeEvent);
+  };
 
 export const deleteEvents = (id) => {
     return fetch(`http://localhost:8088/events/${id}`, {

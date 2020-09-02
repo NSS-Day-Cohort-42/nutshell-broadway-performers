@@ -1,6 +1,7 @@
-import { LoginForm } from "./auth/LoginForm.js";
+import { LoginForm, useCurrentUser } from "./auth/LoginForm.js";
 import { RegisterForm } from "./auth/RegisterForm.js";
 import { Nutshell } from "./Nutshell.js";
+import { getUsers, useUsers } from "./auth/UsersDataProvider.js"
 
 const eventHub = document.querySelector(".container");
 
@@ -14,6 +15,10 @@ if (sessionStorage.getItem("activeUser")) {
 eventHub.addEventListener("userAuthenticated", () => {
   Nutshell();
 });
+
+
+
+
 
 /*
     1. Check if the user is authenticated by looking in session storage for `activeUser`

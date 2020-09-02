@@ -31,32 +31,34 @@ eventHub.addEventListener("click", clickEvent => {
 
 eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "saveNewArticleButton") {
+    if (document.querySelector("#newArticleURL").value.startsWith("http://")) {
       const id = document.querySelector("#articleId").value
-    const newArticle = {
-      time_added: Date.now(),
-      userId: useCurrentUser(),
-      article_title: document.querySelector("#newArticleTitle").value,
-      article_synopsis: document.querySelector("#newsArticleText").value,
-      article_URL: document.querySelector("#newArticleURL").value,
-    };
+      const newArticle = {
+        time_added: Date.now(),
+        userId: useCurrentUser(),
+        article_title: document.querySelector("#newArticleTitle").value,
+        article_synopsis: document.querySelector("#newsArticleText").value,
+        article_URL: document.querySelector("#newArticleURL").value,
+      };
 
-    if (id === "") {
-      // No id value, so POST new entry with `saveEntry()`
-      // from data provider
-      saveArticle(newArticle);
-    } else {
-      newArticle.id = parseInt(id);
-      saveUpdatedArticle(newArticle);
-    }
-    const articleTitle = document.querySelector("#newArticleTitle");
-    const articleSynopsis = document.querySelector("#newsArticleText");
-    const articleURL = document.querySelector("#newArticleURL");
-    const articleId = document.querySelector("#articleId");
+      if (id === "") {
+        // No id value, so POST new entry with `saveEntry()`
+        // from data provider
+        saveArticle(newArticle);
+      } else {
+        newArticle.id = parseInt(id);
+        saveUpdatedArticle(newArticle);
+      }
+      const articleTitle = document.querySelector("#newArticleTitle");
+      const articleSynopsis = document.querySelector("#newsArticleText");
+      const articleURL = document.querySelector("#newArticleURL");
+      const articleId = document.querySelector("#articleId");
   
-    articleTitle.value = ""
-    articleSynopsis.value = ""
-    articleURL.value = ""
-    articleId.value = ""
+      articleTitle.value = ""
+      articleSynopsis.value = ""
+      articleURL.value = ""
+      articleId.value = ""
+    } else alert('Please enter a valid URL')
   }
 });
 
