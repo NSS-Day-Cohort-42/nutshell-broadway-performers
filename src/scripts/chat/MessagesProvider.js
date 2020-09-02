@@ -33,6 +33,18 @@ export const saveMessage = (newMessageObj) => {
     .then(dispatchStateChangeEvent);
 };
 
+export const updateMessage = (updatedMessageObj) => {
+  return fetch(`http://localhost:8088/messages/${updatedMessageObj.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedMessageObj),
+  })
+    .then(getMessages)
+    .then(dispatchStateChangeEvent);
+};
+
 export const deleteMessage = (messageObjId) => {
   return fetch(`http://localhost:8088/messages/${messageObjId}`, {
     method: "DELETE",
