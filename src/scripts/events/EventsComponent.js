@@ -6,6 +6,7 @@ export const eventsComponent = (eventObj) => {
         <div class="date event__date">${new Date(eventObj.date).toLocaleDateString(
           "en-US"
         )}</div>
+        <button class="button edit__event edit--button" id="editEvent--${eventObj.id}">Edit Event</button>
         <button class="button delete__event delete--button" id="deleteEvent--${eventObj.id}">Delete Event</button>
         <button class="button showForecast__event forecast--button" id="weatherForecastButton--${
           eventObj.id

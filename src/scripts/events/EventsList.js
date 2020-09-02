@@ -155,4 +155,16 @@ eventHub.addEventListener("click", clickEvent => {
         const idToClose = clickEvent.target.id.split("--")[1]
         document.querySelector(`#eventForecast--${idToClose}`).innerHTML = ""
     }
+
+    if (clickEvent.target.id.startsWith("editEvent--")) {
+        const idOfEventToEdit = parseInt(clickEvent.target.id.split("--")[1])
+        eventHub.dispatchEvent(new CustomEvent("editEventButtonClicked", {
+            detail: {
+                editId: idOfEventToEdit
+            }
+        }))
+        alert(idOfEventToEdit)
+    }
 })
+
+

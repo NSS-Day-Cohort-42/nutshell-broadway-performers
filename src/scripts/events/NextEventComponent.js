@@ -4,6 +4,7 @@ export const nextEventsComponent = (eventObj) => {
         <div class="name event__title">Event: ${eventObj.title}</div>        
         <div class="location event__location">Event location ${eventObj.location}</div>
         <div class="date event__date">Date of Event ${new Date(eventObj.date + 86400000).toLocaleDateString('en-US')}</div>
+        <button class="button edit__event edit--button" id="editEvent--${eventObj.id}">Edit Event</button>
         <button class="button delete__event delete--button" id="deleteEvent--${eventObj.id}">Delete Event</button>
         <button class="button showForecast__event forecast--button" id="weatherForecastButton--${eventObj.id}">Show Forecast
         </button>

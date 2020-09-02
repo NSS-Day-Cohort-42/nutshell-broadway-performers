@@ -16,6 +16,7 @@ import { NewArticleEntry } from "./news/NewArticleEntry.js";
 import { articleList } from "./news/ArticlesList.js";
 import { getUsers, useUsers } from "./auth/UsersDataProvider.js";
 import { UserWelcome } from "./auth/UserWelcome.js";
+import {getFriends, useFriends} from "./friends/FriendsProvider.js"
 // import { weatherEventList } from "./weather/WeatherList.js"
 
 const eventHub = document.querySelector(".container");
@@ -59,3 +60,29 @@ export const Nutshell = () => {
   MessagesList();
   messageEntryForm();
 };
+
+
+// let users = []
+// let friends = []
+// let currentUserId 
+// let currentUserObj
+
+// getUsers()
+//   .then(getFriends)
+//   .then(useCurrentUser)
+//         .then(() => {
+//           users = useUsers()
+//           friends = useFriends()
+//           currentUserId = useCurrentUser()
+          
+//           console.log(
+            
+            
+//           users.find(u => u.id = currentUserId).friends.map(f => f.following).map(userId => users.find(u => u.id === userId)).map(matchingFO => matchingFO.username)
+          
+          
+          
+          
+//           )
+//         }   
+//         )
