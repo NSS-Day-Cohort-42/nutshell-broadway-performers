@@ -6,17 +6,20 @@ export const articlesComponent = (articleObj) => {
     <section class="article" id="entry--${articleObj.id}" class="articles">
         <div class="article__title">Article title: ${articleObj.article_title}</div>        
         <div class="article__synopsis"> Caption: ${articleObj.article_synopsis}</div>
+<<<<<<< HEAD
         <div class="article__url">${articleObj.article_URL}</div>
+=======
+>>>>>>> TRB-demo
         <div class=article__link"><a href="${articleObj.article_URL}" target="__blank">Article Link</a></div>
         <button id="deleteArticle--${articleObj.id}"><i class="fas fa-trash-alt"></i></button>
-        <button id="editArticle--${articleObj.id}">Edit</button>
+        <button id="editArticle--${articleObj.id}"><i class="fas fa-edit"></i></button>
          </section>
     `
 }
 
 
 
-
+// <div class="article__url">${articleObj.article_URL}</div>
 
 
 
