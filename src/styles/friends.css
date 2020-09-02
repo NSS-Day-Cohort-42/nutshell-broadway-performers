@@ -12,3 +12,7 @@
 .friend__name {
     flex-grow: 2;
 }
+
+.saveFriend {
+    text-align: center;
+}
