@@ -30,8 +30,9 @@ const render = () => {
     contentTarget.innerHTML = `
     <h2>Enter Chat Message:</h2>
     <fieldset id="messageForm">
-    <textarea id="messageText" placeholder="WASSAP"></textarea>
+    <textarea id="messageText" placeholder="Let your voice be heard"></textarea>
     <button id="submitMessage"><i class="far fa-paper-plane"></i></button>
+    <input type="hidden" id="editMessage" name="editMessage" value="">
     </fieldset>   `
 }
 
@@ -71,6 +72,7 @@ eventHub.addEventListener("click", clickEvent => {
                 message_time: new Date()
             }
             saveMessage(newMessage)
+            document.querySelector("#messageText").value = ""
         }
 
 
