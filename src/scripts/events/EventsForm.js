@@ -3,6 +3,7 @@
 import { saveEvents, getEvents, useEvents } from "./EventsDataProvider.js"
 import { useUsers, getUsers } from "../auth/UsersDataProvider.js"
 import { useCurrentUser } from "../auth/LoginForm.js"
+import { useEventForecast } from "../weather/ForecastDataProvider.js"
 
 let events = []
 let users = []
@@ -37,6 +38,13 @@ eventHub.addEventListener("click", clickevent => {
             window.alert("Please fill out entire event form first")
         }
     }
+})
+
+eventHub.addEventListener("editEventButtonClicked", customEvent => {
+    events = useEvents()
+    const matchingEventObj = events.find(eo => eo.id === customEvent.detail.editId)
+    debugger
+    alert(matchingEventObj.title)
 })
 
 const render = () => {

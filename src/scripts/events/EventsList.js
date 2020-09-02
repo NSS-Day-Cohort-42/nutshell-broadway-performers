@@ -163,7 +163,6 @@ eventHub.addEventListener("click", clickEvent => {
                 editId: idOfEventToEdit
             }
         }))
-        alert(idOfEventToEdit)
     }
 })
 
