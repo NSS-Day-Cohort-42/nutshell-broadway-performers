@@ -48,7 +48,11 @@ eventHub.addEventListener("click", clickevent => {
                 location: document.querySelector("#eventLocation").value, 
                 userId: useCurrentUser(),
                 id: document.querySelector("#editEventId").value
-            })
+            }) 
+            document.querySelector("#eventDate").value = ""
+            document.querySelector("#eventTitle").value = ""
+            document.querySelector("#eventLocation").value = ""
+            document.querySelector("#editEventId").value = ""
     }
 
 

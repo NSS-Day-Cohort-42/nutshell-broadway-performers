@@ -88,6 +88,7 @@ eventHub.addEventListener("click", clickEvent => {
                 message: document.querySelector("#messageText").value,
             }
             updateMessage(updatedMessage)
+            document.querySelector("#messageText").value = ""
         }
     }
 })
